@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=transmission
 PKG_VERSION:=2.94
-PKG_RELEASE:=7
+PKG_RELEASE:=8
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=@GITHUB/transmission/transmission-releases/master
@@ -84,7 +84,7 @@ endef
 define Package/transmission-web
   $(call Package/transmission/template)
   TITLE+= (webinterface)
-  DEPENDS:=@(PACKAGE_transmission-daemon-openssl||PACKAGE_transmission-daemon-mbedtls)
+  DEPENDS:=+transmission-daemon-openssl
   PKGARCH:=all
 endef
 
@@ -175,9 +175,9 @@ define Package/transmission-web/install
 endef
 
 $(eval $(call BuildPackage,transmission-daemon-openssl))
-$(eval $(call BuildPackage,transmission-daemon-mbedtls))
+#$(eval $(call BuildPackage,transmission-daemon-mbedtls))
 $(eval $(call BuildPackage,transmission-cli-openssl))
-$(eval $(call BuildPackage,transmission-cli-mbedtls))
+#$(eval $(call BuildPackage,transmission-cli-mbedtls))
 $(eval $(call BuildPackage,transmission-remote-openssl))
-$(eval $(call BuildPackage,transmission-remote-mbedtls))
+#$(eval $(call BuildPackage,transmission-remote-mbedtls))
 $(eval $(call BuildPackage,transmission-web))
