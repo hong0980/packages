@@ -1,13 +1,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=transmission-web-control
+PKG_VERSION:=1.6.0.1
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/ronggang/transmission-web-control
-PKG_SOURCE_DATE:=2019-07-24
-PKG_SOURCE_VERSION:=c27e3ba9f08148f79fb4121d8a1f5906640ff8d6
-PKG_MIRROR_HASH:=6de823b9b8229b176fbb5c9f33f326c0fb23553ae00a36f60d019fdcdf90a712
+PKG_SOURCE_URL:=https://github.com/hong0980/transmission-web-control
+PKG_SOURCE_VERSION:=0af00ea10327552ae4cf0c34f0801d178cef55f8
 
 PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
