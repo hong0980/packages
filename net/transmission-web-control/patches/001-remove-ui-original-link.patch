@@ -20,6 +20,7 @@
  			</ul>
  			<ul data-role="listview" data-divider-theme="a" data-theme="c" data-icon="false" style="margin-top:15px;">
  				<li data-role='list-divider'><span system-lang="title.status"></span></li>
+<<<<<<< HEAD
 --- a/src/tr-web-control/template/torrent-fields.json
 +++ b/src/tr-web-control/template/torrent-fields.json
 @@ -1,26 +1,27 @@
@@ -62,3 +63,5 @@
  	]
 +
  }
+=======
+>>>>>>> de1000fa4714d9d253947bce168c21cedd569482
