@@ -19,7 +19,7 @@ PKG_LICENSE:=MIT
 PKG_LICENSE_FILES:=LICENSE
 PKG_MAINTAINER:=Shuanglei Tao <tsl0922@gmail.com>
 
-PKG_BUILD_DEPENDS:=vim/host
+#PKG_BUILD_DEPENDS:=vim/host
 CMAKE_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
