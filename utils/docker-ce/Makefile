@@ -33,7 +33,7 @@ PKG_BUILD_PARALLEL:=1
 GO_PKG:=github.com/docker
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include ../../lang/golang/golang-package.mk
 
 define Package/docker-ce/config
   source "$(SOURCE)/Config.in"
@@ -44,9 +44,11 @@ define Package/docker-ce
   CATEGORY:=Utilities
   TITLE:=Docker Community Edition
   URL:=https://www.docker.com/
-  DEPENDS:=$(GO_ARCH_DEPENDS) @(aarch64||arm||x86_64) +btrfs-progs +ca-certificates +cgroupfs-mount +containerd +libdevmapper +libnetwork +tini \
-           +DOCKER_SECCOMP:libseccomp +iptables-mod-extra +kmod-br-netfilter +kmod-ikconfig +kmod-nf-conntrack-netlink +kmod-nf-ipvs +kmod-veth
+  DEPENDS:=$(GO_ARCH_DEPENDS) @HAS_FPU @TARGET_x86_64||arm||aarch64 +btrfs-progs +ca-certificates +cgroupfs-mount +containerd +libdevmapper +libnetwork +tini \
+           +DOCKER_SECCOMP:libseccomp +iptables-mod-extra +kmod-br-netfilter +kmod-ikconfig +kmod-nf-conntrack-netlink +kmod-nf-ipvs +kmod-veth \
+           +@KERNEL_CGROUPS  +@KERNEL_CGROUP_CPUACCT +@KERNEL_CGROUP_SCHED
   USERID:=docker:docker
+  
   MENU:=1
 endef
 
