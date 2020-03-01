@@ -35,11 +35,11 @@ GO_PKG:=github.com/docker
 include $(INCLUDE_DIR)/package.mk
 include ../../lang/golang/golang-package.mk
 
-define Package/docker-ce/config
+define Package/$(PKG_NAME)/config
   source "$(SOURCE)/Config.in"
 endef
 
-define Package/docker-ce
+define Package/$(PKG_NAME)
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=Docker Community Edition
@@ -50,7 +50,7 @@ define Package/docker-ce
   MENU:=1
 endef
 
-define Package/docker-ce/description
+define Package/$(PKG_NAME)/description
   Docker Engine is used by millions enables containerized applications
   to run anywhere consistently on any infrastructure.
 endef
@@ -99,7 +99,7 @@ define Build/Compile
 	$(call GoPackage/Build/Configure)
 endef
 
-define Package/docker-ce/install
+define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/cli/build/docker $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/engine/bundles/binary-daemon/dockerd $(1)/usr/bin/
@@ -115,4 +115,4 @@ define Package/docker-ce/install
 	$(INSTALL_CONF) ./files/daemon.json $(1)/etc/docker/
 endef
 
-$(eval $(call BuildPackage,docker-ce))
+$(eval $(call BuildPackage,$(PKG_NAME)))
