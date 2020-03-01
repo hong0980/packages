@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=docker-ce
 PKG_VERSION:=19.03.5
-PKG_RELEASE:=2
+PKG_RELEASE:=1
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=components/cli/LICENSE components/engine/LICENSE
 
@@ -44,11 +44,9 @@ define Package/docker-ce
   CATEGORY:=Utilities
   TITLE:=Docker Community Edition
   URL:=https://www.docker.com/
-  DEPENDS:=$(GO_ARCH_DEPENDS) @HAS_FPU @TARGET_x86_64||arm||aarch64 +btrfs-progs +ca-certificates +cgroupfs-mount +containerd +libdevmapper +libnetwork +tini \
-           +DOCKER_SECCOMP:libseccomp +iptables-mod-extra +kmod-br-netfilter +kmod-ikconfig +kmod-nf-conntrack-netlink +kmod-nf-ipvs +kmod-veth \
-           +@KERNEL_CGROUPS  +@KERNEL_CGROUP_CPUACCT +@KERNEL_CGROUP_SCHED
+  DEPENDS:=$(GO_ARCH_DEPENDS) @(aarch64||arm||x86_64) +btrfs-progs +ca-certificates +cgroupfs-mount +containerd +libdevmapper +libnetwork +tini \
+           +DOCKER_SECCOMP:libseccomp +iptables-mod-extra +kmod-br-netfilter +kmod-ikconfig +kmod-nf-conntrack-netlink +kmod-nf-ipvs +kmod-veth
   USERID:=docker:docker
-  
   MENU:=1
 endef
 
@@ -80,7 +78,13 @@ endif
 
 define Build/Compile
 	( \
-		export $(call GoPackage/Environment) \
+		export GOPATH=$(GO_PKG_BUILD_DIR) \
+			GOCACHE=$(GO_PKG_CACHE_DIR) \
+			GOTMPDIR=$(GO_PKG_TMP_DIR) \
+			GOROOT_FINAL=$(GO_TARGET_ROOT) \
+			CC=$(TARGET_CC) \
+			CXX=$(TARGET_CXX) \
+			$(call GoPackage/Environment) \
 			GITCOMMIT=$(PKG_SOURCE_VERSION) \
 			DOCKER_GITCOMMIT=$(PKG_SOURCE_VERSION) \
 			DOCKER_BUILDTAGS='$(BUILDTAGS)' \
