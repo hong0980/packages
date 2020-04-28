@@ -23,7 +23,7 @@ define Package/ariang
   SUBMENU:=Download Manager
   DEPENDS:=+uhttpd +aria2
   TITLE:=AriaNg is a web frontend making aria2 easier to use.
-  URL:=https://github.com/mayswind/AriaNg
+  URL:=https://github.com/mayswind/ariaNg
   PKGARCH:=all
 endef
 

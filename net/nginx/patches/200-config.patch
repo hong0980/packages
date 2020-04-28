@@ -1,18 +1,213 @@
---- a/conf/nginx.conf
-+++ b/conf/nginx.conf
-@@ -1,5 +1,5 @@
+--- a/conf/naxsi.rules	1970-01-01 08:00:00.000000000 +0800
++++ b/conf/naxsi.rules	2019-08-31 22:23:46.000000000 +0800
+@@ -0,0 +1,12 @@
++#NAXSI防火墙相关配置
++#启用 naxsi，禁用则为SecRulesDisabled
++SecRulesEnabled;
++#启用学习模式，启用后只记录错误日志，不阻止任何访问。
++#LearningMode;
++DeniedUrl "/RequestDenied"; #指定阻止请求时要显示的页面文件。
++#CheckRules，设置各规则的触发阈值。检测到相关访问请求达到阈值，请求将被阻止。
++CheckRule "$SQL >= 8" BLOCK;
++CheckRule "$RFI >= 8" BLOCK;
++CheckRule "$TRAVERSAL >= 4" BLOCK;
++CheckRule "$EVADE >= 4" BLOCK;
++CheckRule "$XSS >= 8" BLOCK;
+--- a/conf/nginx.conf	2019-08-13 20:51:43.000000000 +0800
++++ b/conf/nginx.conf	2019-11-11 02:22:02.000000000 +0800
+@@ -1,117 +1,87 @@
  
 -#user  nobody;
-+user nobody nogroup;
- worker_processes  1;
+-worker_processes  1;
+-
+-#error_log  logs/error.log;
+-#error_log  logs/error.log  notice;
+-#error_log  logs/error.log  info;
+-
+-#pid        logs/nginx.pid;
+-
++#指定运行nginx的用户，为了方便可直接用root
++#为了安全建议使用非特权用户，但需要将网站根目录所属权更换为对应的非特权账户
++user ftp;
++#指定nginx的运行进程数量，一般建议小于或等于CPU核心数，设为auto则自动检测并使用和核心数一样的进程数量
++worker_processes auto;
++#错误日志路径
++error_log /var/log/nginx/error.log;
++#运行时的PID文件路径
++pid /var/run/nginx.pid;
++#设置线程池的工作参数，线程数量限制，队列请求限制
++thread_pool pool threads=32 max_queue=65535;
++#设置工作进程的最大打开文件数限制
++worker_rlimit_nofile 65535;
  
- #error_log  logs/error.log;
-@@ -16,7 +16,7 @@ events {
+ events {
+-    worker_connections  1024;
++        #工作进程将一次接受所有新连接
++        multi_accept on;
++        #设置单个进程最大连接数量，根据硬件性能进行调整，最大不能超过系统文件句柄数限制
++        #使用 ulimit -n 查询当前系统的文件句柄数限制
++        worker_connections 10240;
+ }
+ 
  
  http {
-     include       mime.types;
+-    include       mime.types;
 -    default_type  application/octet-stream;
-+    #default_type  application/octet-stream;
+-
+-    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+-    #                  '$status $body_bytes_sent "$http_referer" '
+-    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+-
+-    #access_log  logs/access.log  main;
+-
+-    sendfile        on;
+-    #tcp_nopush     on;
+-
+-    #keepalive_timeout  0;
+-    keepalive_timeout  65;
+-
+-    #gzip  on;
+-
+-    server {
+-        listen       80;
+-        server_name  localhost;
+-
+-        #charset koi8-r;
+-
+-        #access_log  logs/host.access.log  main;
+-
+-        location / {
+-            root   html;
+-            index  index.html index.htm;
+-        }
+-
+-        #error_page  404              /404.html;
+-
+-        # redirect server error pages to the static page /50x.html
+-        #
+-        error_page   500 502 503 504  /50x.html;
+-        location = /50x.html {
+-            root   html;
+-        }
+-
+-        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+-        #
+-        #location ~ \.php$ {
+-        #    proxy_pass   http://127.0.0.1;
+-        #}
+-
+-        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+-        #
+-        #location ~ \.php$ {
+-        #    root           html;
+-        #    fastcgi_pass   127.0.0.1:9000;
+-        #    fastcgi_index  index.php;
+-        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+-        #    include        fastcgi_params;
+-        #}
+-
+-        # deny access to .htaccess files, if Apache's document root
+-        # concurs with nginx's one
+-        #
+-        #location ~ /\.ht {
+-        #    deny  all;
+-        #}
+-    }
+-
+-
+-    # another virtual host using mix of IP-, name-, and port-based configuration
+-    #
+-    #server {
+-    #    listen       8000;
+-    #    listen       somename:8080;
+-    #    server_name  somename  alias  another.alias;
+-
+-    #    location / {
+-    #        root   html;
+-    #        index  index.html index.htm;
+-    #    }
+-    #}
+-
+-
+-    # HTTPS server
+-    #
+-    #server {
+-    #    listen       443 ssl;
+-    #    server_name  localhost;
+-
+-    #    ssl_certificate      cert.pem;
+-    #    ssl_certificate_key  cert.key;
+-
+-    #    ssl_session_cache    shared:SSL:1m;
+-    #    ssl_session_timeout  5m;
+-
+-    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+-    #    ssl_prefer_server_ciphers  on;
+-
+-    #    location / {
+-    #        root   html;
+-    #        index  index.html index.htm;
+-    #    }
+-    #}
++      #文件扩展名与文件类型映射表，用于告知浏览器文件的类型，以便浏览器执行正确的操作
++      include       mime.types;
++      #加载Naxsi 应用防火墙核心规则
++      include       naxsi_core.rules;
++      #默认的文件类型，当浏览器打开文件类型映射表中没有的文件格式，将按照此处参数标识文件类型，默认标识为可下载文件
++      default_type  application/octet-stream;
++
++      #自定义日志文件格式
++      #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
++      #                  '$status $body_bytes_sent "$http_referer" '
++      #                  '"$http_user_agent" "$http_x_forwarded_for"';
++
++      #通用基本参数
++      access_log     off;
++      #access_log     /var/run/access.log main buffer=64k flush=1m; #访问日志，用于记录详细的网站目录访问历史
++      #open_log_file_cache max=1000 inactive=10s valid=1m min_uses=1; #日志文件缓存
++      charset        utf-8; #指定Nginx默认的字符集，解决中文显示乱码，文档内容也需要使用utf-8编码才能正常在浏览器内显示
++      aio            threads=pool; #开启线程池模式，在访问大文件时不经过缓存，直接从硬盘读取文件
++      directio       8m; #配合线程池模式的参数，当访问大于或等于此大小的文件时就采用线程池，小于则使用sendfile
++      directio_alignment 4k; #数据传输时的块大小，一般和当前系统的块大小一样
++      sendfile       on; #开启文件高效传输模式，当作为反向代理时应将此项改为 off
++      tcp_nopush     on; #在一个数据包里发送所有头文件，sendfile 选项开启时此选项才有效
++      tcp_nodelay    on; #当连接转换为保持活动状态时，将启用该选项，SSL连接，无缓冲代理和WebSocket代理也应启用
++      server_tokens  off; #隐藏nginx版本号。浏览器访问时抓包，查看HTTP响应的Server头没有版本号
++      types_hash_max_size 2048; #哈希表的最大值（字节），Nginx使用哈希表来存储MIME type与文件扩展名
++
++      #客户端访问参数
++      keepalive_timeout 65s; #设置每个TCP连接超时时间，超时未响应就自动关闭连接
++      keepalive_requests 1024; #设置可通过一个保持活动连接提供的最大请求数。在发出最大请求数后，将关闭连接
++      client_body_timeout 30s; #设置客户端请求正文的超时，如果客户端在此时间内未发送任何内容，请求将以408（请求超时）错误终止
++      client_header_timeout 30s; #设置客户端请求标头的超时，如果客户端在此时间内未传输整个标头，请求将以408（请求超时）错误终止
++      send_timeout 60s; #设置服务端向客户端传输数据的超时，如果客户端在此时间内未接收任何内容，则关闭连接
++      reset_timedout_connection on; #服务端在客户端停止发送应答之后关闭连接，当有大量并发需求时建议打开
++      client_header_buffer_size 16k; #设置请求标头分配的缓冲区大小，如果请求头大于此大小则使用 large_client_header_buffers 参数
++      large_client_header_buffers 4 64k; #指定用于读取大型客户端请求头的缓冲区的最大数量和大小
++      client_max_body_size 128m; #设置客户端请求报文的最大值，超过最大值就会发生413错误，一般和上传文件分片大小有关
++
++      open_file_cache max=65535 inactive=30s; #为打开文件设置缓存信息，max指缓存数量，inactive 是指超时后文件没被请求就删除缓存
++      open_file_cache_valid    30s; #设置检查缓存有效信息的时间间隔
++      open_file_cache_min_uses 2; #pen_file_cache参数中的 inactive 参数时间内文件的最少使用次数，低于此次数从缓存中删除
++      open_file_cache_errors   on; #缓存文件错误信息，例如文件不存在
++
++      #fastcgi调优
++      fastcgi_connect_timeout 600s; #连接到后端FastCGI的超时时间
++      fastcgi_send_timeout 600s; #向FastCGI传送请求的超时时间
++      fastcgi_read_timeout 600s; #接收FastCGI应答的超时时间
++
++      #开启网页压缩功能，提升页面加载速度，HTTP文件服务器应该禁用gzip模块
++      gzip on; #开启或关闭gzip模块
++      gzip_vary on; #添加“Vary: Accept-Encoding”响应头，用于告知客户端开启gzip功能
++      gzip_min_length 1k; #低于此大小的资源不压缩
++      gzip_comp_level 6; #压缩级别1-9，越大压缩率越高，同时消耗cpu资源也越多
++      gzip_types text/css text/vtt text/xml text/plain text/vcard text/x-component text/cache-manifest text/vnd.rim.location.xloc text/x-cross-domain-policy image/bmp image/svg+xml image/x-icon font/opentype application/json application/ld+json application/manifest+json application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/javascript application/x-javascript application/xml application/rss+xml application/xhtml+xml application/atom+xml; #匹配MIME类型进行压缩，（无论是否指定）"text/html"类型总是会被压缩的
++
++      # Brotli压缩模块，功能同gzip，压缩效果更好，可共存，根据浏览器支持与否自动选择
++      brotli on; #开启或关闭Brotli模块
++      brotli_min_length 1k; #低于此大小的资源不压缩
++      brotli_comp_level 6; #压缩级别0-11，越大压缩率越高，同时消耗cpu资源也越多
++      brotli_types text/css text/vtt text/xml text/plain text/vcard text/x-component text/cache-manifest text/vnd.rim.location.xloc text/x-cross-domain-policy image/bmp image/svg+xml image/x-icon font/opentype application/json application/ld+json application/manifest+json application/vnd.geo+json application/vnd.ms-fontobject application/x-font-ttf application/x-web-app-manifest+json application/javascript application/x-javascript application/xml application/rss+xml application/xhtml+xml application/atom+xml; #匹配MIME类型进行压缩，*表示匹配所有MIME类型
  
-     #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-     #                  '$status $body_bytes_sent "$http_referer" '
++      include /etc/nginx/conf.d/*.conf; #加载所有配置文件，请确保所有配置文件参数正确且无冲突，否则会导致nginx无法运行
+ }

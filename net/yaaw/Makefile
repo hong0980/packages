@@ -8,15 +8,17 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=yaaw
-PKG_VERSION:=2017-04-11
+PKG_VERSION:=2019-10-15
 PKG_RELEASE:=1
+PKG_MAINTAINER:=Hsing-Wang Liao <kuoruan@gmail.com>
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/binux/yaaw.git
-PKG_SOURCE_VERSION:=d3a8346c5b9c2c1875dc79e1db2533b584fc8def
+PKG_SOURCE_URL:=https://github.com/aa65535/yaaw-zh-hans.git
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=f47c148cb860b10f13eea059bf261e70842b3950
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 
 PKG_LICENSE:=LGPL-3.0
-PKG_MAINTAINER:=Hsing-Wang Liao <kuoruan@gmail.com>
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -43,7 +45,7 @@ define Package/yaaw/install
 		$(PKG_BUILD_DIR)/{css,img,js} \
 		$(1)/www/yaaw
 	$(CP) \
-		$(PKG_BUILD_DIR)/{index.html,offline.appcache} \
+		$(PKG_BUILD_DIR)/{index.html,offline.appcache,favicon.ico,usage.html} \
 		$(1)/www/yaaw
 endef
 
