@@ -5,13 +5,7 @@ START=80
 
 USE_PROCD=1
 
-section_enabled() {
-	config_get_bool enabled "$1" enabled 0
-	[ $enabled -gt 0 ]
-}
-
-ng() {
-	section_enabled "$section" || return 1
+start_service() {
 	[ -d /var/log/nginx ] || mkdir -p /var/log/nginx
 	[ -d /var/lib/nginx ] || mkdir -p /var/lib/nginx
 
@@ -20,13 +14,4 @@ ng() {
 	procd_set_param file /etc/nginx/nginx.conf
 	procd_set_param respawn
 	procd_close_instance
-}
-
-start_service() {
-	config_load 'nginx'
-	config_foreach ng 'base'
-}
-
-service_triggers() {
-	procd_add_reload_trigger "nginx"
 }

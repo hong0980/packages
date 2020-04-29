@@ -177,9 +177,9 @@ define Package/transmission-web/install
 endef
 
 $(eval $(call BuildPackage,transmission-daemon-openssl))
-$(eval $(call BuildPackage,transmission-daemon-mbedtls))
+#$(eval $(call BuildPackage,transmission-daemon-mbedtls))
 $(eval $(call BuildPackage,transmission-cli-openssl))
-$(eval $(call BuildPackage,transmission-cli-mbedtls))
+#$(eval $(call BuildPackage,transmission-cli-mbedtls))
 $(eval $(call BuildPackage,transmission-remote-openssl))
-$(eval $(call BuildPackage,transmission-remote-mbedtls))
+#$(eval $(call BuildPackage,transmission-remote-mbedtls))
 $(eval $(call BuildPackage,transmission-web))

@@ -142,3 +142,4 @@ start_service() {
 	config_load 'transmission'
 	config_foreach transmission 'transmission'
 }
+
