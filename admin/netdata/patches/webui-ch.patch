@@ -1,5 +1,5 @@
---- a/web/guidashboard.js
-+++ b/web/guidashboard.js
+--- a/web/gui/dashboard.js
++++ b/web/gui/dashboard.js
 @@ -142,18 +142,18 @@
  
  NETDATA.seconds4human = function (seconds, options) {
@@ -312,8 +312,8 @@
                  }
                  NETDATA.registry.access(2, function (person_urls) {
                      NETDATA.registry.parsePersonUrls(person_urls);
---- a/web/guidashboard_info.js
-+++ b/web/guidashboard_info.js
+--- a/web/gui/dashboard_info.js
++++ b/web/gui/dashboard_info.js
 @@ -12,16 +12,15 @@
  
  netdataDashboard.menu = {
@@ -1936,8 +1936,8 @@
  
 +    // ------------------------------------------------------------------------
  };
---- a/web/guiindex.html
-+++ b/web/guiindex.html
+--- a/web/gui/index.html
++++ b/web/gui/index.html
 @@ -2,6 +2,13 @@
  <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
  <html lang="en">
@@ -2570,8 +2570,8 @@
 +    <script type="text/javascript" src="dashboard.js?v20190130-1"></script>
  </body>
  </html>
---- a/web/guimain.js
-+++ b/web/guimain.js
+--- a/web/gui/main.js
++++ b/web/gui/main.js
 @@ -71,7 +71,6 @@
      alarm_unique_id: 0,
      alarm_id: 0,
