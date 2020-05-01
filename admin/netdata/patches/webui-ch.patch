@@ -319,7 +319,7 @@
  netdataDashboard.menu = {
      'system': {
 -        title: 'System Overview',
-+        title: '系统概述',
++        title: '系统概况',
          icon: '<i class="fas fa-bookmark"></i>',
 -        info: 'Overview of the key system metrics.'
 +        info: '一眼掌握系统效能关键指标。'
