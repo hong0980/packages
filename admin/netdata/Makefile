@@ -84,15 +84,10 @@ define Package/netdata/install
 	$(CP) $(1)/usr/lib/netdata/plugins.d/tc-qos-helper.sh $(1)/etc
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/netdata $(1)/usr/sbin
+	
 	$(INSTALL_DIR) $(1)/usr/share/netdata
-	$(CP) $(PKG_INSTALL_DIR)/usr/share/netdata $(1)/usr/share
-	rm $(1)/usr/share/netdata/web/demo*html
-	rm $(1)/usr/share/netdata/web/fonts/*.svg
-	rm $(1)/usr/share/netdata/web/fonts/*.ttf
-	rm $(1)/usr/share/netdata/web/fonts/*.woff
-	rm $(1)/usr/share/netdata/web/images/*.png
-	rm $(1)/usr/share/netdata/web/images/*.gif
-	rm $(1)/usr/share/netdata/web/images/*.ico
+	cp -pR ./files/netdata/* $(1)/usr/share/netdata/
+	
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/netdata.init $(1)/etc/init.d/netdata
 endef
