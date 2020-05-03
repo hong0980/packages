@@ -1148,7 +1148,7 @@
                              <div class="agent-item" style="white-space: nowrap">
                                  <i class="fas fa-hourglass-half"></i>
 -                                Loading, please wait...
-+                                杞藉叆涓紝璇风◢鍊?..
++                                载入中，请稍候...
                                  <div></div>
                              </div>                            
                          </div>
@@ -1167,16 +1167,16 @@
 -                    <li title="export / save a netdata snapshot" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">Export</span></a></li>
 -                    <li title="print this dashboard to PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">Print</span></a></li>
 -                    <li title="get help on using the charts" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">Help</span></a></li>
-+                    <li id="alarmsButton"  title="妫€鏌ュ仴搴风姸鍐电洃鎺ц鎶ヤ笌璁板綍" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#alarmsModal"><i class="fas fa-bell"></i>&nbsp;<span class="hidden-sm hidden-md">璀︽姤&nbsp;</span><span id="alarms_count_badge" class="badge"></span></a></li>
-+                    <li title="鍙樻洿浠〃鏉胯瀹? data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#optionsModal"><i class="fas fa-cog"></i>&nbsp;<span class="hidden-sm hidden-md">璁惧畾</span></a></li>
-+                    <li title="妫€鏌?netdata 鏇存柊<br/>鎮ㄥ簲闅忔椂淇濇寔netdata涓烘渶鏂扮増鏈? data-toggle="tooltip" data-placement="bottom" class="hidden-sm" id="updateButton"><a href="#" class="btn" data-toggle="modal" data-target="#updateModal"><i class="fas fa-cloud-download-alt"></i> <span class="hidden-sm hidden-md">鏇存柊 </span><span id="update_badge" class="badge"></span></a></li>
-+                    <li title="鍒?netdata 鍦?github 涓婄殑 wiki<br/>璁板緱 <b>缁?netdata 涓€涓?<i class=&quot;fas fa-star&quot;></i></b> !" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://github.com/netdata/netdata" class="btn" target="_blank"><i class="fab fa-github"></i></a></li>
-+                    <li title="鍦?twitter 涓婅窡闅?netdata" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://twitter.com/linuxnetdata" class="btn" target="_blank"><i class="fab fa-twitter"></i></a></li>
-+                    <li title="鍒?facebook 涓婄粰 netdata 鎸夎禐" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://www.facebook.com/linuxnetdata/" class="btn" target="_blank"><i class="fab fa-facebook"></i></a></li>
-+                    <li title="姹囧叆 / 杞藉叆 netdata 蹇収" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">姹囧叆</span></a></li>
-+                    <li title="姹囧嚭 / 鍌ㄥ瓨 netdata 蹇収" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">姹囧嚭</span></a></li>
-+                    <li title="灏嗕华琛ㄦ澘鍒楀嵃涓?PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">鍒楀嵃</span></a></li>
-+                    <li title="鍙栧緱鍥捐〃浣跨敤涓婄殑璇存槑璧勮" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">璇存槑</span></a></li>
++                    <li id="alarmsButton"  title="检查健康状况监控警报与记录" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#alarmsModal"><i class="fas fa-bell"></i>&nbsp;<span class="hidden-sm hidden-md">警报&nbsp;</span><span id="alarms_count_badge" class="badge"></span></a></li>
++                    <li title="变更仪表板设定" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#optionsModal"><i class="fas fa-cog"></i>&nbsp;<span class="hidden-sm hidden-md">设定</span></a></li>
++                    <li title="检查 netdata 更新<br/>您应随时保持 netdata 为最新版本" data-toggle="tooltip" data-placement="bottom" class="hidden-sm" id="updateButton"><a href="#" class="btn" data-toggle="modal" data-target="#updateModal"><i class="fas fa-cloud-download-alt"></i> <span class="hidden-sm hidden-md">更新 </span><span id="update_badge" class="badge"></span></a></li>
++                    <li title="到 netdata 在 github 上的 wiki<br/>记得 <b>给 netdata 一个 <i class=&quot;fas fa-star&quot;></i></b> !" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://github.com/netdata/netdata" class="btn" target="_blank"><i class="fab fa-github"></i></a></li>
++                    <li title="在 twitter 上跟随 netdata" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://twitter.com/linuxnetdata" class="btn" target="_blank"><i class="fab fa-twitter"></i></a></li>
++                    <li title="到 facebook 上给 netdata 按赞" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://www.facebook.com/linuxnetdata/" class="btn" target="_blank"><i class="fab fa-facebook"></i></a></li>
++                    <li title="汇入 / 载入 netdata 快照" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇入</span></a></li>
++                    <li title="汇出 / 储存 netdata 快照" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇出</span></a></li>
++                    <li title="将仪表板列印为 PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">列印</span></a></li>
++                    <li title="取得图表使用上的说明资讯" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">说明</span></a></li>
                      <li id="account-menu-container" class="dropdown" data-toggle="tooltip"></li>
                  </ul>
              </nav>
@@ -1185,7 +1185,7 @@
                  <div class="col-md-7">
                      <h1>Netdata
 -                        <p class="lead">Real-time performance monitoring, in the greatest possible detail</p>
-+                        <p class="lead">鍗虫椂鏁堣兘鐩戞帶锛屽叏鍔涚粰鎮ㄦ渶璇︾粏鐨勬暟鎹?/p>
++                        <p class="lead">即时效能监控，全力给您最详细的数据</p>
                      </h1>
                  </div>
                  <div class="col-md-5">
@@ -1195,7 +1195,8 @@
                  <div class="p">
 -                    Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 or later</a>.
 -                    Netdata uses <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">third party tools</a>.
-+                    浠?<a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 鎴栦箣鍚?/a> 鏉℃閲婂嚭銆?+                    Netdata 浣跨敤涔?<a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">绗笁鏂瑰伐鍏?/a>.
++                    以 <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 或之后</a> 条款释出。
++                    Netdata 使用之 <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">第三方工具</a>.
                      <br /><br />
                  </div>
              </div>
@@ -1204,7 +1205,7 @@
                  <div class="modal-footer">
                      <a href="#" onclick="printPreflight(); return false;" type="button" class="btn btn-default">Print</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1213,7 +1214,7 @@
                      <span style="display: inline-block; padding-right: 20px;">Snapshot files contain both data and javascript code. Make sure <b>you trust the files</b> you import!</span>
                      <a id="loadSnapshotImport" href="#" onclick="loadSnapshot(); return false;" type="button" class="btn btn-success disabled">Import</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1222,7 +1223,7 @@
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1231,12 +1232,12 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="helpModalLabel">Dashboard Help</h4>
-+                    <h4 class="modal-title" id="helpModalLabel">浠〃鏉胯鏄?/h4>
++                    <h4 class="modal-title" id="helpModalLabel">仪表板说明</h4>
                  </div>
                  <div class="modal-body">
  
 -                    <h4>Dygraphs (line, area and stacked area charts)</h4>
-+                    <h4>Dygraphs (鎶樼嚎鍥俱€佸尯鍩熷浘涓庡北褰㈠浘)</h4>
++                    <h4>Dygraphs (折线图、区域图与山形图)</h4>
  
                      <!-- Nav tabs -->
                      <ul class="nav nav-tabs" role="tablist">
@@ -1245,7 +1246,7 @@
                          <div role="tabpanel" class="tab-pane active" id="help_mouse">
                              <div class="p">
 -                                <h4>Mouse Over / Hover</h4>
-+                                <h4>榧犳爣绉昏嚦 / 鏆傜暀</h4>
++                                <h4>滑鼠移至 / 暂留</h4>
                                  Mouse over on a chart to show, at its legend, the values for the timestamp under the mouse (the chart will also highlight the point at the chart).
                                  <br/>
                                  All the other visible charts will also show and highlight their values for the same timestamp.
@@ -1253,7 +1254,7 @@
                              <hr/>
                              <div class="p">
 -                                <h4>Drag Chart Contents</h4>
-+                                <h4>鎷栨洺鍥捐〃鍐呭</h4>
++                                <h4>拖曳图表内容</h4>
                                  Drag the contents of a chart, by pressing the left mouse button and moving the mouse, to pan it horizontally.
                                  <br/>
                                  All the charts will follow soon after you let the chart alone (this little delay is by design: it speeds up your browser and lets you focus on what you are exploring).
@@ -1262,13 +1263,13 @@
                              <hr/>
                              <div class="p">
 -                                <h4>Double Click</h4>
-+                                <h4>杩炵偣涓や笅</h4>
++                                <h4>连点两下</h4>
                                  Double Click a chart to reset all the charts to their default auto-refreshing state.
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>SHIFT + Drag</h4>
-+                                <h4>SHIFT + 鎷栨洺</h4>
++                                <h4>SHIFT + 拖曳</h4>
                                  While pressing the <code>SHIFT</code> key, press the left mouse button on the contents of a chart and move the mouse to select an area, to zoom in. The other charts will follow too. Zooming is performed in two phases:
                                  <ul>
                                      <li>The already loaded chart contents are zoomed (low resolution)</li>
@@ -1277,13 +1278,13 @@
                              <hr/>
                              <div class="p">
 -                                <h4>Highlight Timeframe</h4>
-+                                <h4>绐佸嚭鏄剧ず鏃堕棿妗嗘灦</h4>
++                                <h4>反白时间轴</h4>
                                  While pressing the <code>ALT</code> key, press the left mouse button on the contents of a chart and move the mouse to select an area. The selected are will be highlighted on all charts.
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>SHIFT + Mouse Wheel</h4>
-+                                <h4>SHIFT + 榧犳爣婊氳疆</h4>
++                                <h4>SHIFT + 滑鼠滚轮</h4>
                                  While pressing the <code>SHIFT</code> key and the mouse pointer is over the contents of a chart, scroll the mouse wheel to zoom in or out. This kind of zooming is aligned to center below the mouse pointer. The other charts will follow too.
                                  <br/>
                                  Once a chart is zoomed, auto refreshing stops for all charts. To enable it again, <b>double click</b> a zoomed chart.
@@ -1292,7 +1293,7 @@
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1301,7 +1302,7 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="alarmsModalLabel">netdata alarms</h4>
-+                    <h4 class="modal-title" id="alarmsModalLabel">netdata 璀︽姤</h4>
++                    <h4 class="modal-title" id="alarmsModalLabel">netdata 警报</h4>
                  </div>
                  <div class="modal-body">
                      <!-- Nav tabs -->
@@ -1309,31 +1310,31 @@
 -                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">Active</a></li>
 -                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">All</a></li>
 -                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">Log</a></li>
-+                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">浣滅敤涓?/a></li>
-+                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">鎵€鏈?/a></li>
-+                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">璁板綍</a></li>
++                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">作用中</a></li>
++                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">所有</a></li>
++                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">记录</a></li>
                      </ul>
  
                      <!-- Tab panes -->
                      <div class="tab-content">
                          <div role="tabpanel" class="tab-pane active" id="alarms_active">
 -                            loading...
-+                            杞藉叆涓?..
++                            载入中...
                          </div>
                          <div role="tabpanel" class="tab-pane" id="alarms_all">
 -                            loading...
-+                            杞藉叆涓?..
++                            载入中...
                          </div>
                          <div role="tabpanel" class="tab-pane" id="alarms_log">
 -                            loading...
-+                            杞藉叆涓?..
++                            载入中...
                          </div>
                      </div>
                  </div>
                  <div class="modal-footer">
                      <!-- <a href="#" onclick="alarmsUpdateModal(); return false;" type="button" class="btn btn-default">Update</a> -->
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1342,16 +1343,18 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="optionsModalLabel">netdata dashboard options</h4>
-+                    <h4 class="modal-title" id="optionsModalLabel">netdata 浠〃鏉块€夐」</h4>
++                    <h4 class="modal-title" id="optionsModalLabel">netdata 仪表板选项</h4>
                  </div>
                  <div class="modal-body">
                      <center>
 -                        <small style="color: #BBBBBB;">These are browser settings. Each viewer has its own. They do not affect the operation of your netdata server.
-+                        <small style="color: #BBBBBB;">杩欓噷鏄祻瑙堝櫒鐨勮瀹氾紝姣忎釜娴忚鑰呴兘鍙互鎷ユ湁鑷繁鐨勮瀹氥€傝繖閲岀殑璁惧畾涓嶄細褰卞搷 netdata 鏈韩鐨勮繍浣溿€?                         <br/>
++                        <small style="color: #BBBBBB;">这里是浏览器的设定，每个浏览者都可以拥有自己的设定。这里的设定不会影响 netdata 本身的运作。
+                         <br/>
 -                        Settings take effect immediately and are saved permanently to browser local storage (except the refresh on focus / always option).
-+                        璁惧畾浼氱珛鍗崇敓鏁堬紝骞朵笖鍌ㄥ瓨鍦ㄦ偍娴忚鍣ㄧ殑鏈湴鍌ㄥ瓨涓?(闄や簡閲嶆柊鏁寸悊鐨?鍦ㄧ劍鐐逛笂/鎬绘槸 杩欎袱涓€夐」浠ュ)銆?                         <br/>
++                        设定会立即生效，并且储存在您浏览器的本地储存中 (除了重新整理的 在焦点上/总是 这两个选项以外)。
+                         <br/>
 -                        To reset all options (including charts sizes) to their defaults, click <a href="#" onclick="resetDashboardOptions(); return false;">here</a>.</small>
-+                        鑻ヨ灏嗘墍鏈夐€夐」閲嶇疆鍥為璁惧€?(鍖呮嫭鍥捐〃澶у皬)锛岃鐐归€?<a href="#" onclick="resetDashboardOptions(); return false;">杩欓噷</a>銆?/small>
++                        若要将所有选项重置回预设值 (包括图表大小)，请点选 <a href="#" onclick="resetDashboardOptions(); return false;">这里</a>。</small>
                      </center>
                      <div style="padding: 10px;"></div>
  
@@ -1361,10 +1364,10 @@
 -                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">Synchronization</a></li>
 -                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">Visual</a></li>
 -                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">Locale</a></li>
-+                        <li role="presentation" class="active"><a href="#settings_performance" aria-controls="settings_performance" role="tab" data-toggle="tab">鏁堣兘</a></li>
-+                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">鍚屾</a></li>
-+                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">瑙嗚</a></li>
-+                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">鍦板尯</a></li>
++                        <li role="presentation" class="active"><a href="#settings_performance" aria-controls="settings_performance" role="tab" data-toggle="tab">效能</a></li>
++                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">同步</a></li>
++                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">视觉</a></li>
++                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">地区</a></li>
                      </ul>
  
                      <!-- Tab panes -->
@@ -1375,38 +1378,38 @@
 -                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="On Focus" data-off="Always" data-width="110px"></td>
 -                                        <td class="option-info"><strong>When to refresh the charts?</strong><br/>
 -                                            <small>When set to <b>On Focus</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>Always</b>, the charts will always be refreshed. Set it to <b>On Focus</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>Always</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
-+                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="鍦ㄧ劍鐐逛笂" data-off="鎬绘槸" data-width="110px"></td>
-+                                        <td class="option-info"><strong>浣曟椂瑕侀噸鏂版暣鐞嗗浘琛紵</strong><br/>
-+                                            <small>When set to <b>鍦ㄧ劍鐐逛笂</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>鎬绘槸</b>, the charts will always be refreshed. Set it to <b>鍦ㄧ劍鐐逛笂</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>鎬绘槸</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
++                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="在焦点上" data-off="总是" data-width="110px"></td>
++                                        <td class="option-info"><strong>何时要重新整理图表？</strong><br/>
++                                            <small>When set to <b>在焦点上</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>总是</b>, the charts will always be refreshed. Set it to <b>在焦点上</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>总是</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
                                          <td class="option-control">
 -                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="Non Zero" data-off="All" data-width="110px">
-+                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="闈為浂" data-off="鎵€鏈? data-width="110px">
++                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="非零" data-off="所有" data-width="110px">
                                          </td>
 -                                        <td class="option-info"><strong>Which dimensions to show?</strong><br/>
 -                                            <small>When set to <b>Non Zero</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>Non Zero</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
-+                                        <td class="option-info"><strong>瑕佹樉绀洪偅浜涘浘琛ㄧ淮搴︼紵</strong><br/>
-+                                            <small>When set to <b>闈為浂</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>闈為浂</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
++                                        <td class="option-info"><strong>要显示那些图表维度？</strong><br/>
++                                            <small>When set to <b>非零</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>非零</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="Destroy" data-off="Hide" data-width="110px"></td>
 -                                        <td class="option-info"><strong>How to handle hidden charts?</strong><br/>
 -                                            <small>When set to <b>Destroy</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>Destroy</b>, to lower the memory requirements of your browser. Set it to <b>Hide</b> for faster restoration of charts on page scrolling.</small>
-+                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="娑堝幓" data-off="闅愯棌" data-width="110px"></td>
-+                                        <td class="option-info"><strong>濡備綍澶勭悊闅愯棌鍥捐〃锛?/strong><br/>
-+                                            <small>When set to <b>娑堝幓</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>娑堝幓</b>, to lower the memory requirements of your browser. Set it to <b>闅愯棌</b> for faster restoration of charts on page scrolling.</small>
++                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="消去" data-off="隐藏" data-width="110px"></td>
++                                        <td class="option-info"><strong>如何处理隐藏图表？</strong><br/>
++                                            <small>When set to <b>消去</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>消去</b>, to lower the memory requirements of your browser. Set it to <b>隐藏</b> for faster restoration of charts on page scrolling.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="Async" data-off="Sync" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Page scroll handling?</strong><br/>
 -                                            <small>When set to <b>Sync</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>Async</b> for smoother page scrolling on slower computers.</small>
-+                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="闈炲悓姝? data-off="鍚屾" data-width="110px"></td>
-+                                        <td class="option-info"><strong>濡備綍澶勭悊椤甸潰鍗峰姩锛?/strong><br/>
-+                                            <small>When set to <b>鍚屾</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>闈炲悓姝?/b> for smoother page scrolling on slower computers.</small>
++                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="非同步" data-off="同步" data-width="110px"></td>
++                                        <td class="option-info"><strong>如何处理页面卷动？</strong><br/>
++                                            <small>When set to <b>同步</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>非同步</b> for smoother page scrolling on slower computers.</small>
                                          </td>
                                          </tr>
                                      </table>
@@ -1417,33 +1420,33 @@
 -                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="Parallel" data-off="Sequential" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Which chart refresh policy to use?</strong><br/>
 -                                            <small>When set to <b>parallel</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
-+                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="骞惰" data-off="寰簭" data-width="110px"></td>
-+                                        <td class="option-info"><strong>閲囩敤浣曠鍥捐〃鏇存柊妯″紡锛?/strong><br/>
-+                                            <small>When set to <b>骞惰</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
++                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="并行" data-off="循序" data-width="110px"></td>
++                                        <td class="option-info"><strong>采用何种图表更新模式？</strong><br/>
++                                            <small>When set to <b>并行</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row" id="concurrent_refreshes_row">
 -                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="Resync" data-off="Best Effort" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Shall we re-sync chart refreshes?</strong><br/>
 -                                            <small>When set to <b>Resync</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>Best Effort</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>Resync</b> will attempt to re-synchronize the charts on every update. Setting it to <b>Best Effort</b> may lower the pressure on your browser and the network.</small>
-+                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="閲嶆柊鍚屾" data-off="灏藉姏鑰屼负" data-width="110px"></td>
-+                                        <td class="option-info"><strong>閲嶆柊鏁寸悊鏃舵槸鍚﹂渶瑕佸悓姝ユ墍鏈夊浘琛紵</strong><br/>
-+                                            <small>When set to <b>閲嶆柊鍚屾</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>灏藉姏鑰屼负</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>閲嶆柊鍚屾</b> will attempt to re-synchronize the charts on every update. Setting it to <b>灏藉姏鑰屼负</b> may lower the pressure on your browser and the network.</small>
++                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="重新同步" data-off="尽力而为" data-width="110px"></td>
++                                        <td class="option-info"><strong>重新整理时是否需要同步所有图表？</strong><br/>
++                                            <small>When set to <b>重新同步</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>尽力而为</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>重新同步</b> will attempt to re-synchronize the charts on every update. Setting it to <b>尽力而为</b> may lower the pressure on your browser and the network.</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="Sync" data-off="Don't Sync" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Sync hover selection on all charts?</strong><br/>
-+                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="鍚屾" data-off="涓嶈鍚屾" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                        <td class="option-info"><strong>鏄惁鎮仠鍦ㄥ浘琛ㄤ笂鏃跺悓姝ユ洿鏂版墍鏈夊浘琛紵</strong><br/>
++                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                        <td class="option-info"><strong>是否悬停在图表上时同步更新所有图表？</strong><br/>
                                              <small>When enabled, a selection on one chart will automatically select the same time on all other visible charts and the legends of all visible charts will be updated to show the selected values. When disabled, only the chart getting the user's attention will be selected. Enable it to get better insights of the data. Disable it if you are on a very slow computer that cannot actually do it.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="Sync" data-off="Don't Sync" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Sync pan and zoom on all charts?</strong><br/>
-+                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="鍚屾" data-off="涓嶈鍚屾" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                        <td class="option-info"><strong>鏄惁鍚屾绉诲姩涓庣缉鏀炬墍鏈夊浘琛紵</strong><br/>
++                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                        <td class="option-info"><strong>是否同步移动与缩放所有图表？</strong><br/>
                                              <small>When enabled, pan and zoom operations on a chart will be replicated to all charts (even the ones that are not currently visible - of course only when they will become visible). When disabled, pan and zoom operations will not be propagated to other charts.</small>
                                          </td>
                                          </tr>
@@ -1454,9 +1457,9 @@
 -                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="Dark" data-off="White" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Which theme to use?</strong><br/>
 -                                            <small>Netdata comes with two themes: <b>Dark</b> (the default) and <b>White</b>.
-+                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="娣辫壊" data-off="鐧借壊" data-width="110px"></td>
-+                                        <td class="option-info"><strong>浣跨敤閭ｄ竴绉嶅竷鏅富棰橈紵</strong><br/>
-+                                            <small>Netdata comes with two themes: <b>娣辫壊</b> (the default) and <b>娴呰壊</b>.
++                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="深色" data-off="白色" data-width="110px"></td>
++                                        <td class="option-info"><strong>使用那一种布景主题？</strong><br/>
++                                            <small>Netdata comes with two themes: <b>深色</b> (the default) and <b>浅色</b>.
                                              <br/>
                                              <b>Switching this will reload the dashboard</b>.
                                              </small>
@@ -1465,8 +1468,8 @@
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="Help Me" data-off="No Help" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Do you need help?</strong><br/>
-+                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="闇€瑕佽鏄? data-off="涓嶉渶璇存槑" data-width="110px"></td>
-+                                        <td class="option-info"><strong>鎮ㄩ渶瑕佽鏄庡悧锛?/strong><br/>
++                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="需要说明" data-off="不需说明" data-width="110px"></td>
++                                        <td class="option-info"><strong>您需要说明吗？</strong><br/>
                                              <small>Netdata can show some help in some areas to help you use the dashboard. If all these balloons bother you, disable them using this switch.
                                              <br/>
                                              <b>Switching this will reload the dashboard</b>.
@@ -1477,18 +1480,18 @@
 -                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="Pad" data-off="Don't Pad" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Enable data padding when panning and zooming?</strong><br/>
 -                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>Don't Pad</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
-+                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="濉ˉ" data-off="涓嶉渶濉ˉ" data-width="110px"></td>
-+                                        <td class="option-info"><strong>鏄惁鍚敤鍦ㄧЩ鍔ㄤ笌缂╂斁鏃跺悓鏃跺～琛ユ暟鎹紵</strong><br/>
-+                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>涓嶉渶濉ˉ</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
++                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="填补" data-off="不需填补" data-width="110px"></td>
++                                        <td class="option-info"><strong>是否启用在移动与缩放时同时填补数据？</strong><br/>
++                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>不需填补</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="Smooth" data-off="Rough" data-width="110px"></td>
--                                        <td class="option-info"><strong>Enable B茅zier lines on charts?</strong><br/>
+-                                        <td class="option-info"><strong>Enable Bézier lines on charts?</strong><br/>
 -                                            <small>When set to <b>Smooth</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
-+                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="骞虫粦" data-off="绮楃硻" data-width="110px"></td>
-+                                        <td class="option-info"><strong>鏄惁鍦ㄥ浘琛ㄤ笂鍚敤璐濆吂鏇茬嚎锛?/strong><br/>
-+                                            <small>When set to <b>骞虫粦</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
++                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="平滑" data-off="粗糙" data-width="110px"></td>
++                                        <td class="option-info"><strong>是否在图表上启用贝兹曲线？</strong><br/>
++                                            <small>When set to <b>平滑</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
                                              <br/>
                                              Keep in mind <a href="http://dygraphs.com" target="_blank">dygraphs</a>, the main charting library in netdata dashboards, can only smooth line charts. It cannot smooth area or stacked charts. When set to <b>Rough</b>, this setting can lower the CPU resources consumed by your browser.</small>
                                          </td>
@@ -1499,21 +1502,21 @@
 -                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="Scale Units" data-off="Fixed Units" data-onstyle="success" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Enable auto-scaling of select units?</strong><br/>
 -                                                <small>When set to <b>Scale Units</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
-+                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="缂╂斁鍗曚綅" data-off="鍥哄畾鍗曚綅" data-onstyle="success" data-width="110px"></td>
-+                                            <td class="option-info"><strong>鏄惁鍚敤鑷姩缂╂斁鍗曚綅閫夋嫨锛?/strong><br/>
-+                                                <small>When set to <b>缂╂斁鍗曚綅</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
++                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="缩放单位" data-off="固定单位" data-onstyle="success" data-width="110px"></td>
++                                            <td class="option-info"><strong>是否启用自动缩放单位选择？</strong><br/>
++                                                <small>When set to <b>缩放单位</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
                                                      Netdata can auto-scale these original units: <code>kilobits/s</code>, <code>kilobytes/s</code>, <code>KB/s</code>,
                                                      <code>KB</code>, <code>MB</code>, and <code>GB</code>.
 -                                                    When set to <b>Fixed Units</b> all the values will be rendered using the original units maintained by the netdata server.
-+                                                    When set to <b>鍥哄畾鍗曚綅</b> all the values will be rendered using the original units maintained by the netdata server.
++                                                    When set to <b>固定单位</b> all the values will be rendered using the original units maintained by the netdata server.
                                                  </small>
                                              </td>
                                          </tr>
                                          <tr id="settingsLocaleTempRow" class="option-row">
 -                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="Celsius" data-off="Fahrenheit" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Which units to use for temperatures?</strong><br/>
-+                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="鎽勬皬" data-off="鍗庢皬" data-width="110px"></td>
-+                                            <td class="option-info"><strong>浣跨敤浣曠娓╁害鍗曚綅锛?/strong><br/>
++                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="摄氏" data-off="华氏" data-width="110px"></td>
++                                            <td class="option-info"><strong>使用何种温度单位？</strong><br/>
                                                  <small>Set the temperature units of the dashboard.
                                                  </small>
                                              </td>
@@ -1523,10 +1526,10 @@
 -                                            <td class="option-info"><strong>Convert seconds to time?</strong><br/>
 -                                                <small>When set to <b>Time</b>, charts that present <code>seconds</code> will show <code>DDd:HH:MM:SS</code>.
 -                                                    When set to <b>Seconds</b>, the raw number of seconds will be presented.
-+                                            <td class="option-control"><input id="seconds_as_time" type="checkbox" checked data-toggle="toggle"  data-on="鏃堕棿" data-off="绉? data-onstyle="success" data-width="110px"></td>
-+                                            <td class="option-info"><strong>鏄惁灏嗙杞崲涓烘椂闂达紵</strong><br/>
-+                                                <small>When set to <b>鏃堕棿</b>, charts that present <code>绉?/code> will show <code>DDd:HH:MM:SS</code>.
-+                                                    When set to <b>绉?/b>, the raw number of seconds will be presented.
++                                            <td class="option-control"><input id="seconds_as_time" type="checkbox" checked data-toggle="toggle"  data-on="时间" data-off="秒" data-onstyle="success" data-width="110px"></td>
++                                            <td class="option-info"><strong>是否将秒转换为时间？</strong><br/>
++                                                <small>When set to <b>时间</b>, charts that present <code>秒</code> will show <code>DDd:HH:MM:SS</code>.
++                                                    When set to <b>秒</b>, the raw number of seconds will be presented.
                                                  </small>
                                              </td>
                                          </tr>
@@ -1534,14 +1537,14 @@
 -                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="Your Time" data-off="Server Time" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Show browser local time or server time?</strong><br/>
 -                                                <small>When set to <b>Your Time</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
-+                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="鏈湴鏃堕棿" data-off="鏈嶅姟鍣ㄦ椂闂?data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                            <td class="option-info"><strong>鏄惁鏄剧ず娴忚鑰呮湰鍦版椂闂存垨鏄湇鍔″櫒鏃堕棿锛?/strong><br/>
-+                                                <small>When set to <b>鏈湴鏃堕棿</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
++                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="本地时间" data-off="伺服器时间 data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                            <td class="option-info"><strong>是否显示浏览者本地时间或是伺服器时间？</strong><br/>
++                                                <small>When set to <b>本地时间</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
                                                      <br/>
 -                                                    Set it to <b>Your Time</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
 -                                                    Set it to <b>Server Time</b> when you need to compare netdata charts with server log files.
-+                                                    Set it to <b>鏈湴鏃堕棿</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
-+                                                    Set it to <b>鏈嶅姟鍣?/b> when you need to compare netdata charts with server log files.
++                                                    Set it to <b>本地时间</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
++                                                    Set it to <b>伺服器时间</b> when you need to compare netdata charts with server log files.
                                                      <br/>
                                                      Your browser time zone is: <b><span id="browser_timezone">-</span></b>.<br/>
                                                      The server reported timezone is: <b><span id="server_timezone">-</span></b> (you can set this in netdata.conf <code>[global].timezone</code>).<br/>
@@ -1550,7 +1553,8 @@
                                                      <div class="dropup">
                                                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownTimeZone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 -                                                            Select Server Time Zone
-+                                                            閫夋嫨鏈嶅姟鍣ㄦ椂鍖?                                                             <span class="caret"></span>
++                                                            选择伺服器时区
+                                                             <span class="caret"></span>
                                                          </button>
                                                          <ul class="dropdown-menu scrollable-menu-50" aria-labelledby="dropdownTimeZone">
 @@ -1134,7 +1133,7 @@
@@ -1558,7 +1562,7 @@
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1567,32 +1571,33 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="updateModalLabel">Update Check</h4>
-+                    <h4 class="modal-title" id="updateModalLabel">妫€鏌ユ洿鏂?/h4>
++                    <h4 class="modal-title" id="updateModalLabel">检查更新</h4>
                  </div>
                  <div class="modal-body">
 -                    Your netdata version: <b><code><span id="netdataVersion">Unknown</span></code></b><br/>
-+                    鎮ㄧ殑 netdata 鐗堟湰锛?b><code><span id="netdataVersion">鏈煡</span></code></b><br/>
++                    您的 netdata 版本：<b><code><span id="netdataVersion">未知</span></code></b><br/>
                      <br/>
                      <div style="padding: 10px;"></div>
 -                    <div id="versionCheckLog">Not checked yet. Please press the Check Now button.</div>
-+                    <div id="versionCheckLog">灏氭湭妫€鏌ワ紝璇蜂笅 绔嬪嵆妫€鏌?鎸夐挳銆?/div>
++                    <div id="versionCheckLog">尚未检查，请下 立即检查 按钮。</div>
                      <div>
                          <hr/>
                      </div>
                      <div>
 -                        For progress reports and key netdata updates: <strong><a href="https://twitter.com/linuxnetdata" target="_blank">follow netdata on <i class="fab fa-twitter"></i> twitter</a></strong>.
-+                        鍒拌繖閲屾煡闃?netdata 鐨勮繘搴︽姤鍛婁笌鍏抽敭鏇存柊锛?strong><a href="https://twitter.com/linuxnetdata" target="_blank">鍦?<i class="fab fa-twitter"></i> twitter 涓婅窡闅?netdata</a></strong>銆?                         <br/>
++                        到这里查阅 netdata 的进度报告与关键更新：<strong><a href="https://twitter.com/linuxnetdata" target="_blank">在 <i class="fab fa-twitter"></i> twitter 上跟随 netdata</a></strong>。
+                         <br/>
 -                        You can also <a href="https://www.facebook.com/linuxnetdata/" target="_blank">follow netdata on <i class="fab fa-facebook"></i> facebook</a>,
 -                        or <a href="https://github.com/netdata/netdata" target="_blank">watch netdata on <i class="fab fa-github"></i> github</a>.
-+                        鎮ㄤ篃鍙互鍦?<a href="https://www.facebook.com/linuxnetdata/" target="_blank"><i class="fab fa-facebook"></i> facebook 涓婄粰 netdata 鎸夎禐</a>,
-+                        鎴栨槸 <a href="https://github.com/netdata/netdata" target="_blank">鍒?<i class="fab fa-github"></i> github 涓婁簡瑙?netdata</a>.
++                        您也可以在 <a href="https://www.facebook.com/linuxnetdata/" target="_blank"><i class="fab fa-facebook"></i> facebook 上给 netdata 按赞</a>,
++                        或是 <a href="https://github.com/netdata/netdata" target="_blank">到 <i class="fab fa-github"></i> github 上了解 netdata</a>.
                      </div>
                  </div>
                  <div class="modal-footer">
 -                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">Check Now</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">绔嬪嵆妫€鏌?/a>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">立即检查</a>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
@@ -1601,7 +1606,7 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="signInModalLabel">Sign In</h4>
-+                    <h4 class="modal-title" id="signInModalLabel">鐧诲叆</h4>
++                    <h4 class="modal-title" id="signInModalLabel">登入</h4>
                  </div>
                  <div class="modal-body">
                      <p>
@@ -1610,7 +1615,7 @@
                  <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 -                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">Sign In</a>
-+                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">鐧诲叆</a>
++                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">登入</a>
                  </div>
              </div>
          </div>
@@ -1619,7 +1624,7 @@
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                  </div>
              </div>
          </div>
