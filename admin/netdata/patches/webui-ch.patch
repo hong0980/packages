@@ -30,9 +30,24 @@
      };
  
      if (typeof options !== 'object') {
+@@ -8084,12 +8084,12 @@
+                     html: true,
+                     trigger: 'hover',
+                     placement: 'bottom',
+-                    title: 'Chart Legend',
++                    title: '图表图例',
+                     delay: {
+                         show: NETDATA.options.current.show_help_delay_show_ms,
+                         hide: NETDATA.options.current.show_help_delay_hide_ms
+                     },
+-                    content: 'You can click or tap on the values or the labels to select dimensions. By pressing SHIFT or CONTROL, you can enable or disable multiple dimensions.<br/><small>Help can be disabled from the settings.</small>'
++                    content: '您可以单击或点击值或标签以选择尺寸。 通过按SHIFT或CONTROL，可以启用或禁用多个尺寸。<br/><small>可以从设置中禁用帮助。</small>'
+                 });
+             }
+         } else {
 --- a/web/gui/dashboard_info.js
 +++ b/web/gui/dashboard_info.js
-@@ -12,16 +12,15 @@
+@@ -12,16 +12,16 @@
  
  netdataDashboard.menu = {
      'system': {
@@ -50,10 +65,11 @@
 -        info: 'Resources utilization of systemd services. netdata monitors all systemd services via CGROUPS ' +
 -            '(the resources accounting used by containers). '
 +        info: '系统服务的使用情况。netdata 以 CGROUPS 监视所有系统服务。'
++            '（容器使用的资源核算）。'
      },
  
      'ap': {
-@@ -45,13 +44,13 @@
+@@ -45,13 +45,13 @@
      },
  
      'net': {
@@ -70,7 +86,7 @@
          icon: '<i class="fas fa-cloud"></i>',
          info: function (os) {
              if (os === "linux")
-@@ -62,9 +61,9 @@
+@@ -62,9 +62,9 @@
      },
  
      'ipv4': {
@@ -82,7 +98,7 @@
              '<a href="https://en.wikipedia.org/wiki/IPv4" target="_blank">Internet Protocol version 4 (IPv4)</a> is ' +
              'the fourth version of the Internet Protocol (IP). It is one of the core protocols of standards-based ' +
              'internetworking methods in the Internet. IPv4 is a connectionless protocol for use on packet-switched ' +
-@@ -74,9 +73,9 @@
+@@ -74,120 +74,120 @@
      },
  
      'ipv6': {
@@ -94,7 +110,17 @@
      },
  
      'sctp': {
-@@ -92,39 +91,39 @@
+-        title: 'SCTP Networking',
++        title: 'SCTP网络',
+         icon: '<i class="fas fa-cloud"></i>',
+         info: '<a href="https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol" target="_blank">Stream Control Transmission Protocol (SCTP)</a> is a computer network protocol which operates at the transport layer and serves a role similar to the popular protocols TCP and UDP. SCTP provides some of the features of both UDP and TCP: it is message-oriented like UDP and ensures reliable, in-sequence transport of messages with congestion control like TCP. It differs from those protocols by providing multi-homing and redundant paths to increase resilience and reliability.'
+     },
+ 
+     'ipvs': {
+-        title: 'IP Virtual Server',
++        title: 'IP虚拟服务器',
+         icon: '<i class="fas fa-eye"></i>',
+         info: '<a href="http://www.linuxvirtualserver.org/software/ipvs.html" target="_blank">IPVS (IP Virtual Server)</a> implements transport-layer load balancing inside the Linux kernel, so called Layer-4 switching. IPVS running on a host acts as a load balancer at the front of a cluster of real servers, it can direct requests for TCP/UDP based services to the real servers, and makes services of the real servers to appear as a virtual service on a single IP address.'
      },
  
      'netfilter': {
@@ -141,18 +167,29 @@
 +        title: '温度检测',
          icon: '<i class="fas fa-leaf"></i>',
 -        info: 'Readings of the configured system sensors.'
-+        info: '系统已配置相关测温器的数据'
++        info: '系统温度检测器的数据。'
      },
  
      'ipmi': {
-@@ -140,52 +139,52 @@
+         title: 'IPMI',
+         icon: '<i class="fas fa-leaf"></i>',
+-        info: 'The Intelligent Platform Management Interface (IPMI) is a set of computer interface specifications for an autonomous computer subsystem that provides management and monitoring capabilities independently of the host system\'s CPU, firmware (BIOS or UEFI) and operating system.'
++        info: '智能平台管理接口（IPMI）是用于计算机系统的一组计算机接口规范，它独立于主机系统的CPU，固件（BIOS或UEFI）和操作系统提供管理和监视功能。'
+     },
+ 
+     'samba': {
+         title: 'Samba',
+         icon: '<i class="fas fa-folder-open"></i>',
+-        info: 'Performance metrics of the Samba file share operations of this system. Samba is a implementation of Windows services, including Windows SMB protocol file shares.'
++        info: 'Samba文件的性能指标共享此系统的操作。Samba是Windows服务的实现，包括Windows SMB协议文件共享。'
      },
  
      'nfsd': {
 -        title: 'NFS Server',
-+        title: 'NFS 服务器',
++        title: 'NFS服务器',
          icon: '<i class="fas fa-folder-open"></i>',
-         info: 'Performance metrics of the Network File Server. NFS is a distributed file system protocol, allowing a user on a client computer to access files over a network, much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The NFS is an open standard defined in Request for Comments (RFC).'
+-        info: 'Performance metrics of the Network File Server. NFS is a distributed file system protocol, allowing a user on a client computer to access files over a network, much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The NFS is an open standard defined in Request for Comments (RFC).'
++        info: '网络文件服务器的性能指标。 NFS是一种分布式文件系统协议，它允许客户端计算机上的用户通过网络访问文件，就像访问本地存储一样。 像许多其他协议一样，NFS建立在开放网络计算远程过程调用（ONC RPC）系统上。 NFS是在注释请求（RFC）中定义的开放标准。'
      },
  
      'nfs': {
@@ -183,7 +220,8 @@
 -        title: 'Applications',
 +        title: '应用程序',
          icon: '<i class="fas fa-heartbeat"></i>',
-         info: 'Per application statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics for applications of interest, defined in <code>/etc/netdata/apps_groups.conf</code>, which can be edited by running <code>$ /etc/netdata/edit-config apps_groups.conf</code> (the default is <a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">here</a>). The plugin internally builds a process tree (much like <code>ps fax</code> does), and groups processes together (evaluating both child and parent processes) so that the result is always a chart with a predefined set of dimensions (of course, only application groups found running are reported). The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
+-        info: 'Per application statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics for applications of interest, defined in <code>/etc/netdata/apps_groups.conf</code>, which can be edited by running <code>$ /etc/netdata/edit-config apps_groups.conf</code> (the default is <a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">here</a>). The plugin internally builds a process tree (much like <code>ps fax</code> does), and groups processes together (evaluating both child and parent processes) so that the result is always a chart with a predefined set of dimensions (of course, only application groups found running are reported). The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
++        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，这些信息在<code>/etc/netdata/apps_groups.conf</code>中定义， 可以通过<code>$ /etc/netdata/edit-config apps_groups.conf</code>进行编辑 (默认值为<a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">此处</a>)。该插件在内部构建一个进程树（非常类似于<code>ps fax</code>所做的那样），并将进程组合在一起（同时评估子进程和父进程），以便结果始终是一个具有预定义维度集的图表（当然，只报告发现正在运行的应用程序组）。报告的值与 <code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源（与仅显示当前运行进程的资源的<code>top</code>不同）。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。'',
          height: 1.5
      },
  
@@ -191,7 +229,8 @@
 -        title: 'Users',
 +        title: '用户',
          icon: '<i class="fas fa-user"></i>',
-         info: 'Per user statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
+-        info: 'Per user statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
++        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源',
          height: 1.5
      },
  
@@ -199,7 +238,8 @@
 -        title: 'User Groups',
 +        title: '用户组',
          icon: '<i class="fas fa-users"></i>',
-         info: 'Per user group statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user group. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
+-        info: 'Per user group statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user group. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
++        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
          height: 1.5
      },
  
@@ -207,9 +247,12 @@
 -        title: 'Netdata Monitoring',
 +        title: 'Netdata 监视',
          icon: '<i class="fas fa-chart-bar"></i>',
-         info: 'Performance metrics for the operation of netdata itself and its plugins.'
+-        info: 'Performance metrics for the operation of netdata itself and its plugins.'
++        info: 'netdata 本身与外置应用的统计信息。'
      },
-@@ -203,13 +202,13 @@
+ 
+     'aclk_test': {
+@@ -203,13 +203,13 @@
      'cgroup': {
          title: '',
          icon: '<i class="fas fa-th"></i>',
@@ -225,31 +268,185 @@
      },
  
      'fping': {
-@@ -575,12 +574,12 @@
+@@ -221,7 +221,7 @@
+     'gearman': {
+         title: 'Gearman',
+         icon: '<i class="fas fa-tasks"></i>',
+-        info: 'Gearman is a job server that allows you to do work in parallel, to load balance processing, and to call functions between languages.'
++        info: 'Gearman是一个作业服务器，允许您并行执行工作，进行负载平衡处理以及在语言之间调用函数。'
+     },
+ 
+     'ioping': {
+@@ -231,21 +231,21 @@
+     },
+ 
+     'httpcheck': {
+-        title: 'Http Check',
++        title: 'Http检查',
+         icon: '<i class="fas fa-heartbeat"></i>',
+-        info: 'Web Service availability and latency monitoring using HTTP checks. This plugin is a specialized version of the port check plugin.'
++        info: '使用HTTP检查的Web服务可用性和延迟监视。 该插件是端口检查插件的专用版本。'
+     },
+ 
+     'memcached': {
+-        title: 'memcached',
++        title: '内存缓存',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance metrics for <b>memcached</b>. Memcached is a general-purpose distributed memory caching system. It is often used to speed up dynamic database-driven websites by caching data and objects in RAM to reduce the number of times an external data source (such as a database or API) must be read.'
++        info: 'memcached的性能指标<b>memcached</b>。Memcached是一个通用的分布式内存缓存系统。它通常用于通过在RAM中缓存数据和对象来加速动态数据库驱动的网站，以减少必须读取外部数据源（如数据库或API）的次数。'
+     },
+ 
+     'monit': {
+         title: 'monit',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Statuses of checks in <b>monit</b>. Monit is a utility for managing and monitoring processes, programs, files, directories and filesystems on a Unix system. Monit conducts automatic maintenance and repair and can execute meaningful causal actions in error situations.'
++        info: 'Monit是用于管理和监视Unix系统上的进程，程序，文件，目录和文件系统的实用程序。 Monit会进行自动维护和修复，并可以在错误情况下执行有意义的因果操作。'
+     },
+ 
+     'mysql': {
+@@ -263,19 +263,19 @@
+     'redis': {
+         title: 'Redis',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance metrics for <b>redis</b>. Redis (REmote DIctionary Server) is a software project that implements data structure servers. It is open-source, networked, in-memory, and stores keys with optional durability.'
++        info: 'Performance metrics for <b>redis</b>。Redis（远程字典服务器）是一个实现数据结构服务器的软件项目。 它是开源的，网络的，内存中的，并存储具有可选持久性的密钥。'
+     },
+ 
+     'rethinkdbs': {
+         title: 'RethinkDB',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance metrics for <b>rethinkdb</b>. RethinkDB is the first open-source scalable database built for realtime applications'
++        info: 'Performance metrics for <b>rethinkdb</b>。 RethinkDB是第一个为实时应用程序构建的开源可伸缩数据库'
+     },
+ 
+     'retroshare': {
+         title: 'RetroShare',
+         icon: '<i class="fas fa-share-alt"></i>',
+-        info: 'Performance metrics for <b>RetroShare</b>. RetroShare is open source software for encrypted filesharing, serverless email, instant messaging, online chat, and BBS, based on a friend-to-friend network built on GNU Privacy Guard (GPG).'
++        info: 'Performance metrics for <b>RetroShare</b>。 RetroShare是基于GNU Privacy Guard（GPG）建立的朋友网络的开源软件，用于加密文件共享，无服务器电子邮件，即时消息，在线聊天和BBS。'
+     },
+ 
+     'riakkv': {
+@@ -304,9 +304,9 @@
+     },
+ 
+     'portcheck': {
+-        title: 'Port Check',
++        title: '端口检查',
+         icon: '<i class="fas fa-heartbeat"></i>',
+-        info: 'Service availability and latency monitoring using port checks.'
++        info: '使用端口检查的服务可用性和延迟监视。'
+     },
+ 
+     'postfix': {
+@@ -436,7 +436,7 @@
+     'ntpd': {
+         title: 'ntpd',
+         icon: '<i class="fas fa-clock"></i>',
+-        info: 'Provides statistics for the internal variables of the Network Time Protocol daemon <b><a href="http://www.ntp.org/">ntpd</a></b> and optional including the configured peers (if enabled in the module configuration). The module presents the performance metrics as shown by <b><a href="http://doc.ntp.org/current-stable/ntpq.html">ntpq</a></b> (the standard NTP query program) using NTP mode 6 UDP packets to communicate with the NTP server.'
++        info: '提供有关网络时间协议守护程序 <b><a href="http://www.ntp.org/">ntpd</a></b>的内部变量的统计信息，并且还包括配置的对等项（如果启用） 在模块配置中。 该模块显示性能指标，如<b><a href="http://doc.ntp.org/current-stable/ntpq.html">ntpq</a></b> (标准NTP查询) 使用NTP模式6 UDP数据包与NTP服务器进行通信。'
+     },
+ 
+     'spigotmc': {
+@@ -478,13 +478,13 @@
+     'xenstat': {
+         title: 'Xen Node',
+         icon: '<i class="fas fa-server"></i>',
+-        info: 'General statistics for the Xen node. Data collected using <b>xenstat</b> library</a>.'
++        info: 'Xen节点的常规统计信息。 使用<b>xenstat</b> library</a>收集的数据。'
+     },
+ 
+     'xendomain': {
+         title: '',
+         icon: '<i class="fas fa-th-large"></i>',
+-        info: 'Xen domain resource utilization metrics. Netdata reads this information using <b>xenstat</b> library which gives access to the resource usage information (CPU, memory, disk I/O, network) for a virtual machine.'
++        info: 'Xen域资源利用率指标。 Netdata使用 <b>xenstat</b> 读取此信息，该库可访问虚拟机的资源使用信息（CPU，内存，磁盘I / O，网络）。'
+     },
+ 
+     'wmi': {
+@@ -496,7 +496,7 @@
+     'perf': {
+         title: 'Perf Counters',
+         icon: '<i class="fas fa-tachometer-alt"></i>',
+-        info: 'Performance Monitoring Counters (PMC). Data collected using <b>perf_event_open()</b> system call which utilises Hardware Performance Monitoring Units (PMU).'
++        info: '性能监视计数器（PMC）。 系统硬件调用 <b>perf_event_open()</b> 收集的数据，该调用利用了硬件性能监视单元（PMU）。'
+     },
+ 
+     'vsphere': {
+@@ -532,7 +532,7 @@
+     'scaleio': {
+         title: 'ScaleIO',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance and health statistics for various ScaleIO components. Data collected via VxFlex OS Gateway REST API.'
++        info: '各种ScaleIO组件的性能和运行状况统计信息。 通过VxFlex OS网关REST API收集的数据。'
+     },
+ 
+     'squidlog': {
+@@ -550,7 +550,7 @@
+     'ebpf': {
+         title: 'eBPF',
+         icon: '<i class="fas fa-heartbeat"></i>',
+-        info: 'Monitor system calls, internal functions, bytes read, bytes written and errors using <code>eBPF</code>.'
++        info: '使用<code>eBPF</code>监视系统调用，内部函数，读取的字节，写入的字节和错误。'
+     },
+ 
+     'vernemq': {
+@@ -575,13 +575,13 @@
  // information about the submenus
  netdataDashboard.submenu = {
      'web_log.squid_bandwidth': {
 -        title: 'bandwidth',
-+        title: '频宽',
-         info: 'Bandwidth of responses (<code>sent</code>) by squid. This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the server bandwidth.'
+-        info: 'Bandwidth of responses (<code>sent</code>) by squid. This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the server bandwidth.'
++        title: '带宽',
++        info: 'squid的响应带宽(<code>发送</code>)。此图表可能会出现异常峰值，因为带宽是在服务器保存日志行时计算的，即使服务日志行所需的时间跨越较长的持续时间。我们建议使用QoS(e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>)精确计算服务器带宽。'
      },
  
      'web_log.squid_responses': {
 -        title: 'responses',
-+        title: '回应',
-         info: 'Information related to the responses sent by squid.'
+-        info: 'Information related to the responses sent by squid.'
++        title: '响应',
++        info: '与squid发送的响应相关的信息。'
      },
  
-@@ -599,7 +598,7 @@
+     'web_log.squid_requests': {
+@@ -599,13 +599,13 @@
      },
  
      'web_log.squid_squid_cache': {
 -        title: 'cache',
-+        title: '快取',
-         info: 'Performance metrics for the performance of the squid cache.'
+-        info: 'Performance metrics for the performance of the squid cache.'
++        title: '缓存',
++        info: 'squid缓存性能的性能指标。'
      },
  
-@@ -630,7 +629,7 @@
+     'web_log.squid_timings': {
+         title: 'timings',
+-        info: 'Duration of squid requests. Unrealistic spikes may be reported, since squid logs the total time of the requests, when they complete. Especially for HTTPS, the clients get a tunnel from the proxy and exchange requests directly with the upstream servers, so squid cannot evaluate the individual requests and reports the total time the tunnel was open.'
++        info: 'squid请求的持续时间。可能会报告不现实的峰值，因为squid会记录请求完成时的总时间。特别是对于HTTPS，客户端从代理服务器获得一个隧道，并直接与上游服务器交换请求，因此squid无法评估单个请求并报告隧道打开的总时间。'
+     },
+ 
+     'web_log.squid_clients': {
+@@ -613,7 +613,7 @@
+     },
+ 
+     'web_log.bandwidth': {
+-        info: 'Bandwidth of requests (<code>received</code>) and responses (<code>sent</code>). <code>received</code> requires an extended log format (without it, the web server log does not have this information). This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the web server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the web server bandwidth.'
++        info: 'Bandwidth of requests (<code>received</code>) and responses (<code>sent</code>). <code>received</code> 需要扩展的日志格式（如果没有，则Web服务器日志不包含此信息）。该图表可能会出现异常的峰值，因为带宽是在Web服务器保存日志行时计算的，即使为它服务所需的时间跨越了更长的持续时间。我们建议使用QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) 来正确计算Web服务器带宽。'
+     },
+ 
+     'web_log.urls': {
+@@ -621,24 +621,24 @@
+     },
+ 
+     'web_log.clients': {
+-        info: 'Charts showing the number of unique client IPs, accessing the web server.'
++        info: '图表显示访问Web服务器的唯一客户端IP的数量。'
+     },
+ 
+     'web_log.timings': {
+-        info: 'Web server response timings - the time the web server needed to prepare and respond to requests. This requires an extended log format and its meaning is web server specific. For most web servers this accounts the time from the reception of a complete request, to the dispatch of the last byte of the response. So, it includes the network delays of responses, but it does not include the network delays of requests.'
++        info: 'Web服务器响应时间-Web服务器准备和响应请求所需的时间。这需要扩展的日志格式，其含义是特定于web服务器的。对于大多数web服务器，这会计算从接收完整请求到分派响应的最后一个字节的时间。因此，它包括响应的网络延迟，但不包括请求的网络延迟。'
+     },
  
      'mem.ksm': {
          title: 'deduper (ksm)',
@@ -258,7 +455,8 @@
      },
  
      'mem.hugepages': {
-@@ -638,7 +637,7 @@
+-        info: 'Hugepages is a feature that allows the kernel to utilize the multiple page size capabilities of modern hardware architectures. The kernel creates multiple pages of virtual memory, mapped from both physical RAM and swap. There is a mechanism in the CPU architecture called "Translation Lookaside Buffers" (TLB) to manage the mapping of virtual memory pages to actual physical memory addresses. The TLB is a limited hardware resource, so utilizing a large amount of physical memory with the default page size consumes the TLB and adds processing overhead. By utilizing Huge Pages, the kernel is able to create pages of much larger sizes, each page consuming a single resource in the TLB. Huge Pages are pinned to physical RAM and cannot be swapped/paged out.'
++        info: 'Hugepages是一项功能，允许内核利用现代硬件体系结构的多个页面大小功能。 内核会创建多个页面，这些页面的虚拟内存是从物理RAM和交换区映射的。 CPU体系结构中有一种称为“转换后备缓冲区”（TLB）的机制，用于管理虚拟内存页面到实际物理内存地址的映射。 TLB是有限的硬件资源，因此利用默认页面大小使用大量物理内存会消耗TLB并增加处理开销。 通过利用巨大页面，内核能够创建更大尺寸的页面，每个页面消耗TLB中的单个资源。 大量页面固定在物理RAM上，无法交换/分页。'
      },
  
      'mem.numa': {
@@ -267,7 +465,7 @@
      },
  
      'ip.ecn': {
-@@ -647,7 +646,7 @@
+@@ -647,7 +647,7 @@
  
      'netfilter.conntrack': {
          title: 'connection tracker',
@@ -276,7 +474,50 @@
      },
  
      'netfilter.nfacct': {
-@@ -745,16 +744,16 @@
+@@ -662,7 +662,7 @@
+ 
+     'ipfw.dynamic_rules': {
+         title: 'dynamic rules',
+-        info: 'Number of dynamic rules, created by correspondent stateful firewall rules.'
++        info: '由相应的状态防火墙规则创建的动态规则数。'
+     },
+ 
+     'system.softnet_stat': {
+@@ -686,13 +686,13 @@
+     },
+ 
+     'go_expvar.memstats': {
+-        title: 'memory statistics',
+-        info: 'Go runtime memory statistics. See <a href="https://golang.org/pkg/runtime/#MemStats" target="_blank">runtime.MemStats</a> documentation for more info about each chart and the values.'
++        title: '内存统计',
++        info: '进行运行时内存统计。 有关每个图表及其值的更多信息，请参见<a href="https://golang.org/pkg/runtime/#MemStats" target="_blank">runtime.MemStats</a> 文档。'
+     },
+ 
+     'couchdb.dbactivity': {
+         title: 'db activity',
+-        info: 'Overall database reads and writes for the entire server. This includes any external HTTP traffic, as well as internal replication traffic performed in a cluster to ensure node consistency.'
++        info: '整个数据库对整个服务器的读写。 这包括任何外部HTTP通信以及在群集中执行的内部复制通信，以确保节点一致性。'
+     },
+ 
+     'couchdb.httptraffic': {
+@@ -710,13 +710,13 @@
+     },
+ 
+     'couchdb.erlang': {
+-        title: 'erlang statistics',
+-        info: 'Detailed information about the status of the Erlang VM that hosts CouchDB. These are intended for advanced users only. High values of the peak message queue (>10e6) generally indicate an overload condition.'
++        title: 'erlang 统计',
++        info: '有关托管CouchDB的Erlang VM的状态的详细信息。 这些仅适用于高级用户。 峰值消息队列的值较高（> 10e6）通常表示过载情况。'
+     },
+ 
+     'ntpd.system': {
+         title: 'system',
+-        info: 'Statistics of the system variables as shown by the readlist billboard <code>ntpq -c rl</code>. System variables are assigned an association ID of zero and can also be shown in the readvar billboard <code>ntpq -c "rv 0"</code>. These variables are used in the <a href="http://doc.ntp.org/current-stable/discipline.html">Clock Discipline Algorithm</a>, to calculate the lowest and most stable offset.'
++        info: '系统变量的统计信息，如readlist billboard<code>ntpq -c rl</code>. System variables are assigned an association ID of zero and can also be shown in the readvar billboard <code>ntpq -c "rv 0"</code>所示。系统变量的关联ID为零，，也可以显示在readvar <a href="http://doc.ntp.org/current-stable/discipline.html">Clock Discipline Algorithm</a>中。这些变量用于时钟规程算法中，以计算最低和最稳定的偏移量。'
+     },
+ 
+     'ntpd.peers': {
+@@ -745,16 +745,16 @@
  netdataDashboard.context = {
      'system.cpu': {
          info: function (os) {
@@ -285,7 +526,7 @@
 -                + netdataDashboard.sparkline('<br/>Keep an eye on <b>iowait</b> ', 'system.cpu', 'iowait', '%', '. If it is constantly high, your disks are a bottleneck and they slow your system down.')
 -                + netdataDashboard.sparkline('<br/>An important metric worth monitoring, is <b>softirq</b> ', 'system.cpu', 'softirq', '%', '. A constantly high percentage of softirq may indicate network driver issues.');
 +            void(os);
-+            return 'CPU 使用率总表 (全部核心)。 当数值为 100% 时，表示您的 CPU 非常忙碌没有空闲时间。您可以在 <a href="#menu_cpu">CPU</a> 以及 <a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
++            return 'CPU使用率总表(全部核心)。 当数值为100%时，表示您的CPU非常忙碌没有空闲时间。您可以在<a href="#menu_cpu">CPU</a>以及 <a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
 +                + netdataDashboard.sparkline('<br/>请特别关注 <b>iowait</b> ', 'system.cpu', 'iowait', '%', '，如果它一直处于较高的情况，这表示您的硬盘是效能瓶颈，您的系统效能会明显降低。')
 +                + netdataDashboard.sparkline('<br/>另一个重要的指标是 <b>softirq</b> ', 'system.cpu', 'softirq', '%', '，若这个数值持续在较高的情况，很有可能是您的网路驱动部份有问题。');
          },
@@ -294,16 +535,26 @@
  
      'system.load': {
 -        info: 'Current system load, i.e. the number of processes using CPU or waiting for system resources (usually CPU and disk). The 3 metrics refer to 1, 5 and 15 minute averages. The system calculates this once every 5 seconds. For more information check <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">this wikipedia article</a>',
-+        info: '目前系统负载，也就是指CPU使用情况或正在等待系统资源 (通常是 CPU 与磁碟)。这三个指标分别是 1、5、15 分钟。系统每 5 秒会计算一次。更多的资讯可以参阅 <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a> 说明。',
++        info: '当前的系统负载。是指CPU使用情况或正在等待系统资源（通常是 CPU与硬盘）。这三个指标分别是 1、5、15 分钟，系统每 5 秒会刷新一次。更多的资讯可以参阅 <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a> 说明。',
          height: 0.7
      },
  
-@@ -785,25 +784,25 @@
+@@ -771,7 +771,8 @@
+             'The "some" line indicates the share of time in which at least <b>some</b> tasks are stalled on memory. ' +
+             'The "full" line indicates the share of time in which <b>all non-idle</b> tasks are stalled on memory simultaneously. ' +
+             'In this state actual CPU cycles are going to waste, and a workload that spends extended time in this state is considered to be thrashing. ' +
+-            'The ratios (in %) are tracked as recent trends over 10-, 60-, and 300-second windows.'
++            '在这种状态下，实际的CPU周期将被浪费，而在这种状态下花费较长时间的工作负载将被视为是颠簸。 ' +
+++            '这些比率（以％为单位）10秒、60秒和300秒窗口的最新趋势进行跟踪。'
+     },
+ 
+     'system.io_some_pressure': {
+@@ -785,56 +786,56 @@
  
      'system.io': {
          info: function (os) {
 -            var s = 'Total Disk I/O, for all physical disks. You can get detailed information about each disk at the <a href="#menu_disk">Disks</a> section and per application Disk usage at the <a href="#menu_apps">Applications Monitoring</a> section.';
-+            var s = '硬盘I/O总计, 包含所有的实体硬盘。您可以在 <a href="#menu_disk">硬盘</a>查看每一个硬盘的详细资讯，也可以在 <a href="#menu_apps">应用程序</a> 了解每个应用程序对于硬盘的使用情况。';
++            var s = '硬盘I/O总计, 包含所有的实体硬盘。您可以在 <a href="#menu_disk">硬盘</a>查看每一个硬盘的详细信息，也可以在 <a href="#menu_apps">应用程序</a> 了解每个应用程序对于硬盘的使用情况。';
  
              if (os === 'linux')
 -                return s + ' Physical are all the disks that are listed in <code>/sys/block</code>, but do not exist in <code>/sys/devices/virtual/block</code>.';
@@ -329,7 +580,10 @@
      },
  
      'system.entropy': {
-@@ -813,28 +812,28 @@
+         colors: '#CC22AA',
+-        info: '<a href="https://en.wikipedia.org/wiki/Entropy_(computing)" target="_blank">Entropy</a>, is a pool of random numbers (<a href="https://en.wikipedia.org/wiki//dev/random" target="_blank">/dev/random</a>) that is mainly used in cryptography. If the pool of entropy gets empty, processes requiring random numbers may run a lot slower (it depends on the interface each program uses), waiting for the pool to be replenished. Ideally a system with high entropy demands should have a hardware device for that purpose (TPM is one such device). There are also several software-only options you may install, like <code>haveged</code>, although these are generally useful only in servers.'
++        info: '<a href="https://en.wikipedia.org/wiki/Entropy_(computing)" target="_blank">熵 (Entropy)</a>，主要是用在密码学的乱数集区 (<a href="https://en.wikipedia.org/wiki//dev/random" target="_blank">/dev/random</a>)。如果熵的集区为空，需要乱数的程序可能会导致执行变慢 (这取决于每个程序使用的界面)，等待集区补充。在理想情况下，有高度熵需求的系统应该要具备专用的硬件 (例如 TPM 装置)。您也可以安装纯软体的方案，例如 <code>haveged</code>，通常这些方案只会使用在伺服器上。'
+     },
  
      'system.forks': {
          colors: '#5555DD',
@@ -364,7 +618,7 @@
      },
  
      'system.ctxt': {
-@@ -842,12 +841,12 @@
+@@ -842,38 +843,38 @@
      },
  
      'system.idlejitter': {
@@ -375,11 +629,14 @@
      'system.net': {
          info: function (os) {
 -            var s = 'Total bandwidth of all physical network interfaces. This does not include <code>lo</code>, VPNs, network bridges, IFB devices, bond interfaces, etc. Only the bandwidth of physical network interfaces is aggregated.';
-+            var s = '所有实体网络界面的总频宽。不包含<code>lo</code>、VPN、网路桥接、IFB 装置、介面聚合 (Bond).. 等。将合并显示实体网络界面的带宽使用情况。';
++            var s = '所有实体网络界面的总带宽。不包含<code>lo</code>、VPN、网路桥接、IFB 装置、介面聚合 (Bond).. 等。将合并显示实体网络界面的带宽使用情况。';
  
              if (os === 'linux')
-                 return s + ' Physical are all the network interfaces that are listed in <code>/proc/net/dev</code>, but do not exist in <code>/sys/devices/virtual/net</code>.';
-@@ -857,23 +856,23 @@
+-                return s + ' Physical are all the network interfaces that are listed in <code>/proc/net/dev</code>, but do not exist in <code>/sys/devices/virtual/net</code>.';
++                return s + '实体网络界面是指在 <code>/proc/net/dev</code>有列出，但不在<code>/sys/devices/virtual/net</code>里。';
+             else
+                 return s;
+         }
      },
  
      'system.ip': {
@@ -408,7 +665,7 @@
      },
  
      // ------------------------------------------------------------------------
-@@ -960,15 +959,15 @@
+@@ -960,15 +961,15 @@
  
      'mem.committed': {
          colors: NETDATA.colors[3],
@@ -427,16 +684,117 @@
      },
  
      'mem.kernel': {
-@@ -1227,7 +1226,7 @@
+@@ -1109,7 +1110,7 @@
+     },
+ 
+     'users.uptime': {
+-        info: 'Carried over process group uptime since the Netdata restart. The period of time within which at least one process in the group was running.'
++        info: '自Netdata重新启动后传递的进程组正常运行时间。组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1120,11 +1121,11 @@
+     },
+ 
+     'groups.mem': {
+-        info: 'Real memory (RAM) used per user group. This does not include shared memory.'
++        info: '每个用户组使用的实内存（RAM）。 这不包括共享内存。'
+     },
+ 
+     'groups.vmem': {
+-        info: 'Virtual memory allocated per user group since the Netdata restart. Please check <a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">this article</a> for more information.'
++        info: '自Netdata启动后，按用户组分配的虚拟内存。 请查看<a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">本文</a>以获取更多信息。'
+     },
+ 
+     'groups.preads': {
+@@ -1136,7 +1137,7 @@
+     },
+ 
+     'groups.uptime': {
+-        info: 'Carried over process group uptime. The period of time within which at least one process in the group was running.'
++        info: '保持流程组正常运行时间。 该组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1148,9 +1149,9 @@
+                 void (os);
+ 
+                 if (id.match(/.*-ifb$/))
+-                    return netdataDashboard.gaugeChart('Inbound', '12%', '', '#5555AA');
++                    return netdataDashboard.gaugeChart('入站', '12%', '', '#5555AA');
+                 else
+-                    return netdataDashboard.gaugeChart('Outbound', '12%', '', '#AA9900');
++                    return netdataDashboard.gaugeChart('出站', '12%', '', '#AA9900');
+             }
+         ]
+     },
+@@ -1169,7 +1170,7 @@
+                     } catch (e) {
+                         iface = '';
+                     }
+-                    return netdataDashboard.gaugeChart('Received' + iface, '12%', 'received');
++                    return netdataDashboard.gaugeChart('已收到' + iface, '12%', 'received');
+                 } else
+                     return '';
+             },
+@@ -1182,7 +1183,7 @@
+                     } catch (e) {
+                         iface = '';
+                     }
+-                    return netdataDashboard.gaugeChart('Sent' + iface, '12%', 'sent');
++                    return netdataDashboard.gaugeChart('已发送' + iface, '12%', 'sent');
+                 } else
+                     return '';
+             }
+@@ -1191,14 +1192,14 @@
+             function (os, id) {
+                 void (os);
+                 if (!id.match(/^cgroup_.*/))
+-                    return netdataDashboard.gaugeChart('Received', '12%', 'received');
++                    return netdataDashboard.gaugeChart('已收到', '12%', 'received');
+                 else
+                     return '';
+             },
+             function (os, id) {
+                 void (os);
+                 if (!id.match(/^cgroup_.*/))
+-                    return netdataDashboard.gaugeChart('Sent', '12%', 'sent');
++                    return netdataDashboard.gaugeChart('已发送', '12%', 'sent');
+                 else
+                     return '';
+             }
+@@ -1211,13 +1212,13 @@
+     'netfilter.sockets': {
+         colors: '#88AA00',
+         heads: [
+-            netdataDashboard.gaugeChart('Active Connections', '12%', '', '#88AA00')
++            netdataDashboard.gaugeChart('活动连接', '12%', '', '#88AA00')
+         ]
+     },
+ 
+     'netfilter.new': {
+         heads: [
+-            netdataDashboard.gaugeChart('New Connections', '12%', 'new', '#5555AA')
++            netdataDashboard.gaugeChart('新连接', '12%', 'new', '#5555AA')
+         ]
+     },
+ 
+@@ -1227,58 +1228,58 @@
      'disk.util': {
          colors: '#FF5588',
          heads: [
 -            netdataDashboard.gaugeChart('Utilization', '12%', '', '#FF5588')
 +            netdataDashboard.gaugeChart('使用率', '12%', '', '#FF5588')
          ],
-         info: 'Disk Utilization measures the amount of time the disk was busy with something. This is not related to its performance. 100% means that the system always had an outstanding operation on the disk. Keep in mind that depending on the underlying technology of the disk, 100% here may or may not be an indication of congestion.'
+-        info: 'Disk Utilization measures the amount of time the disk was busy with something. This is not related to its performance. 100% means that the system always had an outstanding operation on the disk. Keep in mind that depending on the underlying technology of the disk, 100% here may or may not be an indication of congestion.'
++        info: '磁盘利用率测量磁盘忙于某事的时间量。这与它的性能无关。100%表示系统在磁盘上始终有一个未完成的操作。请记住，根据磁盘的底层技术，这里的100%可能是或可能不是拥塞的迹象。'
      },
-@@ -1239,14 +1238,14 @@
+ 
+     'disk.backlog': {
+         colors: '#0099CC',
+-        info: 'Backlog is an indication of the duration of pending disk operations. On every I/O event the system is multiplying the time spent doing I/O since the last update of this field with the number of pending operations. While not accurate, this metric can provide an indication of the expected completion time of the operations in progress.'
++        info: 'Backlog表示挂起的磁盘操作的持续时间。在每个I/O事件上，系统将自上次更新此字段以来执行I/O所花费的时间与挂起的操作数相乘。虽然不准确，但这一指标可以提供正在进行的操作的预期完成时间的指示。'
+     },
  
      'disk.io': {
          heads: [
@@ -455,7 +813,24 @@
      },
  
      'disk.qops': {
-@@ -1267,15 +1266,15 @@
+-        info: 'I/O operations currently in progress. This metric is a snapshot - it is not an average over the last interval.'
++        info: '当前正在进行I/O操作。此指标是快照-它不是上一个间隔的平均值。'
+     },
+ 
+     'disk.iotime': {
+         height: 0.5,
+-        info: 'The sum of the duration of all completed I/O operations. This number can exceed the interval if the disk is able to execute I/O operations in parallel.'
++        info: '所有已完成的I/O操作的持续时间总和。如果磁盘能够并行执行I/O操作，则此数字可能超过间隔。'
+     },
+     'disk.mops': {
+         height: 0.5,
+-        info: 'The number of merged disk operations. The system is able to merge adjacent I/O operations, for example two 4KB reads can become one 8KB read before given to disk.'
++        info: '合并的磁盘操作数。系统能够合并相邻的I/O操作，例如两个4KB的读操作可以变成一个8KB的读操作，然后再给磁盘。'
+     },
+     'disk.svctm': {
+         height: 0.5,
+-        info: 'The average service time for completed I/O operations. This metric is calculated using the total busy time of the disk and the number of completed operations. If the disk is able to execute multiple parallel operations the reporting average service time will be misleading.'
++        info: '完成I/O操作的平均服务时间。此指标是使用磁盘的总忙时间和已完成的操作数计算的。如果磁盘能够执行多个并行操作，则报告平均服务时间会产生误导。'
      },
      'disk.avgsz': {
          height: 0.5,
@@ -473,7 +848,11 @@
 +        info: '硬盘空间使用率。系统会自动为root使用者做保留，以防止root使用者使用过多。'
      },
      'disk.inodes': {
-         info: 'inodes (or index nodes) are filesystem objects (e.g. files and directories). On many types of file system implementations, the maximum number of inodes is fixed at filesystem creation, limiting the maximum number of files the filesystem can hold. It is possible for a device to run out of inodes. When this happens, new files cannot be created on the device, even though there may be free space available.'
+-        info: 'inodes (or index nodes) are filesystem objects (e.g. files and directories). On many types of file system implementations, the maximum number of inodes is fixed at filesystem creation, limiting the maximum number of files the filesystem can hold. It is possible for a device to run out of inodes. When this happens, new files cannot be created on the device, even though there may be free space available.'
++        info: '索引节点（或索引节点）是文件系统对象（如文件和目录）。在许多类型的文件系统实现中，索引节点的最大数量在文件系统创建时是固定的，这限制了文件系统可以容纳的最大文件数量。设备可能会耗尽索引节点。发生这种情况时，即使可能有可用空间，也无法在设备上创建新文件。'
+     },
+ 
+     'mysql.net': {
 --- a/web/gui/index.html
 +++ b/web/gui/index.html
 @@ -81,7 +81,7 @@
@@ -1009,7 +1388,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Inbound"'
-+            + ' data-title="网络下载"'
++            + ' data-title="下载速度"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1018,7 +1397,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Outbound"'
-+            + ' data-title="网络上传"'
++            + ' data-title="上传速度"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1027,7 +1406,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Inbound"'
-+            + ' data-title="IP 下载"'
++            + ' data-title="IP下载"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1036,7 +1415,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Outbound"'
-+            + ' data-title="IP 上传"'
++            + ' data-title="IP上传"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
