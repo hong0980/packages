@@ -1,5 +1,5 @@
---- a/web/guid/ashboard.js
-+++ b/web/guid/ashboard.js
+--- a/web/gui/dashboard.js
++++ b/web/gui/dashboard.js
 @@ -142,18 +142,18 @@
  
  NETDATA.seconds4human = function (seconds, options) {
@@ -30,8 +30,8 @@
      };
  
      if (typeof options !== 'object') {
---- a/web/guid/dashboard_info.js
-+++ b/web/guid/dashboard_info.js
+--- a/web/gui/dashboard_info.js
++++ b/web/gui/dashboard_info.js
 @@ -12,22 +12,21 @@
  
  netdataDashboard.menu = {
@@ -1141,8 +1141,8 @@
      },
  
      'vsphere.vm_mem_swap': {
---- a/web/guid/index.html
-+++ b/web/guid/index.html
+--- a/web/gui/index.html
++++ b/web/gui/index.html
 @@ -81,7 +81,7 @@
                          <div id="my-netdata-dropdown-content" class="dropdown-menu scrollable-menu inpagemenu">
                              <div class="agent-item" style="white-space: nowrap">
@@ -1623,8 +1623,8 @@
                  </div>
              </div>
          </div>
---- a/web/guid/main.js
-+++ b/web/guid/main.js
+--- a/web/gui/main.js
++++ b/web/gui/main.js
 @@ -1497,7 +1497,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.io"'
              + ' data-dimensions="in"'
