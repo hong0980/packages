@@ -30,24 +30,9 @@
      };
  
      if (typeof options !== 'object') {
-@@ -8084,12 +8084,12 @@
-                     html: true,
-                     trigger: 'hover',
-                     placement: 'bottom',
--                    title: 'Chart Legend',
-+                    title: '图表图例',
-                     delay: {
-                         show: NETDATA.options.current.show_help_delay_show_ms,
-                         hide: NETDATA.options.current.show_help_delay_hide_ms
-                     },
--                    content: 'You can click or tap on the values or the labels to select dimensions. By pressing SHIFT or CONTROL, you can enable or disable multiple dimensions.<br/><small>Help can be disabled from the settings.</small>'
-+                    content: '您可以单击或点击值或标签以选择尺寸。 通过按SHIFT或CONTROL，可以启用或禁用多个尺寸。<br/><small>可以从设置中禁用帮助。</small>'
-                 });
-             }
-         } else {
 --- a/web/gui/dashboard_info.js
 +++ b/web/gui/dashboard_info.js
-@@ -12,16 +12,16 @@
+@@ -12,22 +12,21 @@
  
  netdataDashboard.menu = {
      'system': {
@@ -55,7 +40,7 @@
 +        title: '系统概况',
          icon: '<i class="fas fa-bookmark"></i>',
 -        info: 'Overview of the key system metrics.'
-+        info: '一眼掌握系统效能关键指标。'
++        info: '一眼掌握系统效能关键指标'
      },
  
      'services': {
@@ -65,11 +50,17 @@
 -        info: 'Resources utilization of systemd services. netdata monitors all systemd services via CGROUPS ' +
 -            '(the resources accounting used by containers). '
 +        info: '系统服务的使用情况。netdata 以 CGROUPS 监视所有系统服务。'
-+            '（容器使用的资源核算）。'
      },
  
      'ap': {
-@@ -45,13 +45,13 @@
+         title: 'Access Points',
+         icon: '<i class="fas fa-wifi"></i>',
+-        info: 'Performance metrics for the access points (i.e. wireless interfaces in AP mode) found on the system.'
++        info: '系统上找到的接入点（即AP模式下的无线接口）的性能指标。'
+     },
+ 
+     'tc': {
+@@ -45,13 +44,13 @@
      },
  
      'net': {
@@ -86,7 +77,7 @@
          icon: '<i class="fas fa-cloud"></i>',
          info: function (os) {
              if (os === "linux")
-@@ -62,9 +62,9 @@
+@@ -62,9 +61,9 @@
      },
  
      'ipv4': {
@@ -98,7 +89,7 @@
              '<a href="https://en.wikipedia.org/wiki/IPv4" target="_blank">Internet Protocol version 4 (IPv4)</a> is ' +
              'the fourth version of the Internet Protocol (IP). It is one of the core protocols of standards-based ' +
              'internetworking methods in the Internet. IPv4 is a connectionless protocol for use on packet-switched ' +
-@@ -74,120 +74,120 @@
+@@ -74,142 +73,137 @@
      },
  
      'ipv6': {
@@ -135,7 +126,8 @@
 -        title: 'Firewall (ipfw)',
 +        title: '防火墙 (ipfw)',
          icon: '<i class="fas fa-shield-alt"></i>',
-         info: 'Counters and memory usage for the ipfw rules.'
+-        info: 'Counters and memory usage for the ipfw rules.'
++        info: '防火墙(ipfw)规则的计数器和内存使用情况。'
      },
  
      'cpu': {
@@ -167,7 +159,7 @@
 +        title: '温度检测',
          icon: '<i class="fas fa-leaf"></i>',
 -        info: 'Readings of the configured system sensors.'
-+        info: '系统温度检测器的数据。'
++        info: '系统已配置相关测温器的数据'
      },
  
      'ipmi': {
@@ -186,7 +178,7 @@
  
      'nfsd': {
 -        title: 'NFS Server',
-+        title: 'NFS服务器',
++        title: 'NFS 服务器',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the Network File Server. NFS is a distributed file system protocol, allowing a user on a client computer to access files over a network, much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The NFS is an open standard defined in Request for Comments (RFC).'
 +        info: '网络文件服务器的性能指标。 NFS是一种分布式文件系统协议，它允许客户端计算机上的用户通过网络访问文件，就像访问本地存储一样。 像许多其他协议一样，NFS建立在开放网络计算远程过程调用（ONC RPC）系统上。 NFS是在注释请求（RFC）中定义的开放标准。'
@@ -197,7 +189,7 @@
 +        title: 'NFS 客户端',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the NFS operations of this system, acting as an NFS client.'
-+        info: '显示本机NFS客户端的性能能指标。'
++        info: '显示本机 NFS 客户端的性能能指标。'
      },
  
      'zfs': {
@@ -205,7 +197,7 @@
 +        title: 'ZFS 文件系统',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the ZFS filesystem. The following charts visualize all metrics reported by <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> and <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>.'
-+        info: 'ZFS文件系统的性能指标。 以下图表显示了<a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> 与 <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>的性能数据。'
++        info: 'FS文件系统的性能指标。 以下图表显示了<a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> 与 <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>的性能数据。'
      },
  
      'btrfs': {
@@ -221,7 +213,7 @@
 +        title: '应用程序',
          icon: '<i class="fas fa-heartbeat"></i>',
 -        info: 'Per application statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics for applications of interest, defined in <code>/etc/netdata/apps_groups.conf</code>, which can be edited by running <code>$ /etc/netdata/edit-config apps_groups.conf</code> (the default is <a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">here</a>). The plugin internally builds a process tree (much like <code>ps fax</code> does), and groups processes together (evaluating both child and parent processes) so that the result is always a chart with a predefined set of dimensions (of course, only application groups found running are reported). The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
-+        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，这些信息在<code>/etc/netdata/apps_groups.conf</code>中定义， 可以通过<code>$ /etc/netdata/edit-config apps_groups.conf</code>进行编辑 (默认值为<a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">此处</a>)。该插件在内部构建一个进程树（非常类似于<code>ps fax</code>所做的那样），并将进程组合在一起（同时评估子进程和父进程），以便结果始终是一个具有预定义维度集的图表（当然，只报告发现正在运行的应用程序组）。报告的值与 <code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源（与仅显示当前运行进程的资源的<code>top</code>不同）。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。'',
++        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，这些信息在<code>/etc/netdata/apps_groups.conf</code>中定义， 可以通过<code>$ /etc/netdata/edit-config apps_groups.conf</code>进行编辑 (默认值为<a href="https://github.com/netdata/netdata/blob/master/collectors/apps.plugin/apps_groups.conf" target="_blank">此处</a>)。该插件在内部构建一个进程树（非常类似于<code>ps fax</code>所做的那样），并将进程组合在一起（同时评估子进程和父进程），以便结果始终是一个具有预定义维度集的图表（当然，只报告发现正在运行的应用程序组）。报告的值与 <code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源（与仅显示当前运行进程的资源的<code>top</code>不同）。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
          height: 1.5
      },
  
@@ -230,7 +222,7 @@
 +        title: '用户',
          icon: '<i class="fas fa-user"></i>',
 -        info: 'Per user statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
-+        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源',
++        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
          height: 1.5
      },
  
@@ -251,8 +243,18 @@
 +        info: 'netdata 本身与外置应用的统计信息。'
      },
  
-     'aclk_test': {
-@@ -203,13 +203,13 @@
+-    'aclk_test': {
+-        title: 'ACLK Test Generator',
+-        info: 'For internal use to perform integration testing.'
+-    },
+-
+     'example': {
+-        title: 'Example Charts',
+-        info: 'Example charts, demonstrating the external plugin architecture.'
++        title: '范例图表',
++        info: '范例图表，展示外挂程式的架构之用。'
+     },
+ 
      'cgroup': {
          title: '',
          icon: '<i class="fas fa-th"></i>',
@@ -268,7 +270,7 @@
      },
  
      'fping': {
-@@ -221,7 +221,7 @@
+@@ -221,7 +215,7 @@
      'gearman': {
          title: 'Gearman',
          icon: '<i class="fas fa-tasks"></i>',
@@ -277,7 +279,7 @@
      },
  
      'ioping': {
-@@ -231,21 +231,21 @@
+@@ -231,31 +225,31 @@
      },
  
      'httpcheck': {
@@ -297,14 +299,27 @@
      },
  
      'monit': {
-         title: 'monit',
+-        title: 'monit',
++        title: '监控',
          icon: '<i class="fas fa-database"></i>',
 -        info: 'Statuses of checks in <b>monit</b>. Monit is a utility for managing and monitoring processes, programs, files, directories and filesystems on a Unix system. Monit conducts automatic maintenance and repair and can execute meaningful causal actions in error situations.'
-+        info: 'Monit是用于管理和监视Unix系统上的进程，程序，文件，目录和文件系统的实用程序。 Monit会进行自动维护和修复，并可以在错误情况下执行有意义的因果操作。'
++        info: 'Statuses of checks in <b>monit</b>.  Monit是用于管理和监视Unix系统上的进程，程序，文件，目录和文件系统的实用程序。 Monit会进行自动维护和修复，并可以在错误情况下执行有意义的因果操作'
      },
  
      'mysql': {
-@@ -263,19 +263,19 @@
+         title: 'MySQL',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance metrics for <b>mysql</b>, the open-source relational database management system (RDBMS).'
++        info: 'Performance metrics for <b>mysql</b>，开源关系数据库管理系统（RDBMS）。'
+     },
+ 
+     'postgres': {
+-        title: 'Postgres',
++        title: '进展',
+         icon: '<i class="fas fa-database"></i>',
+         info: 'Performance metrics for <b>PostgresSQL</b>, the object-relational database (ORDBMS).'
+     },
+@@ -263,31 +257,31 @@
      'redis': {
          title: 'Redis',
          icon: '<i class="fas fa-database"></i>',
@@ -327,7 +342,21 @@
      },
  
      'riakkv': {
-@@ -304,9 +304,9 @@
+         title: 'Riak KV',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Metrics for <b>Riak KV</b>, the distributed key-value store.'
++        info: 'Metrics for <b>Riak KV</b>，即分布式键值存储。'
+     },
+ 
+     'ipfs': {
+         title: 'IPFS',
+         icon: '<i class="fas fa-folder-open"></i>',
+-        info: 'Performance metrics for the InterPlanetary File System (IPFS), a content-addressable, peer-to-peer hypermedia distribution protocol.'
++        info: '星际文件系统（InterPlanetary File System，缩写ipfs）是一个旨在创建持久且分布式存储和共享文件的网络传输协议。该技术是一种内容可寻址的对等超媒体分发协议。'
+     },
+ 
+     'phpfpm': {
+@@ -304,9 +298,9 @@
      },
  
      'portcheck': {
@@ -339,7 +368,16 @@
      },
  
      'postfix': {
-@@ -436,7 +436,7 @@
+@@ -407,7 +401,7 @@
+ 
+     'chrony': {
+         icon: '<i class="fas fa-clock"></i>',
+-        info: 'chronyd parameters about the system鈥檚 clock performance.'
++        info: 'chronyd parameters about the system’s clock performance.'
+     },
+ 
+     'couchdb': {
+@@ -436,7 +430,7 @@
      'ntpd': {
          title: 'ntpd',
          icon: '<i class="fas fa-clock"></i>',
@@ -348,7 +386,7 @@
      },
  
      'spigotmc': {
-@@ -478,13 +478,13 @@
+@@ -478,13 +472,13 @@
      'xenstat': {
          title: 'Xen Node',
          icon: '<i class="fas fa-server"></i>',
@@ -364,7 +402,7 @@
      },
  
      'wmi': {
-@@ -496,7 +496,7 @@
+@@ -496,7 +490,7 @@
      'perf': {
          title: 'Perf Counters',
          icon: '<i class="fas fa-tachometer-alt"></i>',
@@ -373,7 +411,14 @@
      },
  
      'vsphere': {
-@@ -532,7 +532,7 @@
+@@ -526,13 +520,13 @@
+     'am2320': {
+         title: 'AM2320 Sensor',
+         icon: '<i class="fas fa-thermometer-half"></i>',
+-        info: 'Readings from the external AM2320 Sensor.'
++        info: '来自外部AM2320传感器的读数。'
+     },
+ 
      'scaleio': {
          title: 'ScaleIO',
          icon: '<i class="fas fa-database"></i>',
@@ -382,7 +427,7 @@
      },
  
      'squidlog': {
-@@ -550,7 +550,7 @@
+@@ -550,7 +544,7 @@
      'ebpf': {
          title: 'eBPF',
          icon: '<i class="fas fa-heartbeat"></i>',
@@ -391,7 +436,7 @@
      },
  
      'vernemq': {
-@@ -575,13 +575,13 @@
+@@ -575,23 +569,23 @@
  // information about the submenus
  netdataDashboard.submenu = {
      'web_log.squid_bandwidth': {
@@ -409,7 +454,21 @@
      },
  
      'web_log.squid_requests': {
-@@ -599,13 +599,13 @@
+-        title: 'requests',
+-        info: 'Information related to the requests squid has received.'
++        title: '要求',
++        info: 'squid已收到与请求相关的信息。'
+     },
+ 
+     'web_log.squid_hierarchy': {
+-        title: 'hierarchy',
+-        info: 'Performance metrics for the squid hierarchy used to serve the requests.'
++        title: '等级制度',
++        info: '用于服务请求的squid层次结构的性能指标。'
+     },
+ 
+     'web_log.squid_squid_transport': {
+@@ -599,13 +593,13 @@
      },
  
      'web_log.squid_squid_cache': {
@@ -426,7 +485,7 @@
      },
  
      'web_log.squid_clients': {
-@@ -613,7 +613,7 @@
+@@ -613,7 +607,7 @@
      },
  
      'web_log.bandwidth': {
@@ -435,7 +494,7 @@
      },
  
      'web_log.urls': {
-@@ -621,24 +621,24 @@
+@@ -621,24 +615,24 @@
      },
  
      'web_log.clients': {
@@ -465,16 +524,16 @@
      },
  
      'ip.ecn': {
-@@ -647,7 +647,7 @@
+@@ -647,7 +641,7 @@
  
      'netfilter.conntrack': {
          title: 'connection tracker',
 -        info: 'Netfilter Connection Tracker performance metrics. The connection tracker keeps track of all connections of the machine, inbound and outbound. It works by keeping a database with all open connections, tracking network and address translation and connection expectations.'
-+        info: 'Netfilter connection tracker 效能指标。Connection tracker 会追踪这台主机上所有的连接，包括流入与流出。工作原理是将所有开启的连接都储存到资料库，以追踪网路、位址转换与连接目标。'
++        info: 'Netfilter connection tracker 效能指标。Connection tracker 会追踪这台主机上所有的连接，包括下载与上传。工作原理是将所有开启的连接都储存到资料库，以追踪网络、位址转换与连接目标。'
      },
  
      'netfilter.nfacct': {
-@@ -662,7 +662,7 @@
+@@ -662,7 +656,7 @@
  
      'ipfw.dynamic_rules': {
          title: 'dynamic rules',
@@ -483,7 +542,7 @@
      },
  
      'system.softnet_stat': {
-@@ -686,13 +686,13 @@
+@@ -686,13 +680,13 @@
      },
  
      'go_expvar.memstats': {
@@ -500,13 +559,13 @@
      },
  
      'couchdb.httptraffic': {
-@@ -710,13 +710,13 @@
+@@ -710,13 +704,13 @@
      },
  
      'couchdb.erlang': {
 -        title: 'erlang statistics',
 -        info: 'Detailed information about the status of the Erlang VM that hosts CouchDB. These are intended for advanced users only. High values of the peak message queue (>10e6) generally indicate an overload condition.'
-+        title: 'erlang 统计',
++        title: 'erlang统计',
 +        info: '有关托管CouchDB的Erlang VM的状态的详细信息。 这些仅适用于高级用户。 峰值消息队列的值较高（> 10e6）通常表示过载情况。'
      },
  
@@ -517,7 +576,7 @@
      },
  
      'ntpd.peers': {
-@@ -745,16 +745,16 @@
+@@ -745,16 +739,16 @@
  netdataDashboard.context = {
      'system.cpu': {
          info: function (os) {
@@ -526,7 +585,7 @@
 -                + netdataDashboard.sparkline('<br/>Keep an eye on <b>iowait</b> ', 'system.cpu', 'iowait', '%', '. If it is constantly high, your disks are a bottleneck and they slow your system down.')
 -                + netdataDashboard.sparkline('<br/>An important metric worth monitoring, is <b>softirq</b> ', 'system.cpu', 'softirq', '%', '. A constantly high percentage of softirq may indicate network driver issues.');
 +            void(os);
-+            return 'CPU使用率总表(全部核心)。 当数值为100%时，表示您的CPU非常忙碌没有空闲时间。您可以在<a href="#menu_cpu">CPU</a>以及 <a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
++            return 'CPU 使用率总表 (全部核心)。 当数值为 100% 时，表示您的 CPU 非常忙碌没有空闲时间。您可以在 <a href="#menu_cpu">CPU</a> 以及 <a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
 +                + netdataDashboard.sparkline('<br/>请特别关注 <b>iowait</b> ', 'system.cpu', 'iowait', '%', '，如果它一直处于较高的情况，这表示您的硬盘是效能瓶颈，您的系统效能会明显降低。')
 +                + netdataDashboard.sparkline('<br/>另一个重要的指标是 <b>softirq</b> ', 'system.cpu', 'softirq', '%', '，若这个数值持续在较高的情况，很有可能是您的网路驱动部份有问题。');
          },
@@ -535,26 +594,27 @@
  
      'system.load': {
 -        info: 'Current system load, i.e. the number of processes using CPU or waiting for system resources (usually CPU and disk). The 3 metrics refer to 1, 5 and 15 minute averages. The system calculates this once every 5 seconds. For more information check <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">this wikipedia article</a>',
-+        info: '当前的系统负载。是指CPU使用情况或正在等待系统资源（通常是 CPU与硬盘）。这三个指标分别是 1、5、15 分钟，系统每 5 秒会刷新一次。更多的资讯可以参阅 <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a> 说明。',
++        info: '目前系统负载，也就是指CPU使用情况或正在等待系统资源 (通常是 CPU 与磁碟)。这三个指标分别是 1、5、15 分钟。系统每 5 秒会计算一次。更多的资讯可以参阅 <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a> 说明。',
          height: 0.7
      },
  
-@@ -771,7 +771,8 @@
+@@ -770,8 +764,8 @@
+             'identifies and quantifies the disruptions caused by resource contentions. ' +
              'The "some" line indicates the share of time in which at least <b>some</b> tasks are stalled on memory. ' +
              'The "full" line indicates the share of time in which <b>all non-idle</b> tasks are stalled on memory simultaneously. ' +
-             'In this state actual CPU cycles are going to waste, and a workload that spends extended time in this state is considered to be thrashing. ' +
+-            'In this state actual CPU cycles are going to waste, and a workload that spends extended time in this state is considered to be thrashing. ' +
 -            'The ratios (in %) are tracked as recent trends over 10-, 60-, and 300-second windows.'
 +            '在这种状态下，实际的CPU周期将被浪费，而在这种状态下花费较长时间的工作负载将被视为是颠簸。 ' +
-++            '这些比率（以％为单位）10秒、60秒和300秒窗口的最新趋势进行跟踪。'
++            '这些比率（以％为单位）10秒、60秒和300秒窗口的最新趋势进行跟踪。'
      },
  
      'system.io_some_pressure': {
-@@ -785,56 +786,56 @@
+@@ -785,56 +779,56 @@
  
      'system.io': {
          info: function (os) {
 -            var s = 'Total Disk I/O, for all physical disks. You can get detailed information about each disk at the <a href="#menu_disk">Disks</a> section and per application Disk usage at the <a href="#menu_apps">Applications Monitoring</a> section.';
-+            var s = '硬盘I/O总计, 包含所有的实体硬盘。您可以在 <a href="#menu_disk">硬盘</a>查看每一个硬盘的详细信息，也可以在 <a href="#menu_apps">应用程序</a> 了解每个应用程序对于硬盘的使用情况。';
++            var s = '硬盘I/O总计, 包含所有的实体硬盘。您可以在 <a href="#menu_disk">硬盘</a>查看每一个硬盘的详细资讯，也可以在 <a href="#menu_apps">应用程序</a> 了解每个应用程序对于硬盘的使用情况。';
  
              if (os === 'linux')
 -                return s + ' Physical are all the disks that are listed in <code>/sys/block</code>, but do not exist in <code>/sys/devices/virtual/block</code>.';
@@ -582,7 +642,7 @@
      'system.entropy': {
          colors: '#CC22AA',
 -        info: '<a href="https://en.wikipedia.org/wiki/Entropy_(computing)" target="_blank">Entropy</a>, is a pool of random numbers (<a href="https://en.wikipedia.org/wiki//dev/random" target="_blank">/dev/random</a>) that is mainly used in cryptography. If the pool of entropy gets empty, processes requiring random numbers may run a lot slower (it depends on the interface each program uses), waiting for the pool to be replenished. Ideally a system with high entropy demands should have a hardware device for that purpose (TPM is one such device). There are also several software-only options you may install, like <code>haveged</code>, although these are generally useful only in servers.'
-+        info: '<a href="https://en.wikipedia.org/wiki/Entropy_(computing)" target="_blank">熵 (Entropy)</a>，主要是用在密码学的乱数集区 (<a href="https://en.wikipedia.org/wiki//dev/random" target="_blank">/dev/random</a>)。如果熵的集区为空，需要乱数的程序可能会导致执行变慢 (这取决于每个程序使用的界面)，等待集区补充。在理想情况下，有高度熵需求的系统应该要具备专用的硬件 (例如 TPM 装置)。您也可以安装纯软体的方案，例如 <code>haveged</code>，通常这些方案只会使用在伺服器上。'
++        info: '<a href="https://en.wikipedia.org/wiki/Entropy_(computing)" target="_blank">熵 (Entropy)</a>，主要是用在密码学的乱数集区 (<a href="https://en.wikipedia.org/wiki//dev/random" target="_blank">/dev/random</a>)。如果熵的集区为空，需要乱数的程序可能会导致执行变慢 (这取决于每个程序使用的介面)，等待集区补充。在理想情况下，有高度熵需求的系统应该要具备专用的硬体装置 (例如 TPM 装置)。您也可以安装纯软体的方案，例如 <code>haveged</code>，通常这些方案只会使用在伺服器上。'
      },
  
      'system.forks': {
@@ -594,12 +654,12 @@
      'system.intr': {
          colors: '#DD5555',
 -        info: 'Total number of CPU interrupts. Check <code>system.interrupts</code> that gives more detail about each interrupt and also the <a href="#menu_cpu">CPUs</a> section where interrupts are analyzed per CPU core.'
-+        info: 'CPU 中断的总数。透过检查 <code>system.interrupts</code>，得知每一个中断的细节资讯。在 <a href="#menu_cpu">CPU</a> 区段提供每一个 CPU 核心的中断情形。'
++        info: 'CPU中断的总数。透过检查 <code>system.interrupts</code>，得知每一个中断的细节资讯。在 <a href="#menu_cpu">CPU</a> 区段提供每一个 CPU 核心的中断情形。'
      },
  
      'system.interrupts': {
 -        info: 'CPU interrupts in detail. At the <a href="#menu_cpu">CPUs</a> section, interrupts are analyzed per CPU core.'
-+        info: 'CPU 中断的细节。在 <a href="#menu_cpu">CPU</a> 区段中，依据每个 CPU 核心分析中断。'
++        info: 'CPU中断的细节。在 <a href="#menu_cpu">CPU</a> 区段中，依据每个 CPU 核心分析中断。'
      },
  
      'system.softirqs': {
@@ -609,7 +669,7 @@
  
      'system.processes': {
 -        info: 'System processes. <b>Running</b> are the processes in the CPU. <b>Blocked</b> are processes that are willing to enter the CPU, but they cannot, e.g. because they wait for disk activity.'
-+        info: '系统程序。<b>running</b> 显示正在 CPU 中的程序。<b>Blocked</b> 显示目前被挡下无法进入 CPU 执行的程序，例如：正在等待磁碟完成动作，才能继续。'
++        info: '系统程序。<b>running</b> 显示正在CPU中的程序。<b>Blocked</b> 显示目前被挡下无法进入 CPU 执行的程序，例如：正在等待磁碟完成动作，才能继续。'
      },
  
      'system.active_processes': {
@@ -618,7 +678,7 @@
      },
  
      'system.ctxt': {
-@@ -842,38 +843,38 @@
+@@ -842,38 +836,38 @@
      },
  
      'system.idlejitter': {
@@ -629,11 +689,11 @@
      'system.net': {
          info: function (os) {
 -            var s = 'Total bandwidth of all physical network interfaces. This does not include <code>lo</code>, VPNs, network bridges, IFB devices, bond interfaces, etc. Only the bandwidth of physical network interfaces is aggregated.';
-+            var s = '所有实体网络界面的总带宽。不包含<code>lo</code>、VPN、网路桥接、IFB 装置、介面聚合 (Bond).. 等。将合并显示实体网络界面的带宽使用情况。';
++            var s = '所有实体网络界面的总频宽。不包含<code>lo</code>、VPN、网路桥接、IFB 装置、介面聚合 (Bond).. 等。将合并显示实体网络界面的带宽使用情况。';
  
              if (os === 'linux')
 -                return s + ' Physical are all the network interfaces that are listed in <code>/proc/net/dev</code>, but do not exist in <code>/sys/devices/virtual/net</code>.';
-+                return s + '实体网络界面是指在 <code>/proc/net/dev</code>有列出，但不在<code>/sys/devices/virtual/net</code>里。';
++                return s + ' 实体网络界面是指在 <code>/proc/net/dev</code> 有列出，但不在 <code>/sys/devices/virtual/net</code> 里。';
              else
                  return s;
          }
@@ -665,7 +725,29 @@
      },
  
      // ------------------------------------------------------------------------
-@@ -960,15 +961,15 @@
+@@ -929,18 +923,18 @@
+     },
+ 
+     'mem.zram_usage': {
+-        info: 'ZRAM total RAM usage metrics. ZRAM uses some memory to store metadata about stored memory pages, thus introducing an overhead which is proportional to disk size. It excludes same-element-filled-pages since no memory is allocated for them.'
++        info: 'ZRAM总RAM使用指标。ZRAM使用一些内存来存储有关存储内存页的元数据，因此会带来与磁盘大小成比例的开销。它排除了相同的元素填充页，因为没有为它们分配内存。'
+     },
+ 
+     'mem.zram_savings': {
+-        info: 'Displays original and compressed memory data sizes.'
++        info: '显示原始和压缩内存的数据大小。'
+     },
+ 
+     'mem.zram_ratio': {
+         heads: [
+             netdataDashboard.gaugeChart('Compression Ratio', '12%', 'ratio', '#0099CC')
+         ],
+-        info: 'Compression ratio, calculated as <code>100 * original_size / compressed_size</code>. More means better compression and more RAM savings.'
++        info: '压缩比，计算为<code>100*原始大小/压缩大小</code>。更多意味着更好的压缩和更多的内存节省。'
+     },
+ 
+     'mem.zram_efficiency': {
+@@ -960,19 +954,19 @@
  
      'mem.committed': {
          colors: NETDATA.colors[3],
@@ -684,16 +766,68 @@
      },
  
      'mem.kernel': {
-@@ -1109,7 +1110,7 @@
+-        info: 'The total amount of memory being used by the kernel. <b>Slab</b> is the amount of memory used by the kernel to cache data structures for its own use. <b>KernelStack</b> is the amount of memory allocated for each task done by the kernel. <b>PageTables</b> is the amount of memory decicated to the lowest level of page tables (A page table is used to turn a virtual address into a physical memory address). <b>VmallocUsed</b> is the amount of memory being used as virtual address space.'
++        info: '内核使用的内存总量。 <b>Slab</b> 是内核用于缓存数据结构以供自己使用的内存量。 <b>KernelStack</b> 是为内核完成的每个任务分配的内存量。 <b>PageTables</b> 是按页表的最低级别划分的内存量（页表用于将虚拟地址转换为物理内存地址）。 <b>VmallocUsed</b> 是用作虚拟地址空间的内存量。'
+     },
+ 
+     'mem.slab': {
+@@ -998,10 +992,10 @@
+     // IP
+ 
+     'ip.inerrors': {
+-        info: 'Errors encountered during the reception of IP packets. ' +
+-            '<code>noroutes</code> (<code>InNoRoutes</code>) counts packets that were dropped because there was no route to send them. ' +
+-            '<code>truncated</code> (<code>InTruncatedPkts</code>) counts packets which is being discarded because the datagram frame didn\'t carry enough data. ' +
+-            '<code>checksum</code> (<code>InCsumErrors</code>) counts packets that were dropped because they had wrong checksum. '
++        info: '接收IP数据包时遇到错误。 ' +
++            '<code>noroutes</code> (<code>InNoRoutes</code>) 统计由于没有路由发送而丢弃的数据包。 ' +
++            '<code>truncated</code> (<code>InTruncatedPkts</code>) 统计由于数据报帧没有\'t 没有足够的数据。 ' +
++            '<code>checksum</code> (<code>InCsumErrors</code>) 统计由于校验和错误而丢弃的数据包。 '
+     },
+ 
+     'ip.tcpmemorypressures': {
+@@ -1066,11 +1060,11 @@
+     },
+ 
+     'apps.mem': {
+-        info: 'Real memory (RAM) used by applications. This does not include shared memory.'
++        info: '应用程序使用的实内存（RAM）。 这不包括共享内存。'
+     },
+ 
+     'apps.vmem': {
+-        info: 'Virtual memory allocated by applications. Please check <a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">this article</a> for more information.'
++        info: '应用程序分配的虚拟内存。 请查看<a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">本文</a> 以获取更多信息。'
+     },
+ 
+     'apps.preads': {
+@@ -1082,7 +1076,7 @@
+     },
+ 
+     'apps.uptime': {
+-        info: 'Carried over process group uptime since the Netdata restart. The period of time within which at least one process in the group was running.'
++        info: '自Netdata重新启动以来，进程组的正常运行时间得以保留。 该组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1093,7 +1087,7 @@
+     },
+ 
+     'users.mem': {
+-        info: 'Real memory (RAM) used per user. This does not include shared memory.'
++        info: '每个用户使用的实内存（RAM）。 这不包括共享内存。'
+     },
+ 
+     'users.vmem': {
+@@ -1109,7 +1103,7 @@
      },
  
      'users.uptime': {
 -        info: 'Carried over process group uptime since the Netdata restart. The period of time within which at least one process in the group was running.'
-+        info: '自Netdata重新启动后传递的进程组正常运行时间。组中至少有一个进程正在运行的时间段。'
++        info: '自Netdata重新启动以来，进程组的正常运行时间得以保留。 该组中至少有一个进程正在运行的时间段。'
      },
  
      // ------------------------------------------------------------------------
-@@ -1120,11 +1121,11 @@
+@@ -1120,7 +1114,7 @@
      },
  
      'groups.mem': {
@@ -702,51 +836,16 @@
      },
  
      'groups.vmem': {
--        info: 'Virtual memory allocated per user group since the Netdata restart. Please check <a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">this article</a> for more information.'
-+        info: '自Netdata启动后，按用户组分配的虚拟内存。 请查看<a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">本文</a>以获取更多信息。'
-     },
- 
-     'groups.preads': {
-@@ -1136,7 +1137,7 @@
+@@ -1136,7 +1130,7 @@
      },
  
      'groups.uptime': {
 -        info: 'Carried over process group uptime. The period of time within which at least one process in the group was running.'
-+        info: '保持流程组正常运行时间。 该组中至少有一个进程正在运行的时间段。'
++        info: '结转流程组正常运行时间。组中至少有一个进程正在运行的时间段。'
      },
  
      // ------------------------------------------------------------------------
-@@ -1148,9 +1149,9 @@
-                 void (os);
- 
-                 if (id.match(/.*-ifb$/))
--                    return netdataDashboard.gaugeChart('Inbound', '12%', '', '#5555AA');
-+                    return netdataDashboard.gaugeChart('入站', '12%', '', '#5555AA');
-                 else
--                    return netdataDashboard.gaugeChart('Outbound', '12%', '', '#AA9900');
-+                    return netdataDashboard.gaugeChart('出站', '12%', '', '#AA9900');
-             }
-         ]
-     },
-@@ -1169,7 +1170,7 @@
-                     } catch (e) {
-                         iface = '';
-                     }
--                    return netdataDashboard.gaugeChart('Received' + iface, '12%', 'received');
-+                    return netdataDashboard.gaugeChart('已收到' + iface, '12%', 'received');
-                 } else
-                     return '';
-             },
-@@ -1182,7 +1183,7 @@
-                     } catch (e) {
-                         iface = '';
-                     }
--                    return netdataDashboard.gaugeChart('Sent' + iface, '12%', 'sent');
-+                    return netdataDashboard.gaugeChart('已发送' + iface, '12%', 'sent');
-                 } else
-                     return '';
-             }
-@@ -1191,14 +1192,14 @@
+@@ -1191,14 +1185,14 @@
              function (os, id) {
                  void (os);
                  if (!id.match(/^cgroup_.*/))
@@ -763,7 +862,7 @@
                  else
                      return '';
              }
-@@ -1211,13 +1212,13 @@
+@@ -1211,13 +1205,13 @@
      'netfilter.sockets': {
          colors: '#88AA00',
          heads: [
@@ -779,7 +878,7 @@
          ]
      },
  
-@@ -1227,58 +1228,58 @@
+@@ -1227,62 +1221,62 @@
      'disk.util': {
          colors: '#FF5588',
          heads: [
@@ -814,13 +913,13 @@
  
      'disk.qops': {
 -        info: 'I/O operations currently in progress. This metric is a snapshot - it is not an average over the last interval.'
-+        info: '当前正在进行I/O操作。此指标是快照-它不是上一个间隔的平均值。'
++        info: '目前正在进行I / O操作。 此指标是快照-不是上一个时间间隔的平均值。'
      },
  
      'disk.iotime': {
          height: 0.5,
 -        info: 'The sum of the duration of all completed I/O operations. This number can exceed the interval if the disk is able to execute I/O operations in parallel.'
-+        info: '所有已完成的I/O操作的持续时间总和。如果磁盘能够并行执行I/O操作，则此数字可能超过间隔。'
++        info: '所有已完成的I / O操作的持续时间之和。 如果磁盘能够并行执行I / O操作，则此数目可以超过间隔。'
      },
      'disk.mops': {
          height: 0.5,
@@ -830,7 +929,7 @@
      'disk.svctm': {
          height: 0.5,
 -        info: 'The average service time for completed I/O operations. This metric is calculated using the total busy time of the disk and the number of completed operations. If the disk is able to execute multiple parallel operations the reporting average service time will be misleading.'
-+        info: '完成I/O操作的平均服务时间。此指标是使用磁盘的总忙时间和已完成的操作数计算的。如果磁盘能够执行多个并行操作，则报告平均服务时间会产生误导。'
++        info: '完成I/O操作的平均服务时间。此度量是使用磁盘的总忙时间和已完成的操作数计算的。如果磁盘能够执行多个并行操作，则报告平均服务时间会产生误导。'
      },
      'disk.avgsz': {
          height: 0.5,
@@ -849,10 +948,199 @@
      },
      'disk.inodes': {
 -        info: 'inodes (or index nodes) are filesystem objects (e.g. files and directories). On many types of file system implementations, the maximum number of inodes is fixed at filesystem creation, limiting the maximum number of files the filesystem can hold. It is possible for a device to run out of inodes. When this happens, new files cannot be created on the device, even though there may be free space available.'
-+        info: '索引节点（或索引节点）是文件系统对象（如文件和目录）。在许多类型的文件系统实现中，索引节点的最大数量在文件系统创建时是固定的，这限制了文件系统可以容纳的最大文件数量。设备可能会耗尽索引节点。发生这种情况时，即使可能有可用空间，也无法在设备上创建新文件。'
++        info: '索引节点（或索引节点）是文件系统对象（例如文件和目录）。 在许多类型的文件系统实现中，在创建文件系统时固定了最大索引节点数，从而限制了文件系统可以容纳的最大文件数。 设备可能会耗尽inode。 发生这种情况时，即使可能有可用空间，也无法在设备上创建新文件。'
      },
  
      'mysql.net': {
+-        info: 'The amount of data sent to mysql clients (<strong>out</strong>) and received from mysql clients (<strong>in</strong>).'
++        info: '发送到mysql客户端 (<strong>out</strong>) 和从mysql客户端 (<strong>in</strong>)接收的数据。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1435,21 +1429,21 @@
+     'apache.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'apache.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+     'apache.net': {
+         colors: NETDATA.colors[3],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Bandwidth', '12%', '', NETDATA.colors[3])
++            netdataDashboard.gaugeChart('带宽', '12%', '', NETDATA.colors[3])
+         ]
+     },
+ 
+@@ -1496,21 +1490,21 @@
+     'lighttpd.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'lighttpd.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+     'lighttpd.net': {
+         colors: NETDATA.colors[3],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Bandwidth', '12%', '', NETDATA.colors[3])
++            netdataDashboard.gaugeChart('带宽', '12%', '', NETDATA.colors[3])
+         ]
+     },
+ 
+@@ -1556,14 +1550,14 @@
+     'nginx.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'nginx.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+@@ -1719,7 +1713,7 @@
+                 if (cgroupMemLimitIsSet === 0) {
+                     return '<div data-netdata="' + id + '"'
+                         + ' data-chart-library="gauge"'
+-                        + ' data-title="Memory"'
++                        + ' data-title="内存"'
+                         + ' data-units="MB"'
+                         + ' data-gauge-adjust="width"'
+                         + ' data-width="12%"'
+@@ -1741,7 +1735,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="read"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Read Disk I/O"'
++                    + ' data-title="读取磁盘 I/O"'
+                     + ' data-units="KB/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1756,7 +1750,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="write"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Write Disk I/O"'
++                    + ' data-title="写了磁盘 I/O"'
+                     + ' data-units="KB/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1773,7 +1767,7 @@
+     // beanstalkd
+     // system charts
+     'beanstalk.cpu_usage': {
+-        info: 'Amount of CPU Time for user and system used by beanstalkd.'
++        info: 'beantalkd使用的用户和系统的CPU时间量。'
+     },
+ 
+     // This is also a per-tube stat
+@@ -1782,7 +1776,7 @@
+     },
+ 
+     'beanstalk.connections_rate': {
+-        info: 'Tthe rate of connections opened to beanstalkd.'
++        info: '对beantalks开放的连接速率。'
+     },
+ 
+     'beanstalk.commands_rate': {
+@@ -1932,7 +1926,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="bad"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Bad Requests"'
++                    + ' data-title="错误的请求"'
+                     + ' data-units="requests/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1950,7 +1944,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="error"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Server Errors"'
++                    + ' data-title="服务器错误"'
+                     + ' data-units="requests/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1983,7 +1977,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="avg"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Average Response Time"'
++                    + ' data-title="平均响应时间"'
+                     + ' data-units="milliseconds"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -2247,7 +2241,7 @@
+     // ------------------------------------------------------------------------
+ 
+     'chrony.system': {
+-        info: 'In normal operation, chronyd never steps the system clock, because any jump in the timescale can have adverse consequences for certain application programs. Instead, any error in the system clock is corrected by slightly speeding up or slowing down the system clock until the error has been removed, and then returning to the system clock鈥檚 normal speed. A consequence of this is that there will be a period when the system clock (as read by other programs using the <code>gettimeofday()</code> system call, or by the <code>date</code> command in the shell) will be different from chronyd\'s estimate of the current true time (which it reports to NTP clients when it is operating in server mode). The value reported on this line is the difference due to this effect.',
++        info: 'In normal operation, chronyd never steps the system clock, because any jump in the timescale can have adverse consequences for certain application programs. Instead, any error in the system clock is corrected by slightly speeding up or slowing down the system clock until the error has been removed, and then returning to the system clock’s normal speed. A consequence of this is that there will be a period when the system clock (as read by other programs using the <code>gettimeofday()</code> system call, or by the <code>date</code> command in the shell) will be different from chronyd\'s estimate of the current true time (which it reports to NTP clients when it is operating in server mode). The value reported on this line is the difference due to this effect.',
+         colors: NETDATA.colors[3]
+     },
+ 
+@@ -2619,21 +2613,21 @@
+             '<code>in</code> is sum of <code>swapinRate</code> values for all powered-on virtual machines on the host.' +
+             '<code>swapinRate</code> is rate at which VMKernel reads data into machine memory from the swap file. ' +
+             '<code>out</code> is sum of <code>swapoutRate</code> values for all powered-on virtual machines on the host.' +
+-            '<code>swapoutRate</code> is rate at which VMkernel writes to the virtual machine鈥檚 swap file from machine memory.'
++            '<code>swapoutRate</code> is rate at which VMkernel writes to the virtual machine’s swap file from machine memory.'
+     },
+ 
+     // VM specific
+     'vsphere.vm_mem_usage_percentage': {
+-        info: 'Percentage of used virtual machine 鈥減hysical鈥?memory: <code>actvive</code> / <code>virtual machine configured size</code>.'
++        info: 'Percentage of used virtual machine “physical” memory: <code>actvive</code> / <code>virtual machine configured size</code>.'
+     },
+ 
+     'vsphere.vm_mem_usage': {
+         info:
+-            '<code>granted</code> is amount of guest 鈥減hysical鈥?memory that is mapped to machine memory, it includes <code>shared</code> memory amount. ' +
+-            '<code>consumed</code> is amount of guest 鈥減hysical鈥?memory consumed by the virtual machine for guest memory, ' +
++            '<code>granted</code> is amount of guest “physical” memory that is mapped to machine memory, it includes <code>shared</code> memory amount. ' +
++            '<code>consumed</code> is amount of guest “physical” memory consumed by the virtual machine for guest memory, ' +
+             '<code>consumed</code> = <code>granted</code> - <code>memory saved due to memory sharing</code>. ' +
+             '<code>active</code> is amount of memory that is actively used, as estimated by VMkernel based on recently touched memory pages. ' +
+-            '<code>shared</code> is amount of guest 鈥減hysical鈥?memory shared with other virtual machines (through the VMkernel鈥檚 transparent page-sharing mechanism, a RAM de-duplication technique). ' +
++            '<code>shared</code> is amount of guest “physical” memory shared with other virtual machines (through the VMkernel’s transparent page-sharing mechanism, a RAM de-duplication technique). ' +
+             'For details see <a href="https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.resmgmt.doc/GUID-BFDC988B-F53D-4E97-9793-A002445AFAE1.html">Measuring and Differentiating Types of Memory Usage</a> and ' +
+             '<a href="https://www.vmware.com/support/developer/converter-sdk/conv51_apireference/memory_counters.html">Memory Counters</a> articles.'
+ 
+@@ -2643,7 +2637,7 @@
+         info:
+             'This statistic refers to VMkernel swapping and not to guest OS swapping. ' +
+             '<code>in</code> is rate at which VMKernel reads data into machine memory from the swap file. ' +
+-            '<code>out</code> is rate at which VMkernel writes to the virtual machine鈥檚 swap file from machine memory.'
++            '<code>out</code> is rate at which VMkernel writes to the virtual machine’s swap file from machine memory.'
+     },
+ 
+     'vsphere.vm_mem_swap': {
 --- a/web/gui/index.html
 +++ b/web/gui/index.html
 @@ -81,7 +81,7 @@
@@ -860,14 +1148,15 @@
                              <div class="agent-item" style="white-space: nowrap">
                                  <i class="fas fa-hourglass-half"></i>
 -                                Loading, please wait...
-+                                载入中，请稍候...
++                                杞藉叆涓紝璇风◢鍊?..
                                  <div></div>
                              </div>                            
                          </div>
-@@ -91,16 +91,16 @@
+@@ -90,17 +90,16 @@
+             </div>
              <nav class="collapse navbar-collapse navbar-right" role="navigation">
                  <ul class="nav navbar-nav">
-                     <li title="Nodes view" data-toggle="tooltip" data-placement="bottom"><a onclick="openAuthenticatedUrl('console.html');" class="btn" target="_blank"><i class="fas fa-tv"></i>&nbsp;<span class="hidden-sm hidden-md">Nodes<sup class="beta"> beta</sup></span></a></li>
+-                    <li title="Nodes view" data-toggle="tooltip" data-placement="bottom"><a onclick="openAuthenticatedUrl('console.html');" class="btn" target="_blank"><i class="fas fa-tv"></i>&nbsp;<span class="hidden-sm hidden-md">Nodes<sup class="beta"> beta</sup></span></a></li>
 -                    <li id="alarmsButton"  title="check the health monitoring alarms and their log" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#alarmsModal"><i class="fas fa-bell"></i>&nbsp;<span class="hidden-sm hidden-md">Alarms&nbsp;</span><span id="alarms_count_badge" class="badge"></span></a></li>
 -                    <li title="change dashboard settings" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#optionsModal"><i class="fas fa-cog"></i>&nbsp;<span class="hidden-sm hidden-md">Settings</span></a></li>
 -                    <li title="check for netdata updates<br/>you should keep your netdata updated" data-toggle="tooltip" data-placement="bottom" class="hidden-sm" id="updateButton"><a href="#" class="btn" data-toggle="modal" data-target="#updateModal"><i class="fas fa-cloud-download-alt"></i> <span class="hidden-sm hidden-md">Update </span><span id="update_badge" class="badge"></span></a></li>
@@ -878,92 +1167,85 @@
 -                    <li title="export / save a netdata snapshot" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">Export</span></a></li>
 -                    <li title="print this dashboard to PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">Print</span></a></li>
 -                    <li title="get help on using the charts" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">Help</span></a></li>
-+                    <li id="alarmsButton"  title="检查健康状况监控警报与记录" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#alarmsModal"><i class="fas fa-bell"></i>&nbsp;<span class="hidden-sm hidden-md">警报&nbsp;</span><span id="alarms_count_badge" class="badge"></span></a></li>
-+                    <li title="变更仪表板设定" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#optionsModal"><i class="fas fa-cog"></i>&nbsp;<span class="hidden-sm hidden-md">设定</span></a></li>
-+                    <li title="检查 netdata 更新<br/>您应随时保持 netdata 为最新版本" data-toggle="tooltip" data-placement="bottom" class="hidden-sm" id="updateButton"><a href="#" class="btn" data-toggle="modal" data-target="#updateModal"><i class="fas fa-cloud-download-alt"></i> <span class="hidden-sm hidden-md">更新 </span><span id="update_badge" class="badge"></span></a></li>
-+                    <li title="到 netdata 在 github 上的 wiki<br/>记得 <b>给 netdata 一个 <i class=&quot;fas fa-star&quot;></i></b> !" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://github.com/netdata/netdata" class="btn" target="_blank"><i class="fab fa-github"></i></a></li>
-+                    <li title="在 twitter 上跟随 netdata" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://twitter.com/linuxnetdata" class="btn" target="_blank"><i class="fab fa-twitter"></i></a></li>
-+                    <li title="到 facebook 上给 netdata 按赞" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://www.facebook.com/linuxnetdata/" class="btn" target="_blank"><i class="fab fa-facebook"></i></a></li>
-+                    <li title="汇入 / 载入 netdata 快照" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇入</span></a></li>
-+                    <li title="汇出 / 储存 netdata 快照" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇出</span></a></li>
-+                    <li title="将仪表板列印为 PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">列印</span></a></li>
-+                    <li title="取得图表使用上的说明资讯" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">说明</span></a></li>
++                    <li id="alarmsButton"  title="妫€鏌ュ仴搴风姸鍐电洃鎺ц鎶ヤ笌璁板綍" data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#alarmsModal"><i class="fas fa-bell"></i>&nbsp;<span class="hidden-sm hidden-md">璀︽姤&nbsp;</span><span id="alarms_count_badge" class="badge"></span></a></li>
++                    <li title="鍙樻洿浠〃鏉胯瀹? data-toggle="tooltip" data-placement="bottom"><a href="#" class="btn" data-toggle="modal" data-target="#optionsModal"><i class="fas fa-cog"></i>&nbsp;<span class="hidden-sm hidden-md">璁惧畾</span></a></li>
++                    <li title="妫€鏌?netdata 鏇存柊<br/>鎮ㄥ簲闅忔椂淇濇寔netdata涓烘渶鏂扮増鏈? data-toggle="tooltip" data-placement="bottom" class="hidden-sm" id="updateButton"><a href="#" class="btn" data-toggle="modal" data-target="#updateModal"><i class="fas fa-cloud-download-alt"></i> <span class="hidden-sm hidden-md">鏇存柊 </span><span id="update_badge" class="badge"></span></a></li>
++                    <li title="鍒?netdata 鍦?github 涓婄殑 wiki<br/>璁板緱 <b>缁?netdata 涓€涓?<i class=&quot;fas fa-star&quot;></i></b> !" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://github.com/netdata/netdata" class="btn" target="_blank"><i class="fab fa-github"></i></a></li>
++                    <li title="鍦?twitter 涓婅窡闅?netdata" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://twitter.com/linuxnetdata" class="btn" target="_blank"><i class="fab fa-twitter"></i></a></li>
++                    <li title="鍒?facebook 涓婄粰 netdata 鎸夎禐" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://www.facebook.com/linuxnetdata/" class="btn" target="_blank"><i class="fab fa-facebook"></i></a></li>
++                    <li title="姹囧叆 / 杞藉叆 netdata 蹇収" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">姹囧叆</span></a></li>
++                    <li title="姹囧嚭 / 鍌ㄥ瓨 netdata 蹇収" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">姹囧嚭</span></a></li>
++                    <li title="灏嗕华琛ㄦ澘鍒楀嵃涓?PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">鍒楀嵃</span></a></li>
++                    <li title="鍙栧緱鍥捐〃浣跨敤涓婄殑璇存槑璧勮" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">璇存槑</span></a></li>
                      <li id="account-menu-container" class="dropdown" data-toggle="tooltip"></li>
                  </ul>
              </nav>
-@@ -126,7 +126,7 @@
+@@ -126,7 +125,7 @@
              <div class="row">
                  <div class="col-md-7">
                      <h1>Netdata
 -                        <p class="lead">Real-time performance monitoring, in the greatest possible detail</p>
-+                        <p class="lead">即时效能监控，全力给您最详细的数据</p>
++                        <p class="lead">鍗虫椂鏁堣兘鐩戞帶锛屽叏鍔涚粰鎮ㄦ渶璇︾粏鐨勬暟鎹?/p>
                      </h1>
                  </div>
                  <div class="col-md-5">
-@@ -169,8 +169,8 @@
+@@ -169,8 +168,8 @@
                      <i class="fas fa-copyright"></i> Copyright 2016-2018, <a href="mailto:costa@tsaousis.gr">Costa Tsaousis</a>.<br/>
                  </div>
                  <div class="p">
 -                    Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 or later</a>.
 -                    Netdata uses <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">third party tools</a>.
-+                    以 <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 或之后</a> 条款释出。
-+                    Netdata 使用之 <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">第三方工具</a>.
++                    浠?<a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 鎴栦箣鍚?/a> 鏉℃閲婂嚭銆?+                    Netdata 浣跨敤涔?<a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">绗笁鏂瑰伐鍏?/a>.
                      <br /><br />
                  </div>
              </div>
-@@ -235,7 +235,7 @@
+@@ -235,7 +234,7 @@
                  </div>
                  <div class="modal-footer">
                      <a href="#" onclick="printPreflight(); return false;" type="button" class="btn btn-default">Print</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -303,7 +303,7 @@
+@@ -303,7 +302,7 @@
                  <div class="modal-footer">
                      <span style="display: inline-block; padding-right: 20px;">Snapshot files contain both data and javascript code. Make sure <b>you trust the files</b> you import!</span>
                      <a id="loadSnapshotImport" href="#" onclick="loadSnapshot(); return false;" type="button" class="btn btn-success disabled">Import</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -432,7 +432,7 @@
+@@ -432,7 +431,7 @@
                      </div>
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -443,30 +443,30 @@
+@@ -443,11 +442,11 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="helpModalLabel">Dashboard Help</h4>
-+                    <h4 class="modal-title" id="helpModalLabel">仪表板说明</h4>
++                    <h4 class="modal-title" id="helpModalLabel">浠〃鏉胯鏄?/h4>
                  </div>
                  <div class="modal-body">
  
 -                    <h4>Dygraphs (line, area and stacked area charts)</h4>
-+                    <h4>Dygraphs (折线图、区域图与山形图)</h4>
++                    <h4>Dygraphs (鎶樼嚎鍥俱€佸尯鍩熷浘涓庡北褰㈠浘)</h4>
  
                      <!-- Nav tabs -->
                      <ul class="nav nav-tabs" role="tablist">
--                        <li role="presentation" class="active"><a href="#help_mouse" aria-controls="help_mouse" role="tab" data-toggle="tab">Mouse Interface</a></li>
--                        <li role="presentation"><a href="#help_touch" aria-controls="help_touch" role="tab" data-toggle="tab">Touch Interface</a></li>
-+                        <li role="presentation" class="active"><a href="#help_mouse" aria-controls="help_mouse" role="tab" data-toggle="tab">滑鼠介面</a></li>
-+                        <li role="presentation"><a href="#help_touch" aria-controls="help_touch" role="tab" data-toggle="tab">触控介面</a></li>
-                     </ul>
- 
-                     <!-- Tab panes -->
+@@ -459,14 +458,14 @@
                      <div class="tab-content">
                          <div role="tabpanel" class="tab-pane active" id="help_mouse">
                              <div class="p">
 -                                <h4>Mouse Over / Hover</h4>
-+                                <h4>滑鼠移至 / 暂留</h4>
++                                <h4>榧犳爣绉昏嚦 / 鏆傜暀</h4>
                                  Mouse over on a chart to show, at its legend, the values for the timestamp under the mouse (the chart will also highlight the point at the chart).
                                  <br/>
                                  All the other visible charts will also show and highlight their values for the same timestamp.
@@ -971,55 +1253,55 @@
                              <hr/>
                              <div class="p">
 -                                <h4>Drag Chart Contents</h4>
-+                                <h4>拖曳图表内容</h4>
++                                <h4>鎷栨洺鍥捐〃鍐呭</h4>
                                  Drag the contents of a chart, by pressing the left mouse button and moving the mouse, to pan it horizontally.
                                  <br/>
                                  All the charts will follow soon after you let the chart alone (this little delay is by design: it speeds up your browser and lets you focus on what you are exploring).
-@@ -475,12 +475,12 @@
+@@ -475,12 +474,12 @@
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>Double Click</h4>
-+                                <h4>连点两下</h4>
++                                <h4>杩炵偣涓や笅</h4>
                                  Double Click a chart to reset all the charts to their default auto-refreshing state.
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>SHIFT + Drag</h4>
-+                                <h4>SHIFT + 拖曳</h4>
++                                <h4>SHIFT + 鎷栨洺</h4>
                                  While pressing the <code>SHIFT</code> key, press the left mouse button on the contents of a chart and move the mouse to select an area, to zoom in. The other charts will follow too. Zooming is performed in two phases:
                                  <ul>
                                      <li>The already loaded chart contents are zoomed (low resolution)</li>
-@@ -490,12 +490,12 @@
+@@ -490,12 +489,12 @@
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>Highlight Timeframe</h4>
-+                                <h4>反白时间轴</h4>
++                                <h4>绐佸嚭鏄剧ず鏃堕棿妗嗘灦</h4>
                                  While pressing the <code>ALT</code> key, press the left mouse button on the contents of a chart and move the mouse to select an area. The selected are will be highlighted on all charts.
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>SHIFT + Mouse Wheel</h4>
-+                                <h4>SHIFT + 滑鼠滚轮</h4>
++                                <h4>SHIFT + 榧犳爣婊氳疆</h4>
                                  While pressing the <code>SHIFT</code> key and the mouse pointer is over the contents of a chart, scroll the mouse wheel to zoom in or out. This kind of zooming is aligned to center below the mouse pointer. The other charts will follow too.
                                  <br/>
                                  Once a chart is zoomed, auto refreshing stops for all charts. To enable it again, <b>double click</b> a zoomed chart.
-@@ -545,7 +545,7 @@
+@@ -545,7 +544,7 @@
                      </div>
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -556,32 +556,32 @@
+@@ -556,32 +555,32 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="alarmsModalLabel">netdata alarms</h4>
-+                    <h4 class="modal-title" id="alarmsModalLabel">netdata 警报</h4>
++                    <h4 class="modal-title" id="alarmsModalLabel">netdata 璀︽姤</h4>
                  </div>
                  <div class="modal-body">
                      <!-- Nav tabs -->
@@ -1027,51 +1309,49 @@
 -                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">Active</a></li>
 -                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">All</a></li>
 -                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">Log</a></li>
-+                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">作用中</a></li>
-+                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">所有</a></li>
-+                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">记录</a></li>
++                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">浣滅敤涓?/a></li>
++                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">鎵€鏈?/a></li>
++                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">璁板綍</a></li>
                      </ul>
  
                      <!-- Tab panes -->
                      <div class="tab-content">
                          <div role="tabpanel" class="tab-pane active" id="alarms_active">
 -                            loading...
-+                            载入中...
++                            杞藉叆涓?..
                          </div>
                          <div role="tabpanel" class="tab-pane" id="alarms_all">
 -                            loading...
-+                            载入中...
++                            杞藉叆涓?..
                          </div>
                          <div role="tabpanel" class="tab-pane" id="alarms_log">
 -                            loading...
-+                            载入中...
++                            杞藉叆涓?..
                          </div>
                      </div>
                  </div>
                  <div class="modal-footer">
                      <!-- <a href="#" onclick="alarmsUpdateModal(); return false;" type="button" class="btn btn-default">Update</a> -->
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -592,24 +592,24 @@
+@@ -592,24 +591,24 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="optionsModalLabel">netdata dashboard options</h4>
-+                    <h4 class="modal-title" id="optionsModalLabel">netdata 仪表板选项</h4>
++                    <h4 class="modal-title" id="optionsModalLabel">netdata 浠〃鏉块€夐」</h4>
                  </div>
                  <div class="modal-body">
                      <center>
 -                        <small style="color: #BBBBBB;">These are browser settings. Each viewer has its own. They do not affect the operation of your netdata server.
-+                        <small style="color: #BBBBBB;">这里是浏览器的设定，每个浏览者都可以拥有自己的设定。这里的设定不会影响 netdata 本身的运作。
-                         <br/>
++                        <small style="color: #BBBBBB;">杩欓噷鏄祻瑙堝櫒鐨勮瀹氾紝姣忎釜娴忚鑰呴兘鍙互鎷ユ湁鑷繁鐨勮瀹氥€傝繖閲岀殑璁惧畾涓嶄細褰卞搷 netdata 鏈韩鐨勮繍浣溿€?                         <br/>
 -                        Settings take effect immediately and are saved permanently to browser local storage (except the refresh on focus / always option).
-+                        设定会立即生效，并且储存在您浏览器的本地储存中 (除了重新整理的 在焦点上/总是 这两个选项以外)。
-                         <br/>
++                        璁惧畾浼氱珛鍗崇敓鏁堬紝骞朵笖鍌ㄥ瓨鍦ㄦ偍娴忚鍣ㄧ殑鏈湴鍌ㄥ瓨涓?(闄や簡閲嶆柊鏁寸悊鐨?鍦ㄧ劍鐐逛笂/鎬绘槸 杩欎袱涓€夐」浠ュ)銆?                         <br/>
 -                        To reset all options (including charts sizes) to their defaults, click <a href="#" onclick="resetDashboardOptions(); return false;">here</a>.</small>
-+                        若要将所有选项重置回预设值 (包括图表大小)，请点选 <a href="#" onclick="resetDashboardOptions(); return false;">这里</a>。</small>
++                        鑻ヨ灏嗘墍鏈夐€夐」閲嶇疆鍥為璁惧€?(鍖呮嫭鍥捐〃澶у皬)锛岃鐐归€?<a href="#" onclick="resetDashboardOptions(); return false;">杩欓噷</a>銆?/small>
                      </center>
                      <div style="padding: 10px;"></div>
  
@@ -1081,102 +1361,102 @@
 -                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">Synchronization</a></li>
 -                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">Visual</a></li>
 -                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">Locale</a></li>
-+                        <li role="presentation" class="active"><a href="#settings_performance" aria-controls="settings_performance" role="tab" data-toggle="tab">效能</a></li>
-+                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">同步</a></li>
-+                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">视觉</a></li>
-+                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">地区</a></li>
++                        <li role="presentation" class="active"><a href="#settings_performance" aria-controls="settings_performance" role="tab" data-toggle="tab">鏁堣兘</a></li>
++                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">鍚屾</a></li>
++                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">瑙嗚</a></li>
++                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">鍦板尯</a></li>
                      </ul>
  
                      <!-- Tab panes -->
-@@ -619,29 +619,29 @@
+@@ -619,29 +618,29 @@
                                  <div class="form-group">
                                      <table>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="On Focus" data-off="Always" data-width="110px"></td>
 -                                        <td class="option-info"><strong>When to refresh the charts?</strong><br/>
 -                                            <small>When set to <b>On Focus</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>Always</b>, the charts will always be refreshed. Set it to <b>On Focus</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>Always</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
-+                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="在焦点上" data-off="总是" data-width="110px"></td>
-+                                        <td class="option-info"><strong>何时要重新整理图表？</strong><br/>
-+                                            <small>When set to <b>在焦点上</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>总是</b>, the charts will always be refreshed. Set it to <b>在焦点上</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>总是</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
++                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="鍦ㄧ劍鐐逛笂" data-off="鎬绘槸" data-width="110px"></td>
++                                        <td class="option-info"><strong>浣曟椂瑕侀噸鏂版暣鐞嗗浘琛紵</strong><br/>
++                                            <small>When set to <b>鍦ㄧ劍鐐逛笂</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>鎬绘槸</b>, the charts will always be refreshed. Set it to <b>鍦ㄧ劍鐐逛笂</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>鎬绘槸</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
                                          <td class="option-control">
 -                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="Non Zero" data-off="All" data-width="110px">
-+                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="非零" data-off="所有" data-width="110px">
++                                        <input id="eliminate_zero_dimensions" type="checkbox" checked data-toggle="toggle" data-on="闈為浂" data-off="鎵€鏈? data-width="110px">
                                          </td>
 -                                        <td class="option-info"><strong>Which dimensions to show?</strong><br/>
 -                                            <small>When set to <b>Non Zero</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>Non Zero</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
-+                                        <td class="option-info"><strong>要显示那些图表维度？</strong><br/>
-+                                            <small>When set to <b>非零</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>非零</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
++                                        <td class="option-info"><strong>瑕佹樉绀洪偅浜涘浘琛ㄧ淮搴︼紵</strong><br/>
++                                            <small>When set to <b>闈為浂</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>闈為浂</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="Destroy" data-off="Hide" data-width="110px"></td>
 -                                        <td class="option-info"><strong>How to handle hidden charts?</strong><br/>
 -                                            <small>When set to <b>Destroy</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>Destroy</b>, to lower the memory requirements of your browser. Set it to <b>Hide</b> for faster restoration of charts on page scrolling.</small>
-+                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="消去" data-off="隐藏" data-width="110px"></td>
-+                                        <td class="option-info"><strong>如何处理隐藏图表？</strong><br/>
-+                                            <small>When set to <b>消去</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>消去</b>, to lower the memory requirements of your browser. Set it to <b>隐藏</b> for faster restoration of charts on page scrolling.</small>
++                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="娑堝幓" data-off="闅愯棌" data-width="110px"></td>
++                                        <td class="option-info"><strong>濡備綍澶勭悊闅愯棌鍥捐〃锛?/strong><br/>
++                                            <small>When set to <b>娑堝幓</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>娑堝幓</b>, to lower the memory requirements of your browser. Set it to <b>闅愯棌</b> for faster restoration of charts on page scrolling.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="Async" data-off="Sync" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Page scroll handling?</strong><br/>
 -                                            <small>When set to <b>Sync</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>Async</b> for smoother page scrolling on slower computers.</small>
-+                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="非同步" data-off="同步" data-width="110px"></td>
-+                                        <td class="option-info"><strong>如何处理页面卷动？</strong><br/>
-+                                            <small>When set to <b>同步</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>非同步</b> for smoother page scrolling on slower computers.</small>
++                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="闈炲悓姝? data-off="鍚屾" data-width="110px"></td>
++                                        <td class="option-info"><strong>濡備綍澶勭悊椤甸潰鍗峰姩锛?/strong><br/>
++                                            <small>When set to <b>鍚屾</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>闈炲悓姝?/b> for smoother page scrolling on slower computers.</small>
                                          </td>
                                          </tr>
                                      </table>
-@@ -653,26 +653,26 @@
+@@ -653,26 +652,26 @@
                                  <div class="form-group">
                                      <table>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="Parallel" data-off="Sequential" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Which chart refresh policy to use?</strong><br/>
 -                                            <small>When set to <b>parallel</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
-+                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="并行" data-off="循序" data-width="110px"></td>
-+                                        <td class="option-info"><strong>采用何种图表更新模式？</strong><br/>
-+                                            <small>When set to <b>并行</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
++                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="骞惰" data-off="寰簭" data-width="110px"></td>
++                                        <td class="option-info"><strong>閲囩敤浣曠鍥捐〃鏇存柊妯″紡锛?/strong><br/>
++                                            <small>When set to <b>骞惰</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row" id="concurrent_refreshes_row">
 -                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="Resync" data-off="Best Effort" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Shall we re-sync chart refreshes?</strong><br/>
 -                                            <small>When set to <b>Resync</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>Best Effort</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>Resync</b> will attempt to re-synchronize the charts on every update. Setting it to <b>Best Effort</b> may lower the pressure on your browser and the network.</small>
-+                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="重新同步" data-off="尽力而为" data-width="110px"></td>
-+                                        <td class="option-info"><strong>重新整理时是否需要同步所有图表？</strong><br/>
-+                                            <small>When set to <b>重新同步</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>尽力而为</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>重新同步</b> will attempt to re-synchronize the charts on every update. Setting it to <b>尽力而为</b> may lower the pressure on your browser and the network.</small>
++                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="閲嶆柊鍚屾" data-off="灏藉姏鑰屼负" data-width="110px"></td>
++                                        <td class="option-info"><strong>閲嶆柊鏁寸悊鏃舵槸鍚﹂渶瑕佸悓姝ユ墍鏈夊浘琛紵</strong><br/>
++                                            <small>When set to <b>閲嶆柊鍚屾</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>灏藉姏鑰屼负</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>閲嶆柊鍚屾</b> will attempt to re-synchronize the charts on every update. Setting it to <b>灏藉姏鑰屼负</b> may lower the pressure on your browser and the network.</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="Sync" data-off="Don't Sync" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Sync hover selection on all charts?</strong><br/>
-+                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                        <td class="option-info"><strong>是否悬停在图表上时同步更新所有图表？</strong><br/>
++                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="鍚屾" data-off="涓嶈鍚屾" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                        <td class="option-info"><strong>鏄惁鎮仠鍦ㄥ浘琛ㄤ笂鏃跺悓姝ユ洿鏂版墍鏈夊浘琛紵</strong><br/>
                                              <small>When enabled, a selection on one chart will automatically select the same time on all other visible charts and the legends of all visible charts will be updated to show the selected values. When disabled, only the chart getting the user's attention will be selected. Enable it to get better insights of the data. Disable it if you are on a very slow computer that cannot actually do it.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="Sync" data-off="Don't Sync" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Sync pan and zoom on all charts?</strong><br/>
-+                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                        <td class="option-info"><strong>是否同步移动与缩放所有图表？</strong><br/>
++                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="鍚屾" data-off="涓嶈鍚屾" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                        <td class="option-info"><strong>鏄惁鍚屾绉诲姩涓庣缉鏀炬墍鏈夊浘琛紵</strong><br/>
                                              <small>When enabled, pan and zoom operations on a chart will be replicated to all charts (even the ones that are not currently visible - of course only when they will become visible). When disabled, pan and zoom operations will not be propagated to other charts.</small>
                                          </td>
                                          </tr>
-@@ -685,17 +685,17 @@
+@@ -685,17 +684,17 @@
                                  <div class="form-group">
                                      <table>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="Dark" data-off="White" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Which theme to use?</strong><br/>
 -                                            <small>Netdata comes with two themes: <b>Dark</b> (the default) and <b>White</b>.
-+                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="深色" data-off="白色" data-width="110px"></td>
-+                                        <td class="option-info"><strong>使用那一种布景主题？</strong><br/>
-+                                            <small>Netdata comes with two themes: <b>深色</b> (the default) and <b>浅色</b>.
++                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="娣辫壊" data-off="鐧借壊" data-width="110px"></td>
++                                        <td class="option-info"><strong>浣跨敤閭ｄ竴绉嶅竷鏅富棰橈紵</strong><br/>
++                                            <small>Netdata comes with two themes: <b>娣辫壊</b> (the default) and <b>娴呰壊</b>.
                                              <br/>
                                              <b>Switching this will reload the dashboard</b>.
                                              </small>
@@ -1185,55 +1465,55 @@
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="Help Me" data-off="No Help" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Do you need help?</strong><br/>
-+                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="需要说明" data-off="不需说明" data-width="110px"></td>
-+                                        <td class="option-info"><strong>您需要说明吗？</strong><br/>
++                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="闇€瑕佽鏄? data-off="涓嶉渶璇存槑" data-width="110px"></td>
++                                        <td class="option-info"><strong>鎮ㄩ渶瑕佽鏄庡悧锛?/strong><br/>
                                              <small>Netdata can show some help in some areas to help you use the dashboard. If all these balloons bother you, disable them using this switch.
                                              <br/>
                                              <b>Switching this will reload the dashboard</b>.
-@@ -703,15 +703,15 @@
+@@ -703,15 +702,15 @@
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="Pad" data-off="Don't Pad" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Enable data padding when panning and zooming?</strong><br/>
 -                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>Don't Pad</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
-+                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="填补" data-off="不需填补" data-width="110px"></td>
-+                                        <td class="option-info"><strong>是否启用在移动与缩放时同时填补数据？</strong><br/>
-+                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>不需填补</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
++                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="濉ˉ" data-off="涓嶉渶濉ˉ" data-width="110px"></td>
++                                        <td class="option-info"><strong>鏄惁鍚敤鍦ㄧЩ鍔ㄤ笌缂╂斁鏃跺悓鏃跺～琛ユ暟鎹紵</strong><br/>
++                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>涓嶉渶濉ˉ</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="Smooth" data-off="Rough" data-width="110px"></td>
--                                        <td class="option-info"><strong>Enable Bézier lines on charts?</strong><br/>
+-                                        <td class="option-info"><strong>Enable B茅zier lines on charts?</strong><br/>
 -                                            <small>When set to <b>Smooth</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
-+                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="平滑" data-off="粗糙" data-width="110px"></td>
-+                                        <td class="option-info"><strong>是否在图表上启用贝兹曲线？</strong><br/>
-+                                            <small>When set to <b>平滑</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
++                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="骞虫粦" data-off="绮楃硻" data-width="110px"></td>
++                                        <td class="option-info"><strong>鏄惁鍦ㄥ浘琛ㄤ笂鍚敤璐濆吂鏇茬嚎锛?/strong><br/>
++                                            <small>When set to <b>骞虫粦</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
                                              <br/>
                                              Keep in mind <a href="http://dygraphs.com" target="_blank">dygraphs</a>, the main charting library in netdata dashboards, can only smooth line charts. It cannot smooth area or stacked charts. When set to <b>Rough</b>, this setting can lower the CPU resources consumed by your browser.</small>
                                          </td>
-@@ -732,37 +732,37 @@
+@@ -732,37 +731,37 @@
                                              </td>
                                          </tr>
                                          <tr class="option-row">
 -                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="Scale Units" data-off="Fixed Units" data-onstyle="success" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Enable auto-scaling of select units?</strong><br/>
 -                                                <small>When set to <b>Scale Units</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
-+                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="缩放单位" data-off="固定单位" data-onstyle="success" data-width="110px"></td>
-+                                            <td class="option-info"><strong>是否启用自动缩放单位选择？</strong><br/>
-+                                                <small>When set to <b>缩放单位</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
++                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="缂╂斁鍗曚綅" data-off="鍥哄畾鍗曚綅" data-onstyle="success" data-width="110px"></td>
++                                            <td class="option-info"><strong>鏄惁鍚敤鑷姩缂╂斁鍗曚綅閫夋嫨锛?/strong><br/>
++                                                <small>When set to <b>缂╂斁鍗曚綅</b> the values shown will dynamically be scaled (e.g. 1000 kilobits will be shown as 1 megabit).
                                                      Netdata can auto-scale these original units: <code>kilobits/s</code>, <code>kilobytes/s</code>, <code>KB/s</code>,
                                                      <code>KB</code>, <code>MB</code>, and <code>GB</code>.
 -                                                    When set to <b>Fixed Units</b> all the values will be rendered using the original units maintained by the netdata server.
-+                                                    When set to <b>固定单位</b> all the values will be rendered using the original units maintained by the netdata server.
++                                                    When set to <b>鍥哄畾鍗曚綅</b> all the values will be rendered using the original units maintained by the netdata server.
                                                  </small>
                                              </td>
                                          </tr>
                                          <tr id="settingsLocaleTempRow" class="option-row">
 -                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="Celsius" data-off="Fahrenheit" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Which units to use for temperatures?</strong><br/>
-+                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="摄氏" data-off="华氏" data-width="110px"></td>
-+                                            <td class="option-info"><strong>使用何种温度单位？</strong><br/>
++                                            <td class="option-control"><input id="units_temp" type="checkbox" checked data-toggle="toggle"  data-on="鎽勬皬" data-off="鍗庢皬" data-width="110px"></td>
++                                            <td class="option-info"><strong>浣跨敤浣曠娓╁害鍗曚綅锛?/strong><br/>
                                                  <small>Set the temperature units of the dashboard.
                                                  </small>
                                              </td>
@@ -1243,10 +1523,10 @@
 -                                            <td class="option-info"><strong>Convert seconds to time?</strong><br/>
 -                                                <small>When set to <b>Time</b>, charts that present <code>seconds</code> will show <code>DDd:HH:MM:SS</code>.
 -                                                    When set to <b>Seconds</b>, the raw number of seconds will be presented.
-+                                            <td class="option-control"><input id="seconds_as_time" type="checkbox" checked data-toggle="toggle"  data-on="时间" data-off="秒" data-onstyle="success" data-width="110px"></td>
-+                                            <td class="option-info"><strong>是否将秒转换为时间？</strong><br/>
-+                                                <small>When set to <b>时间</b>, charts that present <code>秒</code> will show <code>DDd:HH:MM:SS</code>.
-+                                                    When set to <b>秒</b>, the raw number of seconds will be presented.
++                                            <td class="option-control"><input id="seconds_as_time" type="checkbox" checked data-toggle="toggle"  data-on="鏃堕棿" data-off="绉? data-onstyle="success" data-width="110px"></td>
++                                            <td class="option-info"><strong>鏄惁灏嗙杞崲涓烘椂闂达紵</strong><br/>
++                                                <small>When set to <b>鏃堕棿</b>, charts that present <code>绉?/code> will show <code>DDd:HH:MM:SS</code>.
++                                                    When set to <b>绉?/b>, the raw number of seconds will be presented.
                                                  </small>
                                              </td>
                                          </tr>
@@ -1254,94 +1534,92 @@
 -                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="Your Time" data-off="Server Time" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Show browser local time or server time?</strong><br/>
 -                                                <small>When set to <b>Your Time</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
-+                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="本地时间" data-off="伺服器时间 data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
-+                                            <td class="option-info"><strong>是否显示浏览者本地时间或是伺服器时间？</strong><br/>
-+                                                <small>When set to <b>本地时间</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
++                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="鏈湴鏃堕棿" data-off="鏈嶅姟鍣ㄦ椂闂?data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                            <td class="option-info"><strong>鏄惁鏄剧ず娴忚鑰呮湰鍦版椂闂存垨鏄湇鍔″櫒鏃堕棿锛?/strong><br/>
++                                                <small>When set to <b>鏈湴鏃堕棿</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
                                                      <br/>
 -                                                    Set it to <b>Your Time</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
 -                                                    Set it to <b>Server Time</b> when you need to compare netdata charts with server log files.
-+                                                    Set it to <b>本地时间</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
-+                                                    Set it to <b>伺服器时间</b> when you need to compare netdata charts with server log files.
++                                                    Set it to <b>鏈湴鏃堕棿</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
++                                                    Set it to <b>鏈嶅姟鍣?/b> when you need to compare netdata charts with server log files.
                                                      <br/>
                                                      Your browser time zone is: <b><span id="browser_timezone">-</span></b>.<br/>
                                                      The server reported timezone is: <b><span id="server_timezone">-</span></b> (you can set this in netdata.conf <code>[global].timezone</code>).<br/>
-@@ -770,7 +770,7 @@
+@@ -770,7 +769,7 @@
                                                      <br/>
                                                      <div class="dropup">
                                                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownTimeZone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 -                                                            Select Server Time Zone
-+                                                            选择伺服器时区
-                                                             <span class="caret"></span>
++                                                            閫夋嫨鏈嶅姟鍣ㄦ椂鍖?                                                             <span class="caret"></span>
                                                          </button>
                                                          <ul class="dropdown-menu scrollable-menu-50" aria-labelledby="dropdownTimeZone">
-@@ -1134,7 +1134,7 @@
+@@ -1134,7 +1133,7 @@
                      </div>
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -1146,26 +1146,26 @@
+@@ -1146,26 +1145,26 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="updateModalLabel">Update Check</h4>
-+                    <h4 class="modal-title" id="updateModalLabel">检查更新</h4>
++                    <h4 class="modal-title" id="updateModalLabel">妫€鏌ユ洿鏂?/h4>
                  </div>
                  <div class="modal-body">
 -                    Your netdata version: <b><code><span id="netdataVersion">Unknown</span></code></b><br/>
-+                    您的 netdata 版本：<b><code><span id="netdataVersion">未知</span></code></b><br/>
++                    鎮ㄧ殑 netdata 鐗堟湰锛?b><code><span id="netdataVersion">鏈煡</span></code></b><br/>
                      <br/>
                      <div style="padding: 10px;"></div>
 -                    <div id="versionCheckLog">Not checked yet. Please press the Check Now button.</div>
-+                    <div id="versionCheckLog">尚未检查，请下 立即检查 按钮。</div>
++                    <div id="versionCheckLog">灏氭湭妫€鏌ワ紝璇蜂笅 绔嬪嵆妫€鏌?鎸夐挳銆?/div>
                      <div>
                          <hr/>
                      </div>
                      <div>
 -                        For progress reports and key netdata updates: <strong><a href="https://twitter.com/linuxnetdata" target="_blank">follow netdata on <i class="fab fa-twitter"></i> twitter</a></strong>.
-+                        到这里查阅 netdata 的进度报告与关键更新：<strong><a href="https://twitter.com/linuxnetdata" target="_blank">在 <i class="fab fa-twitter"></i> twitter 上跟随 netdata</a></strong>。
-                         <br/>
++                        鍒拌繖閲屾煡闃?netdata 鐨勮繘搴︽姤鍛婁笌鍏抽敭鏇存柊锛?strong><a href="https://twitter.com/linuxnetdata" target="_blank">鍦?<i class="fab fa-twitter"></i> twitter 涓婅窡闅?netdata</a></strong>銆?                         <br/>
 -                        You can also <a href="https://www.facebook.com/linuxnetdata/" target="_blank">follow netdata on <i class="fab fa-facebook"></i> facebook</a>,
 -                        or <a href="https://github.com/netdata/netdata" target="_blank">watch netdata on <i class="fab fa-github"></i> github</a>.
-+                        您也可以在 <a href="https://www.facebook.com/linuxnetdata/" target="_blank"><i class="fab fa-facebook"></i> facebook 上给 netdata 按赞</a>,
-+                        或是 <a href="https://github.com/netdata/netdata" target="_blank">到 <i class="fab fa-github"></i> github 上了解 netdata</a>.
++                        鎮ㄤ篃鍙互鍦?<a href="https://www.facebook.com/linuxnetdata/" target="_blank"><i class="fab fa-facebook"></i> facebook 涓婄粰 netdata 鎸夎禐</a>,
++                        鎴栨槸 <a href="https://github.com/netdata/netdata" target="_blank">鍒?<i class="fab fa-github"></i> github 涓婁簡瑙?netdata</a>.
                      </div>
                  </div>
                  <div class="modal-footer">
 -                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">Check Now</a>
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">立即检查</a>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <a href="#" onclick="notifyForUpdate(true); return false;" type="button" class="btn btn-default">绔嬪嵆妫€鏌?/a>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
-@@ -1176,7 +1176,7 @@
+@@ -1176,7 +1175,7 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="signInModalLabel">Sign In</h4>
-+                    <h4 class="modal-title" id="signInModalLabel">登入</h4>
++                    <h4 class="modal-title" id="signInModalLabel">鐧诲叆</h4>
                  </div>
                  <div class="modal-body">
                      <p>
-@@ -1196,7 +1196,7 @@
+@@ -1196,7 +1195,7 @@
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 -                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">Sign In</a>
-+                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">登入</a>
++                    <a href="#" onclick="explicitlySignIn(); return false;" type="button" class="btn btn-success">鐧诲叆</a>
                  </div>
              </div>
          </div>
-@@ -1310,7 +1310,7 @@
+@@ -1310,7 +1309,7 @@
                      <div id="gotoServerResponse" style="display: block; width: 100%; text-align: center; padding-top: 20px;"></div>
                  </div>
                  <div class="modal-footer">
 -                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
++                    <button type="button" class="btn btn-default" data-dismiss="modal">鍏抽棴</button>
                  </div>
              </div>
          </div>
@@ -1388,7 +1666,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Inbound"'
-+            + ' data-title="下载速度"'
++            + ' data-title="网络下载"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1397,7 +1675,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Outbound"'
-+            + ' data-title="上传速度"'
++            + ' data-title="网络上传"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1406,7 +1684,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Inbound"'
-+            + ' data-title="IP下载"'
++            + ' data-title="IP 下载"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1415,7 +1693,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Outbound"'
-+            + ' data-title="IP上传"'
++            + ' data-title="IP 上传"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1612,7 +1890,7 @@
  
      $.ajax({
          url: 'https://api.github.com/repos/netdata/netdata/releases/latest',
-@@ -2955,7 +2955,7 @@
+@@ -2955,17 +2955,17 @@
      })
          .done(function (data) {
              data = data.tag_name.replace(/(\r\n|\n|\r| |\t)/gm, "");
@@ -1621,6 +1899,38 @@
              callback(data);
          })
          .fail(function () {
+-            versionLog('Failed to download the latest stable version id from github!');
++            versionLog('无法从github下载最新的稳定版本ID！');
+             callback(null);
+         });
+ }
+ 
+ function getGCSLatestVersion(callback) {
+-    versionLog('Downloading latest version id from GCS...');
++    versionLog('正在从GCS下载最新版本ID ...');
+     $.ajax({
+         url: "https://www.googleapis.com/storage/v1/b/netdata-nightlies/o/latest-version.txt",
+         async: true,
+@@ -2979,16 +2979,16 @@
+             })
+                 .done(function (data) {
+                     data = data.replace(/(\r\n|\n|\r| |\t)/gm, "");
+-                    versionLog('Latest nightly version from GCS is ' + data);
++                    versionLog('GCS的最新夜间版本是 ' + data);
+                     callback(data);
+                 })
+                 .fail(function (xhr, textStatus, errorThrown) {
+-                    versionLog('Failed to download the latest nightly version id from GCS!');
++                    versionLog('无法从GCS下载最新的每晚版本ID！');
+                     callback(null);
+                 });
+         })
+         .fail(function (xhr, textStatus, errorThrown) {
+-            versionLog('Failed to download the latest nightly version from GCS!');
++            versionLog('无法从GCS下载最新的每晚版本！');
+             callback(null);
+         });
+ }
 @@ -3008,7 +3008,7 @@
  }
  
