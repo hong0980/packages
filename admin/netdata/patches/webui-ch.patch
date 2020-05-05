@@ -30,6 +30,167 @@
      };
  
      if (typeof options !== 'object') {
+@@ -524,7 +524,7 @@
+     if (s) {
+         NETDATA.serverDefault = s.replace(/\/dashboard.js(\?.*)?$/g, "");
+     } else {
+-        console.log('WARNING: Cannot detect the URL of the netdata server.');
++        console.log('警告：无法检测到netdata服务器的URL。');
+         NETDATA.serverDefault = null;
+     }
+ }
+@@ -567,25 +567,25 @@
+ // Error Handling
+ 
+ NETDATA.errorCodes = {
+-    100: {message: "Cannot load chart library", alert: true},
+-    101: {message: "Cannot load jQuery", alert: true},
+-    402: {message: "Chart library not found", alert: false},
+-    403: {message: "Chart library not enabled/is failed", alert: false},
+-    404: {message: "Chart not found", alert: false},
+-    405: {message: "Cannot download charts index from server", alert: true},
+-    406: {message: "Invalid charts index downloaded from server", alert: true},
++    100: {message: "无法加载图表库", alert: true},
++    101: {message: "无法加载jQuery", alert: true},
++    402: {message: "未找到图表库", alert: false},
++    403: {message: "图表库未启用/失败", alert: false},
++    404: {message: "未找到图表", alert: false},
++    405: {message: "无法从服务器下载图表索引", alert: true},
++    406: {message: "从服务器下载了无效的图表索引", alert: true},
+     407: {message: "Cannot HELLO netdata server", alert: false},
+-    408: {message: "Netdata servers sent invalid response to HELLO", alert: false},
+-    409: {message: "Cannot ACCESS netdata registry", alert: false},
+-    410: {message: "Netdata registry ACCESS failed", alert: false},
+-    411: {message: "Netdata registry server send invalid response to DELETE ", alert: false},
+-    412: {message: "Netdata registry DELETE failed", alert: false},
+-    413: {message: "Netdata registry server send invalid response to SWITCH ", alert: false},
+-    414: {message: "Netdata registry SWITCH failed", alert: false},
+-    415: {message: "Netdata alarms download failed", alert: false},
+-    416: {message: "Netdata alarms log download failed", alert: false},
+-    417: {message: "Netdata registry server send invalid response to SEARCH ", alert: false},
+-    418: {message: "Netdata registry SEARCH failed", alert: false}
++    408: {message: "Netdata服务器向HELLO发送了无效响应", alert: false},
++    409: {message: "无法访问netdata注册表", alert: false},
++    410: {message: "Netdata注册表访问失败", alert: false},
++    411: {message: "Netdata注册表服务器向DELETE发送无效响应", alert: false},
++    412: {message: "Netdata注册表删除失败", alert: false},
++    413: {message: "Netdata注册表服务器向SWITCH发送无效响应 ", alert: false},
++    414: {message: "Netdata注册表切换失败", alert: false},
++    415: {message: " Netdata警报下载失败", alert: false},
++    416: {message: "Netdata警报日志下载失败", alert: false},
++    417: {message: "Netdata注册表服务器向SEARCH发送无效响应 ", alert: false},
++    418: {message: "Netdata注册表搜索失败", alert: false}
+ };
+ 
+ NETDATA.errorLast = {
+@@ -7892,8 +7892,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Pan Left',
+-                        content: 'Pan the chart to the left. You can also <b>drag it</b> with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
++                        title: '向左平移',
++                        content: '将图表平移到左侧。您也可以用鼠标或手指（在触摸设备上）<b>拖动</b>。<br/><small>可以从设置中禁用帮助。</small>'
+                     });
+                 }
+ 
+@@ -7915,8 +7915,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Chart Reset',
+-                        content: 'Reset all the charts to their default auto-refreshing state. You can also <b>double click</b> the chart contents with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
++                        title: '图表重置',
++                        content: '将所有图表重置为其默认的自动刷新状态。您也可以用鼠标或手指（在触摸设备上）<b>双击</b>图表内容。<br/><small>可以从设置中禁用帮助。</small>'
+                     });
+                 }
+ 
+@@ -7943,8 +7943,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Pan Right',
+-                        content: 'Pan the chart to the right. You can also <b>drag it</b> with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
++                        title: '向右平移',
++                        content: '将图表平移到右侧。您也可以用鼠标或手指（在触摸设备上）<b>拖动</b>。<br/><small>可以从设置中禁用帮助。</small>'
+                     });
+                 }
+ 
+@@ -7969,8 +7969,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Chart Zoom In',
+-                        content: 'Zoom in the chart. You can also press SHIFT and select an area of the chart, or press SHIFT or ALT and use the mouse wheel or 2-finger touchpad scroll to zoom in or out.<br/><small>Help can be disabled from the settings.</small>'
++                        title: '图表放大',
++                        content: '放大图表。 您也可以按SHIFT键并选择图表的区域，或者按SHIFT或ALT键并使用鼠标滚轮或两指触摸板滚动来放大或缩小。<br/><small>可以从设置中禁用帮助。</small>'
+                     });
+                 }
+ 
+@@ -7996,8 +7996,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Chart Zoom Out',
+-                        content: 'Zoom out the chart. You can also press SHIFT or ALT and use the mouse wheel, or 2-finger touchpad scroll to zoom in or out.<br/><small>Help can be disabled from the settings.</small>'
++                        title: '图表缩小',
++                        content: '缩小图表。 您还可以按SHIFT或ALT并使用鼠标滚轮或2指触摸板滚动来放大或缩小。<br/><small>可以从设置中禁用帮助。</small>'
+                     });
+                 }
+ 
+@@ -8028,8 +8028,8 @@
+                             show: NETDATA.options.current.show_help_delay_show_ms,
+                             hide: NETDATA.options.current.show_help_delay_hide_ms
+                         },
+-                        title: 'Chart Resize',
+-                        content: 'Drag this point with your mouse or your finger (on touch devices), to resize the chart vertically. You can also <b>double click it</b> or <b>double tap it</b> to reset between 2 states: the default and the one that fits all the values.<br/><small>Help can be disabled from the settings.</small>'
++                        title: '图表调整',
++                        content: '用鼠标或手指（在触摸设备上）拖动此点，以垂直调整图表大小。您也可以<b>双击它</b>或<b>双击它</b>以在两种状态之间复位：默认状态和适合所有值的状态。<br/><small>帮助可以 从设置中禁用。</small>'
+                     });
+                 }
+ 
+@@ -8084,12 +8084,12 @@
+                     html: true,
+                     trigger: 'hover',
+                     placement: 'bottom',
+-                    title: 'Chart Legend',
++                    title: '图表图例',
+                     delay: {
+                         show: NETDATA.options.current.show_help_delay_show_ms,
+                         hide: NETDATA.options.current.show_help_delay_hide_ms
+                     },
+-                    content: 'You can click or tap on the values or the labels to select dimensions. By pressing SHIFT or CONTROL, you can enable or disable multiple dimensions.<br/><small>Help can be disabled from the settings.</small>'
++                    content: '您可以单击或点击值或标签以选择尺寸。通过按SHIFT或CONTROL，可以启用或禁用多个尺寸。<br/><small>可以从设置中禁用帮助。</small>'
+                 });
+             }
+         } else {
+@@ -8418,7 +8418,7 @@
+ 
+         if (this.chart_created && typeof this.library.update === 'function') {
+             if (this.debug) {
+-                this.log('updating chart...');
++                this.log('正在更新图表。。。');
+             }
+ 
+             if (!callChartLibraryUpdateSafely(data)) {
+@@ -8426,7 +8426,7 @@
+             }
+         } else {
+             if (this.debug) {
+-                this.log('creating chart...');
++                this.log('正在创建图表。。。');
+             }
+ 
+             if (!callChartLibraryCreateSafely(data)) {
+@@ -8441,7 +8441,7 @@
+             this.__redraw_on_unhide = true;
+ 
+             if (this.debug) {
+-                this.log("drawn while not visible");
++                this.log("在不可见的情况下绘制");
+             }
+         }
+ 
 --- a/web/gui/dashboard_info.js
 +++ b/web/gui/dashboard_info.js
 @@ -12,22 +12,21 @@
@@ -40,7 +201,7 @@
 +        title: '系统概况',
          icon: '<i class="fas fa-bookmark"></i>',
 -        info: 'Overview of the key system metrics.'
-+        info: '一眼掌握系统效能关键指标。'
++        info: '一眼掌握系统性能关键指标。'
      },
  
      'services': {
@@ -49,7 +210,7 @@
          icon: '<i class="fas fa-cogs"></i>',
 -        info: 'Resources utilization of systemd services. netdata monitors all systemd services via CGROUPS ' +
 -            '(the resources accounting used by containers). '
-+        info: '系统服务的使用情况。netdata 以 CGROUPS 监视所有系统服务。'
++        info: '系统服务的使用情况。netdata以CGROUPS监视所有系统服务。'
      },
  
      'ap': {
@@ -65,10 +226,10 @@
  
      'net': {
 -        title: 'Network Interfaces',
-+        title: '网络界面',
++        title: '网络信息',
          icon: '<i class="fas fa-sitemap"></i>',
 -        info: 'Performance metrics for network interfaces.'
-+        info: '网络接口的性能指标。'
++        info: '网络接口的详细性能。'
      },
  
      'ip': {
@@ -82,14 +243,14 @@
  
      'ipv4': {
 -        title: 'IPv4 Networking',
-+        title: 'IPv4 网络',
++        title: 'IPv4网络',
          icon: '<i class="fas fa-cloud"></i>',
 -        info: 'Metrics for the IPv4 stack of the system. ' +
 +        info: 'IPv4 性能指标。' +
              '<a href="https://en.wikipedia.org/wiki/IPv4" target="_blank">Internet Protocol version 4 (IPv4)</a> is ' +
              'the fourth version of the Internet Protocol (IP). It is one of the core protocols of standards-based ' +
              'internetworking methods in the Internet. IPv4 is a connectionless protocol for use on packet-switched ' +
-@@ -74,9 +73,9 @@
+@@ -74,154 +73,154 @@
      },
  
      'ipv6': {
@@ -101,7 +262,19 @@
      },
  
      'sctp': {
-@@ -92,102 +91,102 @@
+-        title: 'SCTP Networking',
++        title: 'SCTP网络',
+         icon: '<i class="fas fa-cloud"></i>',
+-        info: '<a href="https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol" target="_blank">Stream Control Transmission Protocol (SCTP)</a> is a computer network protocol which operates at the transport layer and serves a role similar to the popular protocols TCP and UDP. SCTP provides some of the features of both UDP and TCP: it is message-oriented like UDP and ensures reliable, in-sequence transport of messages with congestion control like TCP. It differs from those protocols by providing multi-homing and redundant paths to increase resilience and reliability.'
++        info: '<a href="https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol" target="_blank">Stream Control Transmission Protocol (SCTP)</a>是一种在传输层运行的计算机网络协议，其作用类似于流行的协议TCP和UDP。 SCTP提供了UDP和TCP的一些功能：它像UDP这样面向消息，并通过拥塞控制（如TCP）确保可靠，按顺序传输消息。 它与那些协议的不同之处在于，它提供了多宿主和冗余路径以提高弹性和可靠性。'
+     },
+ 
+     'ipvs': {
+-        title: 'IP Virtual Server',
++        title: 'IP虚拟服务器',
+         icon: '<i class="fas fa-eye"></i>',
+-        info: '<a href="http://www.linuxvirtualserver.org/software/ipvs.html" target="_blank">IPVS (IP Virtual Server)</a> implements transport-layer load balancing inside the Linux kernel, so called Layer-4 switching. IPVS running on a host acts as a load balancer at the front of a cluster of real servers, it can direct requests for TCP/UDP based services to the real servers, and makes services of the real servers to appear as a virtual service on a single IP address.'
++        info: '<a href="http://www.linuxvirtualserver.org/software/ipvs.html" target="_blank">IPVS (IP Virtual Server)</a> 在Linux内核内部实现传输层负载平衡，即所谓的第4层交换。 在主机上运行的IPVS充当真实服务器群集前端的负载平衡器，它可以将对基于TCP / UDP的服务的请求定向到真实服务器，并使真实服务器的服务在服务器上显示为虚拟服务。 单个IP地址。'
      },
  
      'netfilter': {
@@ -125,7 +298,7 @@
 +        title: 'CPU',
          icon: '<i class="fas fa-bolt"></i>',
 -        info: 'Detailed information for each CPU of the system. A summary of the system for all CPUs can be found at the <a href="#menu_system">System Overview</a> section.'
-+        info: '系统中每一个 CPU 的详细信息。全部CPU的信息可以到 <a href="#menu_system">系统概况</a> 查看。'
++        info: '系统中每一个CPU的详细信息。全部CPU的信息可以到<a href="#menu_system">系统概况</a> 查看。'
      },
  
      'mem': {
@@ -133,7 +306,7 @@
 +        title: '内存',
          icon: '<i class="fas fa-microchip"></i>',
 -        info: 'Detailed information about the memory management of the system.'
-+        info: '系统内存管理的详细信息。'
++        info: '系统内存的详细信息。'
      },
  
      'disk': {
@@ -169,7 +342,7 @@
  
      'nfsd': {
 -        title: 'NFS Server',
-+        title: 'NFS 服务器',
++        title: 'NFS服务器',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the Network File Server. NFS is a distributed file system protocol, allowing a user on a client computer to access files over a network, much like local storage is accessed. NFS, like many other protocols, builds on the Open Network Computing Remote Procedure Call (ONC RPC) system. The NFS is an open standard defined in Request for Comments (RFC).'
 +        info: '网络文件服务器的性能指标。 NFS是一种分布式文件系统协议，它允许客户端计算机上的用户通过网络访问文件，就像访问本地存储一样。 像许多其他协议一样，NFS建立在开放网络计算远程过程调用（ONC RPC）系统上。 NFS是在注释请求（RFC）中定义的开放标准。'
@@ -177,7 +350,7 @@
  
      'nfs': {
 -        title: 'NFS Client',
-+        title: 'NFS 客户端',
++        title: 'NFS客户端',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the NFS operations of this system, acting as an NFS client.'
 +        info: '显示本机NFS客户端的性能能指标。'
@@ -185,18 +358,18 @@
  
      'zfs': {
 -        title: 'ZFS filesystem',
-+        title: 'ZFS 文件系统',
++        title: 'ZFS文件系统',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Performance metrics of the ZFS filesystem. The following charts visualize all metrics reported by <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> and <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>.'
-+        info: 'ZFS文件系统的性能指标。 以下图表显示了<a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> 与 <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>的性能数据。'
++        info: 'ZFS文件系统的性能指标。以下图表显示了<a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arcstat/arcstat" target="_blank">arcstat.py</a> 与 <a href="https://github.com/zfsonlinux/zfs/blob/master/cmd/arc_summary/arc_summary3" target="_blank">arc_summary.py</a>的性能数据。'
      },
  
      'btrfs': {
 -        title: 'BTRFS filesystem',
-+        title: 'BTRFS 文件系统',
++        title: 'BTRFS文件系统',
          icon: '<i class="fas fa-folder-open"></i>',
 -        info: 'Disk space metrics for the BTRFS filesystem.'
-+        info: 'BTRFS文件系统的磁盘空间指标。'
++        info: 'BTRFS文件系统的磁盘空间信息。'
      },
  
      'apps': {
@@ -213,7 +386,7 @@
 +        title: '用户',
          icon: '<i class="fas fa-user"></i>',
 -        info: 'Per user statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
-+        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
++        info: 'netdata使用了<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
          height: 1.5
      },
  
@@ -222,7 +395,7 @@
 +        title: '用户组',
          icon: '<i class="fas fa-users"></i>',
 -        info: 'Per user group statistics are collected using netdata\'s <code>apps.plugin</code>. This plugin walks through all processes and aggregates statistics per user group. The reported values are compatible with <code>top</code>, although the netdata plugin counts also the resources of exited children (unlike <code>top</code> which shows only the resources of the currently running processes). So for processes like shell scripts, the reported values include the resources used by the commands these scripts run within each timeframe.',
-+        info: '使用netdata的<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
++        info: 'netdata使用了<code>apps.plugin</code>收集每个应用程序的统计信息。\'s 该插件遍历所有进程并汇总感兴趣的应用程序的统计信息，报告的值与<code>top</code>兼容，尽管netdata插件也计算已退出子进程的资源(与仅显示当前运行进程的资源的<code>top</code>不同)。因此，对于shell脚本之类的进程，报告的值包括这些脚本在每个时间段内运行的命令所使用的资源。',
          height: 1.5
      },
  
@@ -231,27 +404,43 @@
 +        title: 'Netdata 监视',
          icon: '<i class="fas fa-chart-bar"></i>',
 -        info: 'Performance metrics for the operation of netdata itself and its plugins.'
-+        info: 'netdata 本身与外置应用的统计信息。'
++        info: 'netdata本身与外置应用的统计信息。'
      },
  
      'aclk_test': {
-@@ -203,13 +202,13 @@
+         title: 'ACLK Test Generator',
+-        info: 'For internal use to perform integration testing.'
++        info: '供内部使用以执行集成测试。'
+     },
+ 
+     'example': {
+-        title: 'Example Charts',
+-        info: 'Example charts, demonstrating the external plugin architecture.'
++        title: '图表示例',
++        info: '图表示例，展示了外部插件架构。'
+     },
+ 
      'cgroup': {
          title: '',
          icon: '<i class="fas fa-th"></i>',
 -        info: 'Container resource utilization metrics. Netdata reads this information from <b>cgroups</b> (abbreviated from <b>control groups</b>), a Linux kernel feature that limits and accounts resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. <b>cgroups</b> together with <b>namespaces</b> (that offer isolation between processes) provide what we usually call: <b>containers</b>.'
-+        info: '容器资源使用率指标。netdata 从 <b>cgroups</b> (<b>control groups</b> 的缩写) 中读取这些资讯，cgroups 是 Linux 核心的一个功能，做限制与计算程序集中的资源使用率 (CPU、记忆体、磁碟 I/O、网路...等等)。<b>cgroups</b> 与 <b>namespaces</b> (程序之间的隔离) 结合提供了我们所说的：<b>容器</b>。'
++        info: '容器资源使用率指标。netdata从<b>cgroups</b> (<b>control groups</b> 的缩写) 中读取这些资讯，cgroups是Linux 核心的一个功能，做限制与计算程序集中的资源使用率 (CPU、记忆体、磁碟 I/O、网路...等等)。<b>cgroups</b> 与 <b>namespaces</b> (程序之间的隔离) 结合提供了我们所说的：<b>容器</b>。'
      },
  
      'cgqemu': {
          title: '',
          icon: '<i class="fas fa-th-large"></i>',
 -        info: 'QEMU virtual machine resource utilization metrics. QEMU (short for Quick Emulator) is a free and open-source hosted hypervisor that performs hardware virtualization.'
-+        info: 'QEMU 虚拟机资源使用率效能指标。QEMU (Quick Emulator) 是自由与开源的虚拟机器平台，提供硬体虚拟化功能。'
++        info: 'QEMU 虚拟机资源使用率效能指标。QEMU(Quick Emulator)是自由与开源的虚拟机器平台，提供硬体虚拟化功能。'
      },
  
      'fping': {
-@@ -221,7 +220,7 @@
+         title: 'fping',
+         icon: '<i class="fas fa-exchange-alt"></i>',
+-        info: 'Network latency statistics, via <b>fping</b>. <b>fping</b> is a program to send ICMP echo probes to network hosts, similar to <code>ping</code>, but much better performing when pinging multiple hosts. fping versions after 3.15 can be directly used as netdata plugins.'
++        info: '通过<b>fping</b>的网络延迟统计信息。<b>fping</b>是一个程序，用于向网络主机发送ICMP回声探测，类似于<code>ping</code>，但是在ping多个主机时性能要好得多。 3.15之后的fping版本可以直接用作netdata插件。'
+     },
+ 
      'gearman': {
          title: 'Gearman',
          icon: '<i class="fas fa-tasks"></i>',
@@ -260,7 +449,7 @@
      },
  
      'ioping': {
-@@ -231,15 +230,15 @@
+@@ -231,21 +230,21 @@
      },
  
      'httpcheck': {
@@ -280,45 +469,182 @@
      },
  
      'monit': {
-@@ -263,7 +262,7 @@
+         title: 'monit',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Statuses of checks in <b>monit</b>. Monit is a utility for managing and monitoring processes, programs, files, directories and filesystems on a Unix system. Monit conducts automatic maintenance and repair and can execute meaningful causal actions in error situations.'
++        info: '<b>monit</b>中的检查状态。 Monit是用于管理和监视Unix系统上的进程，程序，文件，目录和文件系统的实用程序。 Monit会执行自动维护和修复，并且可以在错误情况下执行有意义的因果操作。'
+     },
+ 
+     'mysql': {
+@@ -263,19 +262,19 @@
      'redis': {
          title: 'Redis',
          icon: '<i class="fas fa-database"></i>',
 -        info: 'Performance metrics for <b>redis</b>. Redis (REmote DIctionary Server) is a software project that implements data structure servers. It is open-source, networked, in-memory, and stores keys with optional durability.'
-+        info: 'Performance metrics for <b>redis</b>。Redis（远程字典服务器）是一个实现数据结构服务器的软件项目。 它是开源的，网络的，内存中的，并存储具有可选持久性的密钥。'
++        info: '<b>redis</b>的性能指标。Redis（远程字典服务器）是一个实现数据结构服务器的软件项目。 它是开源的，网络的，内存中的，并存储具有可选持久性的密钥。'
      },
  
      'rethinkdbs': {
-@@ -575,12 +574,12 @@
+         title: 'RethinkDB',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance metrics for <b>rethinkdb</b>. RethinkDB is the first open-source scalable database built for realtime applications'
++        info: '<b>rethinkdb</b>的性能指标。RethinkDB是第一个为实时应用程序构建的开源可伸缩数据库'
+     },
+ 
+     'retroshare': {
+         title: 'RetroShare',
+         icon: '<i class="fas fa-share-alt"></i>',
+-        info: 'Performance metrics for <b>RetroShare</b>. RetroShare is open source software for encrypted filesharing, serverless email, instant messaging, online chat, and BBS, based on a friend-to-friend network built on GNU Privacy Guard (GPG).'
++        info: '<b>RetroShare</b>的性能指标。RetroShare是基于GNU Privacy Guard（GPG）建立的朋友网络的开源软件，用于加密文件共享，无服务器电子邮件，即时消息，在线聊天和BBS'
+     },
+ 
+     'riakkv': {
+@@ -287,7 +286,7 @@
+     'ipfs': {
+         title: 'IPFS',
+         icon: '<i class="fas fa-folder-open"></i>',
+-        info: 'Performance metrics for the InterPlanetary File System (IPFS), a content-addressable, peer-to-peer hypermedia distribution protocol.'
++        info: '行星际文件系统（IPFS）的性能指标，这是一种内容可寻址的对等超媒体分发协议。'
+     },
+ 
+     'phpfpm': {
+@@ -304,9 +303,9 @@
+     },
+ 
+     'portcheck': {
+-        title: 'Port Check',
++        title: '端口检查',
+         icon: '<i class="fas fa-heartbeat"></i>',
+-        info: 'Service availability and latency monitoring using port checks.'
++        info: '使用端口检查的服务可用性和延迟监视。'
+     },
+ 
+     'postfix': {
+@@ -436,7 +435,7 @@
+     'ntpd': {
+         title: 'ntpd',
+         icon: '<i class="fas fa-clock"></i>',
+-        info: 'Provides statistics for the internal variables of the Network Time Protocol daemon <b><a href="http://www.ntp.org/">ntpd</a></b> and optional including the configured peers (if enabled in the module configuration). The module presents the performance metrics as shown by <b><a href="http://doc.ntp.org/current-stable/ntpq.html">ntpq</a></b> (the standard NTP query program) using NTP mode 6 UDP packets to communicate with the NTP server.'
++        info: '提供有关网络时间协议守护程序<b><a href="http://www.ntp.org/">ntpd</a></b>的内部变量的统计信息，并且还包括配置的对等项（如果启用）在模块配置中）。该模块显示性能指标，如<b><a href="http://doc.ntp.org/current-stable/ntpq.html">ntpq</a></b>（标准NTP查询）所示程序）使用NTP模式6 UDP数据包与NTP服务器进行通信。'
+     },
+ 
+     'spigotmc': {
+@@ -470,21 +469,21 @@
+     },
+ 
+     'powersupply': {
+-        title: 'Power Supply',
++        title: '电源',
+         icon: '<i class="fas fa-battery-half"></i>',
+-        info: 'Statistics for the various system power supplies. Data collected from <a href="https://www.kernel.org/doc/Documentation/power/power_supply_class.txt">Linux power supply class</a>.'
++        info: '各种系统电源的统计信息。从<a href="https://www.kernel.org/doc/Documentation/power/power_power_supply_class.txt">Linux电源类别</a>收集的数据。'
+     },
+ 
+     'xenstat': {
+         title: 'Xen Node',
+         icon: '<i class="fas fa-server"></i>',
+-        info: 'General statistics for the Xen node. Data collected using <b>xenstat</b> library</a>.'
++        info: 'Xen节点的常规统计信息。使用<b>xenstat</b> library</a>收集的数据。'
+     },
+ 
+     'xendomain': {
+         title: '',
+         icon: '<i class="fas fa-th-large"></i>',
+-        info: 'Xen domain resource utilization metrics. Netdata reads this information using <b>xenstat</b> library which gives access to the resource usage information (CPU, memory, disk I/O, network) for a virtual machine.'
++        info: 'Xen域资源利用率指标。Netdata使用 <b>xenstat</b> 读取此信息，该库可访问虚拟机的资源使用信息（CPU，内存，磁盘I/O，网络）。'
+     },
+ 
+     'wmi': {
+@@ -496,7 +495,7 @@
+     'perf': {
+         title: 'Perf Counters',
+         icon: '<i class="fas fa-tachometer-alt"></i>',
+-        info: 'Performance Monitoring Counters (PMC). Data collected using <b>perf_event_open()</b> system call which utilises Hardware Performance Monitoring Units (PMU).'
++        info: '性能监视计数器（PMC）。系统硬件调用<b>perf_event_open()</b>收集的数据，该调用利用了硬件性能监视单元（PMU）。'
+     },
+ 
+     'vsphere': {
+@@ -526,13 +525,13 @@
+     'am2320': {
+         title: 'AM2320 Sensor',
+         icon: '<i class="fas fa-thermometer-half"></i>',
+-        info: 'Readings from the external AM2320 Sensor.'
++        info: '来自外部AM2320传感器的读数。'
+     },
+ 
+     'scaleio': {
+         title: 'ScaleIO',
+         icon: '<i class="fas fa-database"></i>',
+-        info: 'Performance and health statistics for various ScaleIO components. Data collected via VxFlex OS Gateway REST API.'
++        info: '各种ScaleIO组件的性能和运行状况统计信息。通过VxFlex OS网关REST API收集的数据。'
+     },
+ 
+     'squidlog': {
+@@ -575,23 +574,23 @@
  // information about the submenus
  netdataDashboard.submenu = {
      'web_log.squid_bandwidth': {
 -        title: 'bandwidth',
-+        title: '频宽',
-         info: 'Bandwidth of responses (<code>sent</code>) by squid. This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the server bandwidth.'
+-        info: 'Bandwidth of responses (<code>sent</code>) by squid. This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the server bandwidth.'
++        title: '带宽',
++        info: 'squid的响应带宽(<code>发送</code>)。此图表可能会出现异常峰值，因为带宽是在服务器保存日志行时计算的，即使服务日志行所需的时间跨越较长的持续时间。我们建议使用QoS(e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>)精确计算服务器带宽。'
      },
  
      'web_log.squid_responses': {
 -        title: 'responses',
-+        title: '回应',
-         info: 'Information related to the responses sent by squid.'
+-        info: 'Information related to the responses sent by squid.'
++        title: '响应',
++        info: '与squid发送的响应有关的信息。'
      },
  
-@@ -599,7 +598,7 @@
+     'web_log.squid_requests': {
+-        title: 'requests',
+-        info: 'Information related to the requests squid has received.'
++        title: '请求',
++        info: 'squid已收到与请求相关的信息。'
+     },
+ 
+     'web_log.squid_hierarchy': {
+-        title: 'hierarchy',
+-        info: 'Performance metrics for the squid hierarchy used to serve the requests.'
++        title: '等级制',
++        info: '用于服务请求的squid层次结构的性能指标。'
+     },
+ 
+     'web_log.squid_squid_transport': {
+@@ -599,13 +598,13 @@
      },
  
      'web_log.squid_squid_cache': {
 -        title: 'cache',
-+        title: '快取',
-         info: 'Performance metrics for the performance of the squid cache.'
+-        info: 'Performance metrics for the performance of the squid cache.'
++        title: 'squid缓存',
++        info: 'squid缓存性能的性能指标。'
      },
  
+     'web_log.squid_timings': {
+-        title: 'timings',
+-        info: 'Duration of squid requests. Unrealistic spikes may be reported, since squid logs the total time of the requests, when they complete. Especially for HTTPS, the clients get a tunnel from the proxy and exchange requests directly with the upstream servers, so squid cannot evaluate the individual requests and reports the total time the tunnel was open.'
++        title: 'squid请求的持续时间',
++        info: 'squid请求的持续时间。可能会报告不现实的峰值，因为squid会记录请求完成时的总时间。特别是对于HTTPS，客户端从代理服务器获得一个隧道，并直接与上游服务器交换请求，因此squid无法评估单个请求并报告隧道打开的总时间。'
+     },
+ 
+     'web_log.squid_clients': {
+@@ -613,7 +612,7 @@
+     },
+ 
+     'web_log.bandwidth': {
+-        info: 'Bandwidth of requests (<code>received</code>) and responses (<code>sent</code>). <code>received</code> requires an extended log format (without it, the web server log does not have this information). This chart may present unusual spikes, since the bandwidth is accounted at the time the log line is saved by the web server, even if the time needed to serve it spans across a longer duration. We suggest to use QoS (e.g. <a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>) for accurate accounting of the web server bandwidth.'
++        info: '请求（<code>received</code>）和响应（<code>sent</code>）的带宽。<code>received</code>需要扩展的日志格式（如果没有，则Web服务器日志不包含此信息）。该图表可能会出现异常的峰值，因为带宽是在Web服务器保存日志行时计算的，即使为它服务所需的时间跨越了更长的持续时间。我们建议使用QoS（例如<a href="http://firehol.org/#fireqos" target="_blank">FireQOS</a>）来准确计算Web服务器带宽。'
+     },
+ 
+     'web_log.urls': {
 @@ -630,7 +629,7 @@
  
      'mem.ksm': {
          title: 'deduper (ksm)',
 -        info: 'Kernel Same-page Merging (KSM) performance monitoring, read from several files in <code>/sys/kernel/mm/ksm/</code>. KSM is a memory-saving de-duplication feature in the Linux kernel (since version 2.6.32). The KSM daemon ksmd periodically scans those areas of user memory which have been registered with it, looking for pages of identical content which can be replaced by a single write-protected page (which is automatically copied if a process later wants to update its content). KSM was originally developed for use with KVM (where it was known as Kernel Shared Memory), to fit more virtual machines into physical memory, by sharing the data common between them.  But it can be useful to any application which generates many instances of the same data.'
-+        info: 'Kernel Same-page Merging (KSM) 性能监控，是从<code>/sys/kernel/mm/ksm/</code>文件中读取的数据。KSM 是在Linux核心(自 2.6.32 版起)内含的一种节省内存使用率重复资料删除功能。 KSM服务程序ksmd会定期扫描内存区域，寻找正有资料要更新进来且相同资料存在的分页。KSM 最初是从 KVM 专案开发中而来，利用这种共用相同资料的机制，即可以让更多的虚拟机器放到内存中。另外，对许多会产生同样内容的应用程序来说，这个功能是相当有效益的。'
++        info: 'Kernel Same-page Merging (KSM)性能监视，从<code>/sys/Kernel/mm/KSM/</code>中的多个文件读取。KSM是Linux内核中一种节省内存的重复数据消除功能（从版本2.6.32开始）。KSM守护进程ksmd定期扫描已注册的用户内存区域，查找可由单个写保护页替换的相同内容的页（如果进程稍后要更新其内容，则会自动复制该页）。KSM最初是为与KVM（在KVM中称为内核共享内存）一起使用而开发的，目的是通过共享虚拟机之间的公共数据，将更多虚拟机装入物理内存。但是对于生成同一数据的多个实例的任何应用程序都是有用的。'
      },
  
      'mem.hugepages': {
@@ -331,34 +657,95 @@
      },
  
      'ip.ecn': {
-@@ -647,7 +646,7 @@
+@@ -647,22 +646,22 @@
  
      'netfilter.conntrack': {
          title: 'connection tracker',
 -        info: 'Netfilter Connection Tracker performance metrics. The connection tracker keeps track of all connections of the machine, inbound and outbound. It works by keeping a database with all open connections, tracking network and address translation and connection expectations.'
-+        info: 'Netfilter connection tracker 效能指标。Connection tracker 会追踪这台主机上所有的连接，包括流入与流出。工作原理是将所有开启的连接都储存到资料库，以追踪网路、位址转换与连接目标。'
++        info: 'Netfilter连接跟踪器性能指标。连接跟踪器跟踪计算机的所有连接（入站和出站）。它通过使数据库保持所有打开的连接，跟踪网络和地址转换以及连接期望来工作。'
      },
  
      'netfilter.nfacct': {
-@@ -745,16 +744,16 @@
- netdataDashboard.context = {
+-        title: 'bandwidth accounting',
+-        info: 'The following information is read using the <code>nfacct.plugin</code>.'
++        title: '带宽核算',
++        info: '使用<code>nfacct.plugin</code>读取以下信息。'
+     },
+ 
+     'netfilter.synproxy': {
+-        title: 'DDoS protection',
+-        info: 'DDoS protection performance metrics. <a href="https://github.com/firehol/firehol/wiki/Working-with-SYNPROXY" target="_blank">SYNPROXY</a> is a TCP SYN packets proxy. It is used to protect any TCP server (like a web server) from SYN floods and similar DDoS attacks. It is a netfilter module, in the Linux kernel (since version 3.12). It is optimized to handle millions of packets per second utilizing all CPUs available without any concurrency locking between the connections. It can be used for any kind of TCP traffic (even encrypted), since it does not interfere with the content itself.'
++        title: 'DDoS保护',
++        info: 'DDoS保护性能指标。<a href="https://github.com/firehol/firehol/wiki/Working-with-SYNPROXY" target="_blank">SYNPROXY</a>是TCP SYN数据包代理。它用于保护任何TCP服务器（例如Web服务器）免受SYN泛滥和类似的DDoS攻击。它是Linux内核（自版本3.12起）中的netfilter模块。它经过优化，可以利用所有可用的CPU每秒处理数百万个数据包，而连接之间没有任何并发锁定。它可以用于任何类型的TCP通信（甚至加密），因为它不会干扰内容本身。'
+     },
+ 
+     'ipfw.dynamic_rules': {
+-        title: 'dynamic rules',
+-        info: 'Number of dynamic rules, created by correspondent stateful firewall rules.'
++        title: '动态规则',
++        info: '由相应的有状态防火墙规则创建的动态规则的数量。'
+     },
+ 
+     'system.softnet_stat': {
+@@ -671,7 +670,7 @@
+             if (os === 'linux')
+                 return 'Statistics for CPUs SoftIRQs related to network receive work. Break down per CPU core can be found at <a href="#menu_cpu_submenu_softnet_stat">CPU / softnet statistics</a>. <b>processed</b> states the number of packets processed, <b>dropped</b> is the number packets dropped because the network device backlog was full (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_max_backlog</code>), <b>squeezed</b> is the number of packets dropped because the network device budget ran out (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_budget</code> and/or <code>net.core.netdev_budget_usecs</code>). More information about identifying and troubleshooting network driver related issues can be found at <a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux Network Performance Tuning Guide</a>.';
+             else
+-                return 'Statistics for CPUs SoftIRQs related to network receive work.';
++                return '与网络接收工作相关的CPU软件IRQ统计。';
+         }
+     },
+ 
+@@ -686,13 +685,13 @@
+     },
+ 
+     'go_expvar.memstats': {
+-        title: 'memory statistics',
+-        info: 'Go runtime memory statistics. See <a href="https://golang.org/pkg/runtime/#MemStats" target="_blank">runtime.MemStats</a> documentation for more info about each chart and the values.'
++        title: '内存统计',
++        info: '进行运行时内存统计。有关每个图表及其值的更多信息，请参见<a href="https://golang.org/pkg/runtime/#MemStats" target="_blank">runtime.MemStats</a> 文档。'
+     },
+ 
+     'couchdb.dbactivity': {
+         title: 'db activity',
+-        info: 'Overall database reads and writes for the entire server. This includes any external HTTP traffic, as well as internal replication traffic performed in a cluster to ensure node consistency.'
++        info: '整个数据库对整个服务器的读写。 这包括任何外部HTTP通信以及在群集中执行的内部复制通信，以确保节点一致性。'
+     },
+ 
+     'couchdb.httptraffic': {
+@@ -711,12 +710,12 @@
+ 
+     'couchdb.erlang': {
+         title: 'erlang statistics',
+-        info: 'Detailed information about the status of the Erlang VM that hosts CouchDB. These are intended for advanced users only. High values of the peak message queue (>10e6) generally indicate an overload condition.'
++        info: '有关托管CouchDB的Erlang VM的状态的详细信息。 这些仅适用于高级用户。 峰值消息队列的值较高（> 10e6）通常表示过载情况。'
+     },
+ 
+     'ntpd.system': {
+-        title: 'system',
+-        info: 'Statistics of the system variables as shown by the readlist billboard <code>ntpq -c rl</code>. System variables are assigned an association ID of zero and can also be shown in the readvar billboard <code>ntpq -c "rv 0"</code>. These variables are used in the <a href="http://doc.ntp.org/current-stable/discipline.html">Clock Discipline Algorithm</a>, to calculate the lowest and most stable offset.'
++        title: '系统',
++        info: '系统变量的统计信息，如阅读列表广告牌<code>ntpq -c rl</code>所示。 系统变量的关联ID分配为零，也可以显示在readvar广告牌<code>ntpq -c "rv 0"</code>中。 这些变量在<a href="http://doc.ntp.org/current-stable/discipline.html">时钟纪律算法</a>中用于计算最低和最稳定的偏差。'
+     },
+ 
+     'ntpd.peers': {
+@@ -746,15 +745,15 @@
      'system.cpu': {
          info: function (os) {
--            void (os);
+             void (os);
 -            return 'Total CPU utilization (all cores). 100% here means there is no CPU idle time at all. You can get per core usage at the <a href="#menu_cpu">CPUs</a> section and per application usage at the <a href="#menu_apps">Applications Monitoring</a> section.'
 -                + netdataDashboard.sparkline('<br/>Keep an eye on <b>iowait</b> ', 'system.cpu', 'iowait', '%', '. If it is constantly high, your disks are a bottleneck and they slow your system down.')
 -                + netdataDashboard.sparkline('<br/>An important metric worth monitoring, is <b>softirq</b> ', 'system.cpu', 'softirq', '%', '. A constantly high percentage of softirq may indicate network driver issues.');
-+            void(os);
-+            return 'CPU 使用率总表 (全部核心)。 当数值为 100% 时，表示您的 CPU 非常忙碌没有空闲时间。您可以在 <a href="#menu_cpu">CPU</a> 以及 <a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
-+                + netdataDashboard.sparkline('<br/>请特别关注 <b>iowait</b> ', 'system.cpu', 'iowait', '%', '，如果它一直处于较高的情况，这表示您的硬盘是效能瓶颈，您的系统效能会明显降低。')
-+                + netdataDashboard.sparkline('<br/>另一个重要的指标是 <b>softirq</b> ', 'system.cpu', 'softirq', '%', '，若这个数值持续在较高的情况，很有可能是您的网路驱动部份有问题。');
++            return 'CPU使用率总表(全部核心)。当数值为100%时，表示您的CPU非常忙碌没有空闲时间。您可以在<a href="#menu_cpu">CPU</a>以及<a href="#menu_apps">应用程序</a> 深入了解每个核心与应用程序的使用情况。'
++                + netdataDashboard.sparkline('<br/>请特别注意<b>iowait</b>', 'system.cpu', 'iowait', '%', '，如果它一直处于较高的情况，这表示您的硬盘是效能瓶颈，您的系统效能会明显降低。')
++                + netdataDashboard.sparkline('<br/>另一个重要的指标是<b>softirq</b>', 'system.cpu', 'softirq', '%', '，若这个数值持续在较高的情况，很有可能是您的网路驱动部份有问题。');
          },
          valueRange: "[0, 100]"
      },
  
      'system.load': {
 -        info: 'Current system load, i.e. the number of processes using CPU or waiting for system resources (usually CPU and disk). The 3 metrics refer to 1, 5 and 15 minute averages. The system calculates this once every 5 seconds. For more information check <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">this wikipedia article</a>',
-+        info: '目前系统负载，也就是指CPU使用情况或正在等待系统资源 (通常是 CPU 与磁碟)。这三个指标分别是 1、5、15 分钟。系统每 5 秒会计算一次。更多的资讯可以参阅 <a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a> 说明。',
++        info: '目前系统的负载，也就是指CPU使用情况或正在等待系统资源(通常是CPU与磁盘)。这三个指标分别是 1、5、15 分钟。系统每5秒会刷新一次。更多的信息可以参考<a href="https://en.wikipedia.org/wiki/Load_(computing)" target="_blank">维基百科</a>的说明。',
          height: 0.7
      },
  
@@ -371,7 +758,7 @@
  
              if (os === 'linux')
 -                return s + ' Physical are all the disks that are listed in <code>/sys/block</code>, but do not exist in <code>/sys/devices/virtual/block</code>.';
-+                return s + ' 实体硬盘指的是 <code>/sys/block</code> 中有列出，但是没有在 <code>/sys/devices/virtual/block</code> 的所有硬盘。';
++                return s + ' 实体硬盘指的是<code>/sys/block</code>中有列出，但是没有在 <code>/sys/devices/virtual/block</code> 的所有硬盘。';
              else
                  return s;
          }
@@ -379,7 +766,7 @@
  
      'system.pgpgio': {
 -        info: 'Memory paged from/to disk. This is usually the total disk I/O of the system.'
-+        info: '从内存分页到硬盘的 I/O。通常是这个系统所有硬盘的总 I/O。'
++        info: '从内存分页到硬盘的 I/O。通常是这个系统所有硬盘的总I/O。'
      },
  
      'system.swapio': {
@@ -389,7 +776,7 @@
  
      'system.pgfaults': {
 -        info: 'Total page faults. <b>Major page faults</b> indicates that the system is using its swap. You can find which applications use the swap at the <a href="#menu_apps">Applications Monitoring</a> section.'
-+        info: '所有的Page错误。 <b>主要页面错误</b> 表明系统正在使用其交换功能。 您可以在<a href="#menu_apps">应用程序监视</a>部分中找到使用交换的应用程序。'
++        info: '所有的Page错误。<b>主要页面错误</b> 表明系统正在使用其交换功能。您可以在<a href="#menu_apps">应用程序监视</a>部分中找到使用交换的应用程序。'
      },
  
      'system.entropy': {
@@ -407,22 +794,22 @@
      'system.intr': {
          colors: '#DD5555',
 -        info: 'Total number of CPU interrupts. Check <code>system.interrupts</code> that gives more detail about each interrupt and also the <a href="#menu_cpu">CPUs</a> section where interrupts are analyzed per CPU core.'
-+        info: 'CPU 中断的总数。透过检查 <code>system.interrupts</code>，得知每一个中断的细节资讯。在 <a href="#menu_cpu">CPU</a> 区段提供每一个 CPU 核心的中断情形。'
++        info: 'CPU中断的总数。通过检查<code>system.interrupts</code>，得知每一个中断的细节信息。在<a href="#menu_cpu">CPU</a>提供每一个CPU核心的中断情形。'
      },
  
      'system.interrupts': {
 -        info: 'CPU interrupts in detail. At the <a href="#menu_cpu">CPUs</a> section, interrupts are analyzed per CPU core.'
-+        info: 'CPU 中断的细节。在 <a href="#menu_cpu">CPU</a> 区段中，依据每个 CPU 核心分析中断。'
++        info: 'CPU中断的细节。在<a href="#menu_cpu">CPU</a>中，依据每个CPU核心分析中断。'
      },
  
      'system.softirqs': {
 -        info: 'CPU softirqs in detail. At the <a href="#menu_cpu">CPUs</a> section, softirqs are analyzed per CPU core.'
-+        info: 'CPU softirqs 的细节。在 <a href="#menu_cpu">CPU</a> 区段中，依据每个 CPU 核心分析 softirqs。'
++        info: 'CPU softirqs的细节。在<a href="#menu_cpu">CPU</a>中，依据每个CPU核心分析softirqs。'
      },
  
      'system.processes': {
 -        info: 'System processes. <b>Running</b> are the processes in the CPU. <b>Blocked</b> are processes that are willing to enter the CPU, but they cannot, e.g. because they wait for disk activity.'
-+        info: '系统程序。<b>running</b> 显示正在 CPU 中的程序。<b>Blocked</b> 显示目前被挡下无法进入 CPU 执行的程序，例如：正在等待磁碟完成动作，才能继续。'
++        info: '系统程序。<b>Running</b>显示正在CPU中的程序。<b>Blocked</b>显示目前被挡下无法进入CPU执行的程序，例如：正在等待磁盘完成动作，才能继续。'
      },
  
      'system.active_processes': {
@@ -528,7 +915,7 @@
  
      'mem.writeback': {
 -        info: '<b>Dirty</b> is the amount of memory waiting to be written to disk. <b>Writeback</b> is how much memory is actively being written to disk.'
-+        info: '<b>Dirty</b> 是等待写入硬盘的内存量。<b>Writeback</b> 是指有多少内存内容被主动写入硬盘。'
++        info: '<b>Dirty</b>是等待写入硬盘的内存量。<b>Writeback</b>是指有多少内存内容被主动写入硬盘。'
      },
  
      'mem.kernel': {
@@ -552,6 +939,72 @@
      },
  
      // ------------------------------------------------------------------------
+@@ -1066,7 +1065,7 @@
+     },
+ 
+     'apps.mem': {
+-        info: 'Real memory (RAM) used by applications. This does not include shared memory.'
++        info: '应用程序分配的虚拟内存。 请查看<a href="https://github.com/netdata/netdata/tree/master/daemon#virtual-memory" target="_blank">本文</a> 以获取更多信息。'
+     },
+ 
+     'apps.vmem': {
+@@ -1082,7 +1081,7 @@
+     },
+ 
+     'apps.uptime': {
+-        info: 'Carried over process group uptime since the Netdata restart. The period of time within which at least one process in the group was running.'
++        info: '自Netdata重新启动以来，进程组的正常运行时间得以保留。 该组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1093,7 +1092,7 @@
+     },
+ 
+     'users.mem': {
+-        info: 'Real memory (RAM) used per user. This does not include shared memory.'
++        info: '每个用户使用的实际内存（RAM）。这不包括共享内存。'
+     },
+ 
+     'users.vmem': {
+@@ -1109,7 +1108,7 @@
+     },
+ 
+     'users.uptime': {
+-        info: 'Carried over process group uptime since the Netdata restart. The period of time within which at least one process in the group was running.'
++        info: '自Netdata重新启动以来，进程组的正常运行时间得以保留。 该组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1120,7 +1119,7 @@
+     },
+ 
+     'groups.mem': {
+-        info: 'Real memory (RAM) used per user group. This does not include shared memory.'
++        info: '每个用户组使用的实内存（RAM）。 这不包括共享内存。'
+     },
+ 
+     'groups.vmem': {
+@@ -1136,7 +1135,7 @@
+     },
+ 
+     'groups.uptime': {
+-        info: 'Carried over process group uptime. The period of time within which at least one process in the group was running.'
++        info: '保留了流程组的正常运行时间。 该组中至少有一个进程正在运行的时间段。'
+     },
+ 
+     // ------------------------------------------------------------------------
+@@ -1148,9 +1147,9 @@
+                 void (os);
+ 
+                 if (id.match(/.*-ifb$/))
+-                    return netdataDashboard.gaugeChart('Inbound', '12%', '', '#5555AA');
++                    return netdataDashboard.gaugeChart('入站', '12%', '', '#5555AA');
+                 else
+-                    return netdataDashboard.gaugeChart('Outbound', '12%', '', '#AA9900');
++                    return netdataDashboard.gaugeChart('出站', '12%', '', '#AA9900');
+             }
+         ]
+     },
 @@ -1169,7 +1168,7 @@
                      } catch (e) {
                          iface = '';
@@ -628,7 +1081,7 @@
 +            netdataDashboard.gaugeChart('写入', '12%', 'writes')
          ],
 -        info: 'Amount of data transferred to and from disk.'
-+        info: '硬盘传输资料的总计。'
++        info: '磁盘传输的数据量。'
      },
  
      'disk.ops': {
@@ -690,6 +1143,283 @@
      },
  
  
+@@ -1435,21 +1434,21 @@
+     'apache.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'apache.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+     'apache.net': {
+         colors: NETDATA.colors[3],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Bandwidth', '12%', '', NETDATA.colors[3])
++            netdataDashboard.gaugeChart('带宽', '12%', '', NETDATA.colors[3])
+         ]
+     },
+ 
+@@ -1496,21 +1495,21 @@
+     'lighttpd.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'lighttpd.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+     'lighttpd.net': {
+         colors: NETDATA.colors[3],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Bandwidth', '12%', '', NETDATA.colors[3])
++            netdataDashboard.gaugeChart('带宽', '12%', '', NETDATA.colors[3])
+         ]
+     },
+ 
+@@ -1523,7 +1522,7 @@
+                     + ' data-append-options="percentage"'
+                     + ' data-gauge-max-value="100"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Servers Utilization"'
++                    + ' data-title="服务器利用率"'
+                     + ' data-units="percentage %"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1556,14 +1555,14 @@
+     'nginx.connections': {
+         colors: NETDATA.colors[4],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Connections', '12%', '', NETDATA.colors[4])
++            netdataDashboard.gaugeChart('连接数', '12%', '', NETDATA.colors[4])
+         ]
+     },
+ 
+     'nginx.requests': {
+         colors: NETDATA.colors[0],
+         mainheads: [
+-            netdataDashboard.gaugeChart('Requests', '12%', '', NETDATA.colors[0])
++            netdataDashboard.gaugeChart('要求', '12%', '', NETDATA.colors[0])
+         ]
+     },
+ 
+@@ -1571,12 +1570,12 @@
+     // HTTP check
+ 
+     'httpcheck.responsetime': {
+-        info: 'The <code>response time</code> describes the time passed between request and response. ' +
+-            'Currently, the accuracy of the response time is low and should be used as reference only.'
++        info: '<code>响应时间</code>描述了请求和响应之间经过的时间。 ' +
++            '当前的响应时间的准确性较低，仅应作为参考。'
+     },
+ 
+     'httpcheck.responselength': {
+-        info: 'The <code>response length</code> counts the number of characters in the response body. For static pages, this should be mostly constant.'
++        info: '<code>响应长度</code>计算响应正文中的字符数。 对于静态页面，这应该基本保持不变。'
+     },
+ 
+     'httpcheck.status': {
+@@ -1699,7 +1698,7 @@
+                     + ' data-append-options="percentage"'
+                     + ' data-gauge-max-value="100"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Memory"'
++                    + ' data-title="内存"'
+                     + ' data-units="%"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1719,7 +1718,7 @@
+                 if (cgroupMemLimitIsSet === 0) {
+                     return '<div data-netdata="' + id + '"'
+                         + ' data-chart-library="gauge"'
+-                        + ' data-title="Memory"'
++                        + ' data-title="内存"'
+                         + ' data-units="MB"'
+                         + ' data-gauge-adjust="width"'
+                         + ' data-width="12%"'
+@@ -1741,7 +1740,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="read"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Read Disk I/O"'
++                    + ' data-title="磁盘读取 I/O"'
+                     + ' data-units="KB/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1756,7 +1755,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="write"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Write Disk I/O"'
++                    + ' data-title="磁盘写入 I/O"'
+                     + ' data-units="KB/s"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -1773,32 +1772,32 @@
+     // beanstalkd
+     // system charts
+     'beanstalk.cpu_usage': {
+-        info: 'Amount of CPU Time for user and system used by beanstalkd.'
++        info: 'beantalkd使用的用户和系统的CPU时间量。'
+     },
+ 
+     // This is also a per-tube stat
+     'beanstalk.jobs_rate': {
+-        info: 'The rate of jobs processed by the beanstalkd served.'
++        info: '空闲处理的工作率。'
+     },
+ 
+     'beanstalk.connections_rate': {
+-        info: 'Tthe rate of connections opened to beanstalkd.'
++        info: '对beantalk敞开的连接速率。'
+     },
+ 
+     'beanstalk.commands_rate': {
+-        info: 'The rate of commands received by beanstalkd.'
++        info: 'beantalkd接收到的命令的速率。'
+     },
+ 
+     'beanstalk.current_tubes': {
+-        info: 'Total number of current tubes on the server including the default tube (which always exists).'
++        info: '服务器上当前管道的总数，包括默认管道（始终存在）。'
+     },
+ 
+     'beanstalk.current_jobs': {
+-        info: 'Current number of jobs in all tubes grouped by status: urgent, ready, reserved, delayed and buried.'
++        info: '按状态分组的所有管道中的当前作业数：紧急、就绪、保留、延迟和隐藏。'
+     },
+ 
+     'beanstalk.current_connections': {
+-        info: 'Current number of connections group by connection type: written, producers, workers, waiting.'
++        info: '当前连接数按连接类型分组：书面的，生产者的，工人的，等待的。'
+     },
+ 
+     'beanstalk.binlog': {
+@@ -1830,11 +1829,11 @@
+     // ceph
+ 
+     'ceph.general_usage': {
+-        info: 'The usage and available space in all ceph cluster.'
++        info: '所有ceph集群中的使用情况和可用空间。'
+     },
+ 
+     'ceph.general_objects': {
+-        info: 'Total number of objects storage on ceph cluster.'
++        info: 'ceph集群上存储的对象总数。'
+     },
+ 
+     'ceph.general_bytes': {
+@@ -1846,7 +1845,7 @@
+     },
+ 
+     'ceph.general_latency': {
+-        info: 'Total of apply and commit latency in all OSDs. The apply latency is the total time taken to flush an update to disk. The commit latency is the total time taken to commit an operation to the journal.'
++        info: '所有OSD中的应用和提交延迟总计。 应用延迟是将更新刷新到磁盘所花费的总时间。 提交延迟是将操作提交到日志所花费的总时间。'
+     },
+ 
+     'ceph.pool_usage': {
+@@ -1854,19 +1853,19 @@
+     },
+ 
+     'ceph.pool_objects': {
+-        info: 'Number of objects presents in each pool.'
++        info: '每个池中存在的对象数。'
+     },
+ 
+     'ceph.pool_read_bytes': {
+-        info: 'The rate of read data per second in each pool.'
++        info: '每个池中每秒读取数据的速率。'
+     },
+ 
+     'ceph.pool_write_bytes': {
+-        info: 'The rate of write data per second in each pool.'
++        info: '每个池中每秒写入数据的速率。'
+     },
+ 
+     'ceph.pool_read_objects': {
+-        info: 'Number of read objects per second in each pool.'
++        info: '每个池中每秒读取的对象数。'
+     },
+ 
+     'ceph.pool_write_objects': {
+@@ -2118,7 +2117,7 @@
+                 return '<div data-netdata="' + id + '"'
+                     + ' data-dimensions="avg"'
+                     + ' data-chart-library="gauge"'
+-                    + ' data-title="Average Response Time"'
++                    + ' data-title="平均响应时间"'
+                     + ' data-units="milliseconds"'
+                     + ' data-gauge-adjust="width"'
+                     + ' data-width="12%"'
+@@ -2655,27 +2654,27 @@
+ 
+     // Common
+     'vsphere.cpu_usage_total': {
+-        info: 'Summary CPU usage statistics across all CPUs/cores.'
++        info: '所有CPU /核心的CPU使用情况摘要统计信息。'
+     },
+ 
+     'vsphere.net_bandwidth_total': {
+-        info: 'Summary receive/transmit statistics across all network interfaces.'
++        info: '汇总所有网络接口的接收/传输统计信息。'
+     },
+ 
+     'vsphere.net_packets_total': {
+-        info: 'Summary receive/transmit statistics across all network interfaces.'
++        info: '汇总所有网络接口的接收/传输统计信息。'
+     },
+ 
+     'vsphere.net_errors_total': {
+-        info: 'Summary receive/transmit statistics across all network interfaces.'
++        info: '汇总所有网络接口的接收/传输统计信息。'
+     },
+ 
+     'vsphere.net_drops_total': {
+-        info: 'Summary receive/transmit statistics across all network interfaces.'
++        info: '汇总所有网络接口的接收/传输统计信息。'
+     },
+ 
+     'vsphere.disk_usage_total': {
+-        info: 'Summary read/write statistics across all disks.'
++        info: '汇总所有磁盘的读/写统计信息。'
+     },
+ 
+     'vsphere.disk_max_latency': {
+@@ -2874,15 +2873,15 @@
+     },
+ 
+     'cockroachdb.host_disk_bandwidth': {
+-        info: 'Summary disk bandwidth statistics across all system host disks.'
++        info: '所有系统主机磁盘的摘要磁盘带宽统计信息。'
+     },
+ 
+     'cockroachdb.host_disk_operations': {
+-        info: 'Summary disk operations statistics across all system host disks.'
++        info: '所有系统主机磁盘上的磁盘操作摘要统计信息。'
+     },
+ 
+     'cockroachdb.host_disk_iops_in_progress': {
+-        info: 'Summary disk iops in progress statistics across all system host disks.'
++        info: '所有系统主机磁盘上正在进行的摘要磁盘iops统计信息。'
+     },
+ 
+     'cockroachdb.host_network_bandwidth': {
 --- a/web/gui/index.html
 +++ b/web/gui/index.html
 @@ -39,8 +39,8 @@
@@ -783,9 +1513,9 @@
 -                            <b>Double-click</b> on them, to reset.
 -                            <b>Hover</b> on them too!
 +                            <b>拖动</b> 图表平移。
-+                            <b>Shift + wheel</b> 对它们进行放大和缩小。
-+                            <b>连按两下</b> 对它们进行重置。
-+                            <b>悬停</b> 在他们身上！
++                            <b>Shift + 鼠标滚轮</b> 对它们进行放大和缩小。
++                            <b>双击</b> 对它们进行重置。
++                            <b>悬停</b> 在上面！
                              </div>
                          <div class="col-md-6">
                              <div class="netdata-container" data-netdata="system.intr" data-chart-library="dygraph" data-dygraph-theme="sparkline" data-dygraph-type="line" data-dygraph-strokewidth="3" data-dygraph-smooth="true" data-dygraph-highlightcirclesize="6" data-after="-90" data-height="60px" data-colors="#C66"></div>
@@ -852,11 +1582,11 @@
                  <div class="modal-body">
                      <p>
 -                        netdata dashboards cannot be captured, since we are lazy loading and hiding all but the visible charts.
-+                        无法捕获netdata仪表板，因为我们正在延迟加载并隐藏可见图表以外的所有图表。
++                        捕获netdata仪表板，因为我们正在延迟加载并隐藏可见图表以外的所有图表。
                          <br/>
 -                        To capture the whole page with all the charts rendered, a new browser window will pop-up that will render all the charts at once.
 -                        The new browser window will maintain the current pan and zoom settings of the charts. So, align the charts before proceeding.
-+                        为了捕获呈现所有图表的整个页面，将弹出一个新的浏览器窗口，该窗口将一次呈现所有图表。
++                        为了获取所有图表的整个页面，将弹出一个新的浏览器窗口，该窗口将一次呈现所有图表。
 +                        新的浏览器窗口将保留图表的当前平移和缩放设置。 因此，在继续操作之前，请对齐图表。
                      </p>
                      <p>
@@ -1319,8 +2049,8 @@
 -                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">Locale</a></li>
 +                        <li role="presentation" class="active"><a href="#settings_performance" aria-controls="settings_performance" role="tab" data-toggle="tab">效能</a></li>
 +                        <li role="presentation"><a href="#settings_sync" aria-controls="settings_sync" role="tab" data-toggle="tab">同步</a></li>
-+                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">视觉</a></li>
-+                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">地区</a></li>
++                        <li role="presentation"><a href="#settings_visual" aria-controls="settings_visual" role="tab" data-toggle="tab">显示</a></li>
++                        <li role="presentation"><a href="#settings_locale" aria-controls="settings_locale" role="tab" data-toggle="tab">区域</a></li>
                      </ul>
  
                      <!-- Tab panes -->
@@ -1333,7 +2063,7 @@
 -                                            <small>When set to <b>On Focus</b>, the charts will stop being updated if the page / tab does not have the focus of the user. When set to <b>Always</b>, the charts will always be refreshed. Set it to <b>On Focus</b> it to lower the CPU requirements of the browser (and extend the battery of laptops and tablets) when this page does not have your focus. Set to <b>Always</b> to work on another window (i.e. change the settings of something) and have the charts auto-refresh in this window.</small>
 +                                        <td class="option-control"><input id="stop_updates_when_focus_is_lost" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="在焦点上" data-off="总是" data-width="110px"></td>
 +                                        <td class="option-info"><strong>什么时候刷新图表？</strong><br/>
-+                                            <small>设置为<b>“聚焦” </b>时，如果页面/选项卡没有引起用户关注，则图表将停止更新。 当设置为<b>始终</b>时，图表将始终刷新。 将其设置为<b>“聚焦” </b>时，如果该页面没有聚焦，则可降低浏览器的CPU要求（并延长笔记本电脑和平板电脑的电量）。 设置为<b>始终</b>可以在另一个窗口上工作（即更改某些设置），并在该窗口中自动刷新图表。</small>
++                                            <small>当设置为<b>聚焦</b>时，如果页面/选项卡没有引起用户的关注，则图表将停止更新。当设置为<b>始终</b>时，图表将始终刷新。将其设置为<b>聚焦</b>时，如果该页面没有聚焦，则可降低浏览器的CPU要求（并延长笔记本电脑和平板电脑的电量）。设置为<b>始终</b>可以在另一个窗口上工作（即更改某些设置），并在该窗口中自动刷新图表。</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
@@ -1344,7 +2074,7 @@
 -                                        <td class="option-info"><strong>Which dimensions to show?</strong><br/>
 -                                            <small>When set to <b>Non Zero</b>, dimensions that have all their values (within the current view) set to zero will not be transferred from the netdata server (except if all dimensions of the chart are zero, in which case this setting does nothing - all dimensions are transferred and shown). When set to <b>All</b>, all dimensions will always be shown. Set it to <b>Non Zero</b> to lower the data transferred between netdata and your browser, lower the CPU requirements of your browser (fewer lines to draw) and increase the focus on the legends (fewer entries at the legends).</small>
 +                                        <td class="option-info"><strong>要显示哪个尺寸？</strong><br/>
-+                                            <small>设置为<b>非零</b>时，所有值（在当前视图内）都设置为零的维将不会从netdata服务器传输（除非图表的所有维均为零， 在这种情况下，此设置不执行任何操作-所有尺寸均已传输并显示）。 设置为<b>全部</b>时，将始终显示所有尺寸。 将其设置为<b>非零</b>可以降低在netdata和浏览器之间传输的数据，降低浏览器的CPU要求（减少绘制线条）并增加对图例的关注（图例中的条目更少） 。</small>
++                                            <small>设置为<b>非零</b>时，所有值（在当前视图内）都设置为零的维将不会从netdata服务器传输（除非图表的所有维均为零，在这种情况下，此设置不执行任何操作-所有尺寸均已传输并显示）。 设置为<b>全部</b>时，将始终显示所有尺寸。 将其设置为<b>非零</b>可以降低在netdata和浏览器之间传输的数据，降低浏览器的CPU要求（减少绘制线条）并增加对图例的关注（图例中的条目更少）。</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
@@ -1353,16 +2083,16 @@
 -                                            <small>When set to <b>Destroy</b>, charts that are not in the current viewport of the browser (are above, or below the visible area of the page), will be destroyed and re-created if and when they become visible again. When set to <b>Hide</b>, the not-visible charts will be just hidden, to simplify the DOM and speed up your browser. Set it to <b>Destroy</b>, to lower the memory requirements of your browser. Set it to <b>Hide</b> for faster restoration of charts on page scrolling.</small>
 +                                        <td class="option-control"><input id="destroy_on_hide" type="checkbox" data-toggle="toggle" data-on="消去" data-off="隐藏" data-width="110px"></td>
 +                                        <td class="option-info"><strong>如何处理隐藏图表？</strong><br/>
-+                                            <small>设置为<b>销毁</b>时，不在浏览器当前视口中（在页面可见区域的上方或下方）的统计图将被销毁，并在以下情况下重新创建 他们再次变得可见。 当设置为<b>Hide</b>（隐藏）时，不可见的图表将被隐藏，以简化DOM并加快浏览器的速度。 将其设置为<b>销毁</b>，以降低浏览器的内存需求。 将其设置为<b>隐藏</b>可以更快地恢复页面滚动时的图表。</small>
++                                            <small>设置为<b>消去</b>时，不在浏览器当前视口中（在页面可见区域的上方或下方）的统计图将被消去，并在以下情况下重新创建他们再次变得可见。当设置为<b>隐藏</b>时，不可见的图表将被隐藏，以简化DOM并加快浏览器的速度。将其设置为<b>消去</b>，以降低浏览器的内存需求。将其设置为<b>隐藏</b>可以更快地恢复页面滚动时的图表。</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
 -                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="Async" data-off="Sync" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Page scroll handling?</strong><br/>
 -                                            <small>When set to <b>Sync</b>, charts will be examined for their visibility immediately after scrolling. On slow computers this may impact the smoothness of page scrolling. To update the page when scrolling ends, set it to <b>Async</b>. Set it to <b>Sync</b> for immediate chart updates when scrolling. Set it to <b>Async</b> for smoother page scrolling on slower computers.</small>
-+                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="非同步" data-off="同步" data-width="110px"></td>
++                                        <td class="option-control"><input id="async_on_scroll" type="checkbox" data-toggle="toggle" data-on="异步" data-off="同步" data-width="110px"></td>
 +                                        <td class="option-info"><strong>页面滚动处理？</strong><br/>
-+                                            <small>设置为<b>同步</b>时，将在滚动后立即检查图表的可见性。 在速度较慢的计算机上，这可能会影响页面滚动的流畅性。 要在滚动结束时更新页面，请将其设置为<b>异步</b>。 将其设置为<b>同步</b>，以在滚动时立即更新图表。 将其设置为<b>异步</b>可以在速度较慢的计算机上更流畅地滚动页面。</small>
++                                            <small>设置为<b>同步</b>时，将在滚动后立即检查图表的可见性。在速度较慢的计算机上，这可能会影响页面滚动的流畅性。要在滚动结束时更新页面，请将其设置为<b>异步</b>。将其设置为<b>同步</b>，以在滚动时立即更新图表。将其设置为<b>异步</b>可以在速度较慢的计算机上更流畅地滚动页面。</small>
                                          </td>
                                          </tr>
                                      </table>
@@ -1375,7 +2105,7 @@
 -                                            <small>When set to <b>parallel</b>, visible charts are refreshed in parallel (all queries are sent to netdata server in parallel) and are rendered asynchronously. When set to <b>sequential</b> charts are refreshed one after another. Set it to parallel if your browser can cope with it (most modern browsers do), set it to sequential if you work on an older/slower computer.</small>
 +                                        <td class="option-control"><input id="parallel_refresher" type="checkbox" checked data-toggle="toggle" data-on="并行" data-off="循序" data-width="110px"></td>
 +                                        <td class="option-info"><strong>采用何种图表更新模式？</strong><br/>
-+                                            <small>设置为<b>并行</b>时，并行刷新可见图表（所有查询并行发送到netdata服务器）并异步呈现。 设置为<b>顺序</b>时，图表会一次又一次刷新。 如果您的浏览器可以应对，请将其设置为并行（大多数现代浏览器都可以），如果您使用的计算机较旧/较慢，则将其设置为顺序。</small>
++                                            <small>设置为<b>并行</b>时，并行刷新可见图表（所有查询并行发送到netdata服务器）并异步呈现。设置为<b>顺序</b>时，图表会一次又一次刷新。 如果您的浏览器可以应对，请将其设置为并行（大多数现代浏览器都可以），如果您使用的计算机较旧/较慢，则将其设置为顺序。</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row" id="concurrent_refreshes_row">
@@ -1384,7 +2114,7 @@
 -                                            <small>When set to <b>Resync</b>, the dashboard will attempt to re-synchronize all the charts so that they are refreshed concurrently. When set to <b>Best Effort</b>, each chart may be refreshed with a little time difference to the others. Normally, the dashboard starts refreshing them in parallel, but depending on the speed of your computer and the network latencies, charts start having a slight time difference. Setting this to <b>Resync</b> will attempt to re-synchronize the charts on every update. Setting it to <b>Best Effort</b> may lower the pressure on your browser and the network.</small>
 +                                        <td class="option-control"><input id="concurrent_refreshes" type="checkbox" checked data-toggle="toggle" data-on="重新同步" data-off="尽力而为" data-width="110px"></td>
 +                                        <td class="option-info"><strong>重新整理时是否需要同步所有图表？</strong><br/>
-+                                            <small>设置为<b>重新同步</b>时，仪表板将尝试重新同步所有图表，以便同时刷新它们。 设置为<b>尽力而为</b>时，每张图表的刷新时间可能与其他图表略有不同。 通常，仪表板会开始并行刷新它们，但是根据您计算机的速度和网络延迟，图表开始会有细微的时差。 将此设置为<b>重新同步</b>将尝试在每次更新时重新同步图表。 将其设置为<b>尽力而为</b>可能会减轻浏览器和网络的压力。</small>
++                                            <small>设置为<b>重新同步</b>时，仪表板将尝试重新同步所有图表，以便同时刷新它们。设置为<b>尽力而为</b>时，每张图表的刷新时间可能与其他图表略有不同。通常仪表板会开始并行刷新它们，但是根据您计算机的速度和网络延迟，图表开始会有细微的时差。将此设置为<b>重新同步</b>将尝试在每次更新时重新同步图表。将其设置为<b>尽力而为</b>可能会减轻浏览器和网络的压力。</small>
                                          </td>
                                      </tr>
                                      <tr class="option-row">
@@ -1393,7 +2123,7 @@
 -                                            <small>When enabled, a selection on one chart will automatically select the same time on all other visible charts and the legends of all visible charts will be updated to show the selected values. When disabled, only the chart getting the user's attention will be selected. Enable it to get better insights of the data. Disable it if you are on a very slow computer that cannot actually do it.</small>
 +                                        <td class="option-control"><input id="sync_selection" type="checkbox" checked data-toggle="toggle" data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 +                                        <td class="option-info"><strong>是否悬停在图表上时同步更新所有图表？</strong><br/>
-+                                            <small>启用后，一个图表上的选择将自动在所有其他可见图表上同时选择，并且所有可见图表的图例将更新以显示所选值。 禁用后，将仅选择引起用户注意的图表。 启用它可以更好地了解数据。 如果您使用的计算机速度非常慢而实际上无法执行此操作，请禁用它。</small>
++                                            <small>启用后，一个图表上的选择将自动在所有其他可见图表上同时选择，并且所有可见图表的图例将更新以显示所选值。禁用后将仅选择引起用户注意的图表。启用它可以更好地了解数据。如果您使用的计算机速度非常慢而实际上无法执行此操作，请禁用它。</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
@@ -1402,7 +2132,7 @@
 -                                            <small>When enabled, pan and zoom operations on a chart will be replicated to all charts (even the ones that are not currently visible - of course only when they will become visible). When disabled, pan and zoom operations will not be propagated to other charts.</small>
 +                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 +                                        <td class="option-info"><strong>是否同步移动与缩放所有图表？</strong><br/>
-+                                            <small>启用后，图表上的平移和缩放操作将复制到所有图表（甚至是当前不可见的图表-当然，只有在它们变为可见时）。 禁用后，平移和缩放操作将不会传播到其他图表。</small>
++                                            <small>启用后，图表上的平移和缩放操作将复制到所有图表（甚至是当前不可见的图表-当然，只有在它们变为可见时）。禁用后平移和缩放操作将不会传播到其他图表。</small>
                                          </td>
                                          </tr>
                                      </table>
@@ -1413,12 +2143,12 @@
 -                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="Dark" data-off="White" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Which theme to use?</strong><br/>
 -                                            <small>Netdata comes with two themes: <b>Dark</b> (the default) and <b>White</b>.
-+                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="深色" data-off="白色" data-width="110px"></td>
++                                        <td class="option-control"><input id="netdata_theme_control" type="checkbox" checked data-toggle="toggle" data-offstyle="danger" data-onstyle="success" data-on="深色" data-off="浅色" data-width="110px"></td>
 +                                        <td class="option-info"><strong>使用那一种主题？</strong><br/>
-+                                            <small>Netdata具有两个主题： <b>深色</b> （默认）和 <b>浅色</b>.
++                                            <small>Netdata有两个主题：<b>深色</b>（默认）和<b>浅色</b>。
                                              <br/>
 -                                            <b>Switching this will reload the dashboard</b>.
-+                                            <b>切换此设置将重新加载仪表板</b>.
++                                            <b>切换此设置将重新加载仪表板</b>。
                                              </small>
                                          </td>
                                          </tr>
@@ -1428,7 +2158,7 @@
 -                                            <small>Netdata can show some help in some areas to help you use the dashboard. If all these balloons bother you, disable them using this switch.
 +                                        <td class="option-control"><input id="show_help" type="checkbox" checked data-toggle="toggle" data-on="需要说明" data-off="不需说明" data-width="110px"></td>
 +                                        <td class="option-info"><strong>您需要说明吗？</strong><br/>
-+                                            <small>Netdata可以在某些方面显示一些帮助，以帮助您使用仪表板。 如果所有这些气球都困扰您，请使用此开关将其禁用。
++                                            <small>Netdata可以在某些方面显示一些帮助，以帮助您使用仪表板。如果所有这些气球都困扰您，请使用此开关将其禁用。
                                              <br/>
 -                                            <b>Switching this will reload the dashboard</b>.
 +                                            <b>切换此设置将重新加载仪表板</b>。
@@ -1439,9 +2169,9 @@
 -                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="Pad" data-off="Don't Pad" data-width="110px"></td>
 -                                        <td class="option-info"><strong>Enable data padding when panning and zooming?</strong><br/>
 -                                            <small>When set to <b>Pad</b> the charts will be padded with more data, both before and after the visible area, thus giving the impression the whole database is loaded. This padding will happen only after the first pan or zoom operation on the chart (initially all charts have only the visible data). When set to <b>Don't Pad</b> only the visible data will be transfered from the netdata server, even after the first pan and zoom operation.</small>
-+                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="填补" data-off="不需填补" data-width="110px"></td>
-+                                        <td class="option-info"><strong>是否启用在移动与缩放时同时填补数据？</strong><br/>
-+                                            <small>设置为<b>Pad</b>时，图表将在可见区域之前和之后填充更多数据，从而给整个数据库加载一个印象。 仅在图表上的第一个平移或缩放操作之后才发生填充（最初所有图表仅具有可见数据）。 设置为<b>不填充</b>时，即使在第一次平移和缩放操作之后，也只会从可见数据中传输数据。</small>
++                                        <td class="option-control"><input id="pan_and_zoom_data_padding" type="checkbox" checked data-toggle="toggle"  data-on="填充" data-off="不填充" data-width="110px"></td>
++                                        <td class="option-info"><strong>是否启用在移动与缩放时同时填充数据？</strong><br/>
++                                            <small>设置为<b>填充</b>时，图表将在可见区域之前和之后填充更多数据，从而给整个数据库加载一个印象。仅在图表上的第一个平移或缩放操作之后才发生填充（最初所有图表仅具有可见数据）。设置为<b>不填充</b>时，即使在第一次平移和缩放操作之后，也只会从可见数据中传输数据。</small>
                                          </td>
                                          </tr>
                                      <tr class="option-row">
@@ -1450,10 +2180,10 @@
 -                                            <small>When set to <b>Smooth</b> the charts libraries that support it, will plot smooth curves instead of simple straight lines to connect the points.
 +                                        <td class="option-control"><input id="smooth_plot" type="checkbox" checked data-toggle="toggle"  data-on="平滑" data-off="粗糙" data-width="110px"></td>
 +                                        <td class="option-info"><strong>是否在图表上启用贝兹曲线？</strong><br/>
-+                                            <small>设置为<b> Smooth </b>时，支持该功能的图表库将绘制平滑曲线而不是简单的直线来连接点。
++                                            <small>设置为<b>平滑</b>时，支持该功能的图表库将绘制平滑曲线而不是简单的直线来连接点。
                                              <br/>
 -                                            Keep in mind <a href="http://dygraphs.com" target="_blank">dygraphs</a>, the main charting library in netdata dashboards, can only smooth line charts. It cannot smooth area or stacked charts. When set to <b>Rough</b>, this setting can lower the CPU resources consumed by your browser.</small>
-+                                            请记住，NetData仪表板中的主要图表库 <a href="http://dygraphs.com" target="_blank">图表</a>只能平滑折线图。 它无法平滑区域或堆积的图表。 设置为<b>Rough</b>时，此设置可以降低浏览器消耗的CPU资源。</small>
++                                            请记住，NetData仪表板中的主要图表库 <a href="http://dygraphs.com" target="_blank">图表</a>只能平滑折线图。它无法平滑区域或堆积的图表。设置为<b>粗糙</b>时，此设置可以降低浏览器消耗的CPU资源。</small>
                                          </td>
                                          </tr>
                                      </table>
@@ -1462,7 +2192,7 @@
                                              <td colspan="2" align="center">
                                                  <small>
 -                                                    <b>These settings are applied gradually, as charts are updated. To force them, refresh the dashboard now</b>.
-+                                                    <b>随着图表的更新，这些设置将逐渐应用。 要强制使用它们，请立即刷新仪表板</b>。
++                                                    <b>随着图表的更新，这些设置将逐渐应用。要强制使用它们，请立即刷新仪表板</b>。
                                                  </small>
                                              </td>
                                          </tr>
@@ -1507,21 +2237,21 @@
 -                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="Your Time" data-off="Server Time" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 -                                            <td class="option-info"><strong>Show browser local time or server time?</strong><br/>
 -                                                <small>When set to <b>Your Time</b>, the charts will use your browser local time. When set to <b>Server Time</b> the charts will use the server time.
-+                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="本地时间" data-off="服务器时间 data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
++                                            <td class="option-control"><input id="local_timezone" type="checkbox" checked data-toggle="toggle"  data-on="本地时间" data-off="服务器时间" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 +                                            <td class="option-info"><strong>显示浏览器本地时间还是服务器时间？</strong><br/>
-+                                                <small>设置为<b>本地时间</b>时，图表将使用您的浏览器本地时间。 设置为<b>服务器时间</b>时，图表将使用服务器时间。
++                                                <small>设置为<b>本地时间</b>时，图表将使用您的浏览器本地时间。设置为<b>服务器时间</b>时，图表将使用服务器时间。
                                                      <br/>
 -                                                    Set it to <b>Your Time</b> to have a common time-reference, no matter where the server is and which time zone it uses (all your dashboards will report your local time).
 -                                                    Set it to <b>Server Time</b> when you need to compare netdata charts with server log files.
-+                                                    Set it to <b>本地时间</b> 无论服务器位于何处以及使用哪个时区，都有一个通用的时间参考（所有仪表板都会报告您的本地时间）。
-+                                                    Set it to <b>服务器时间</b> 需要将NetData图表与服务器日志文件进行比较时。
++                                                    Set it to <b>本地时间</b>无论服务器位于何处以及使用哪个时区，都有一个通用的时间参考（所有仪表板都会报告您的本地时间）。
++                                                    Set it to <b>服务器时间</b>需要将NetData图表与服务器日志文件进行比较时。
                                                      <br/>
 -                                                    Your browser time zone is: <b><span id="browser_timezone">-</span></b>.<br/>
 -                                                    The server reported timezone is: <b><span id="server_timezone">-</span></b> (you can set this in netdata.conf <code>[global].timezone</code>).<br/>
 -                                                    The current time zone on the dashboard is: <b><span id="current_timezone">-</span></b>.
-+                                                    您的浏览器时区为： <b><span id="browser_timezone">-</span></b>.<br/>
-+                                                    服务器报告的时区为： <b><span id="server_timezone">-</span></b> （您可以在netdata.conf <code>[global].timezone</code>)中进行设置。<br/>
-+                                                    仪表板上的当前时区为： <b><span id="current_timezone">-</span></b>.
++                                                    您的浏览器时区为：<b><span id="browser_timezone">-</span></b>。<br/>
++                                                    服务器报告的时区为：<b><span id="server_timezone">-</span></b> （您可以在netdata.conf <code>[global].timezone</code>)中进行设置。<br/>
++                                                    仪表板上的当前时区为：<b><span id="current_timezone">-</span></b>。
                                                      <br/>
                                                      <div class="dropup">
                                                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownTimeZone" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -1580,11 +2310,11 @@
                  </div>
                  <div class="modal-body">
 -                    Your netdata version: <b><code><span id="netdataVersion">Unknown</span></code></b><br/>
-+                    您的 netdata 版本：<b><code><span id="netdataVersion">未知</span></code></b><br/>
++                    您的netdata版本：<b><code><span id="netdataVersion">未知</span></code></b><br/>
                      <br/>
                      <div style="padding: 10px;"></div>
 -                    <div id="versionCheckLog">Not checked yet. Please press the Check Now button.</div>
-+                    <div id="versionCheckLog">尚未检查，请下 立即检查 按钮。</div>
++                    <div id="versionCheckLog">尚未检查，请点击检查按钮。</div>
                      <div>
                          <hr/>
                      </div>
@@ -1622,7 +2352,7 @@
 -                        GUIDs.
 +                        录到netdata.cloud将同步列表
 +                         您的netdata监视的节点在注册表处已知
-+                         <strong><span id="sim-registry"></span></strong>。 这个
++                         <strong><span id="sim-registry"></span></strong>。这个
 +                         可能包括服务器主机名，URL和标识
 +                         GUID。
                      </p>
@@ -1771,12 +2501,42 @@
          </div>
 --- a/web/gui/main.js
 +++ b/web/gui/main.js
+@@ -333,7 +333,7 @@
+         if (localStorageTest() === true) {
+             ret = localStorage.getItem(name);
+         } else {
+-            console.log('localStorage is not available');
++            console.log('本地存储不可用');
+         }
+     }
+     catch (error) {
+@@ -575,7 +575,7 @@
+         let ret = loadLocalStorage("registryCallback");
+         if (ret) {
+             machinesArray = JSON.parse(ret);
+-            console.log("failed to contact the registry - loaded registry data from browser local storage");
++            console.log("无法联系从浏览器本地存储加载的注册表数据");
+         }
+     }
+ 
+@@ -733,9 +733,9 @@
+     el.classList.add(`theme-${netdataTheme}`);
+ 
+     if (machinesArray == registryAgents) {
+-        console.log("Rendering my-netdata menu from registry");
++        console.log("从注册表呈现我的netdata菜单");
+     } else {
+-        console.log("Rendering my-netdata menu from netdata.cloud", machinesArray);
++        console.log("从netdata.cloud呈现我的netdata菜单", machinesArray);
+     }
+ 
+     let html = '';
 @@ -1497,7 +1497,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.io"'
              + ' data-dimensions="in"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Read"'
-+            + ' data-title="硬盘读取"'
++            + ' data-title="磁盘读取"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1785,7 +2545,7 @@
              + ' data-dimensions="out"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Write"'
-+            + ' data-title="硬盘写入"'
++            + ' data-title="磁盘写入"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1803,7 +2563,7 @@
              + ' data-dimensions="out"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Write"'
-+            + ' data-title="硬盘写入"'
++            + ' data-title="磁盘写入"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1848,7 +2608,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Inbound"'
-+            + ' data-title="IPv4 下载"'
++            + ' data-title="IPv4下载"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1857,7 +2617,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Outbound"'
-+            + ' data-title="IPv4 上传"'
++            + ' data-title="IPv4上传"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -1866,7 +2626,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Inbound"'
-+            + ' data-title="IPv6 下载"'
++            + ' data-title="IPv6下载"'
              + ' data-units="kbps"'
              + ' data-width="11%"'
              + ' data-before="0"'
@@ -1875,7 +2635,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Outbound"'
-+            + ' data-title="IPv6 上传"'
++            + ' data-title="IPv6上传"'
              + ' data-units="kbps"'
              + ' data-width="11%"'
              + ' data-before="0"'
@@ -1933,7 +2693,7 @@
                      {
                          field: 'unique_id',
 -                        title: 'Unique ID',
-+                        title: '唯一 ID',
++                        title: '唯一ID',
                          titleTooltip: 'The host unique ID for this event',
                          formatter: function (value, row, index) {
                              void (row);
@@ -1942,7 +2702,7 @@
                      {
                          field: 'alarm_id',
 -                        title: 'Alarm ID',
-+                        title: '警报 ID',
++                        title: '警报ID',
                          titleTooltip: 'The ID of the alarm that generated this event',
                          formatter: function (value, row, index) {
                              void (row);
@@ -1951,7 +2711,7 @@
                      {
                          field: 'alarm_event_id',
 -                        title: 'Alarm Event ID',
-+                        title: '警报事件 ID',
++                        title: '警报事件ID',
                          titleTooltip: 'The incremental ID of this event for the given alarm',
                          formatter: function (value, row, index) {
                              void (row);
@@ -1973,51 +2733,97 @@
                          titleTooltip: 'The alarm name that generated this event',
                          formatter: function (value, row, index) {
                              void (row);
-@@ -2533,7 +2533,7 @@
+@@ -2489,7 +2489,7 @@
+                     {
+                         field: 'value_string',
+                         title: 'Friendly Value',
+-                        titleTooltip: 'The value of the alarm, that triggered this event',
++                        titleTooltip: '触发此事件的警报的值',
+                         align: 'right',
+                         valign: 'middle',
+                         sortable: true
+@@ -2497,7 +2497,7 @@
+                     {
+                         field: 'old_value_string',
+                         title: 'Friendly Old Value',
+-                        titleTooltip: 'The value of the alarm, just before this event',
++                        titleTooltip: '此事件之前的警报值',
+                         align: 'right',
+                         valign: 'middle',
+                         visible: false,
+@@ -2506,7 +2506,7 @@
+                     {
+                         field: 'old_value',
+                         title: 'Old Value',
+-                        titleTooltip: 'The value of the alarm, just before this event',
++                        titleTooltip: '此事件之前的警报值',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2520,7 +2520,7 @@
+                     {
+                         field: 'value',
+                         title: 'Value',
+-                        titleTooltip: 'The value of the alarm, that triggered this event',
++                        titleTooltip: '触发此事件的警报的值',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2533,8 +2533,8 @@
                      },
                      {
                          field: 'units',
 -                        title: 'Units',
+-                        titleTooltip: 'The units of the value of the alarm',
 +                        title: '单位',
-                         titleTooltip: 'The units of the value of the alarm',
++                        titleTooltip: '报警值的单位',
                          align: 'left',
                          valign: 'middle',
-@@ -2542,7 +2542,7 @@
+                         visible: false,
+@@ -2542,8 +2542,8 @@
                      },
                      {
                          field: 'old_status',
 -                        title: 'Old Status',
+-                        titleTooltip: 'The status of the alarm, just before this event',
 +                        title: '先前状态',
-                         titleTooltip: 'The status of the alarm, just before this event',
++                        titleTooltip: '此事件之前的警报状态',
                          align: 'center',
                          valign: 'middle',
-@@ -2551,7 +2551,7 @@
+                         visible: false,
+@@ -2551,8 +2551,8 @@
                      },
                      {
                          field: 'status',
 -                        title: 'Status',
+-                        titleTooltip: 'The status of the alarm, that was set due to this event',
 +                        title: '状态',
-                         titleTooltip: 'The status of the alarm, that was set due to this event',
++                        titleTooltip: '由于该事件而设置的警报状态',
                          align: 'center',
                          valign: 'middle',
-@@ -2734,7 +2734,7 @@
+                         switchable: false,
+@@ -2734,8 +2734,8 @@
                      },
                      {
                          field: 'info',
 -                        title: 'Description',
+-                        titleTooltip: 'A short description of the alarm',
 +                        title: '说明',
-                         titleTooltip: 'A short description of the alarm',
++                        titleTooltip: '警报的简短描述',
                          align: 'center',
                          valign: 'middle',
-@@ -2743,7 +2743,7 @@
+                         visible: false,
+@@ -2743,8 +2743,8 @@
                      },
                      {
                          field: 'source',
 -                        title: 'Alarm Source',
+-                        titleTooltip: 'The source of configuration of the alarm',
 +                        title: '警报来源',
-                         titleTooltip: 'The source of configuration of the alarm',
++                        titleTooltip: '警报的配置来源',
                          align: 'center',
                          valign: 'middle',
+                         visible: false,
 @@ -2803,7 +2803,7 @@
          }
  
@@ -2036,15 +2842,20 @@
  
      $.ajax({
          url: 'https://api.github.com/repos/netdata/netdata/releases/latest',
-@@ -2955,7 +2955,7 @@
+@@ -2955,11 +2955,11 @@
      })
          .done(function (data) {
              data = data.tag_name.replace(/(\r\n|\n|\r| |\t)/gm, "");
 -            versionLog('Latest stable version from github is ' + data);
-+            versionLog('从 github 取得最新版本是 ' + data);
++            versionLog('从github取得最新版本是 ' + data);
              callback(data);
          })
          .fail(function () {
+-            versionLog('Failed to download the latest stable version id from github!');
++            versionLog('无法从github下载最新的稳定版本ID！');
+             callback(null);
+         });
+ }
 @@ -3008,7 +3008,7 @@
  }
  
@@ -2054,7 +2865,7 @@
  
      var now = Date.now();
  
-@@ -3032,13 +3032,13 @@
+@@ -3032,17 +3032,17 @@
  
          if (sha1 === null) {
              save = false;
@@ -2063,7 +2874,7 @@
          } else if (sha2 === null) {
              save = false;
 -            versionLog('<p><big>Failed to get the latest netdata version.</big></p><p>You can always get the latest netdata from <a href="https://github.com/netdata/netdata" target="_blank">its github page</a>.</p>');
-+            versionLog('<p><big>从 github 取得 netdata 最新版本失败。</big></p><p>您也可以从 <a href="https://github.com/netdata/netdata" target="_blank"> github</a> 取得最新 netdata 版本。</p>');
++            versionLog('<p><big>从github取得netdata最新版本失败。</big></p><p>您也可以从<a href="https://github.com/netdata/netdata" target="_blank">github</a>取得最新netdata版本。</p>');
          } else if (versionsMatch(sha1, sha2)) {
              save = true;
 -            versionLog('<p><big>You already have the latest netdata!</big></p><p>No update yet?<br/>We probably need some motivation to keep going on!</p><p>If you haven\'t already, <a href="https://github.com/netdata/netdata" target="_blank">give netdata a <b><i class="fas fa-star"></i></b> at its github page</a>.</p>');
@@ -2071,3 +2882,8 @@
          } else {
              save = true;
              var compare = 'https://docs.netdata.cloud/changelog/';
+-            versionLog('<p><big><strong>New version of netdata available!</strong></big></p><p>Latest version: <b><code>' + sha2 + '</code></b></p><p><a href="' + compare + '" target="_blank">Click here for the changes log</a> and<br/><a href="https://github.com/netdata/netdata/tree/master/packaging/installer/UPDATE.md" target="_blank">click here for directions on updating</a> your netdata installation.</p><p>We suggest to review the changes log for new features you may be interested, or important bug fixes you may need.<br/>Keeping your netdata updated is generally a good idea.</p>');
++            versionLog('<p><big><strong>新版本的netdata可用！</strong></big></p><p>Latest version: <b><code>' + sha2 + '</code></b></p><p><a href="' + compare + '" target="_blank">Click here for the changes log</a> and<br/><a href="https://github.com/netdata/netdata/tree/master/packaging/installer/UPDATE.md" target="_blank">click here for directions on updating</a> your netdata installation.</p><p>We suggest to review the changes log for new features you may be interested, or important bug fixes you may need.<br/>Keeping your netdata updated is generally a good idea.</p>');
+ 
+             document.getElementById('update_badge').innerHTML = '!';
+         }
