@@ -839,7 +839,7 @@
      'couchdb.dbactivity': {
          title: 'db activity',
 -        info: 'Overall database reads and writes for the entire server. This includes any external HTTP traffic, as well as internal replication traffic performed in a cluster to ensure node consistency.'
-+        info: '整个数据库对整个服务器的读写。 这包括任何外部HTTP通信以及在群集中执行的内部复制通信，以确保节点一致性。'
++        info: '整个数据库对整个服务器的读写。这包括任何外部HTTP通信以及在群集中执行的内部复制通信，以确保节点一致性。'
      },
  
      'couchdb.httptraffic': {
@@ -848,14 +848,14 @@
      'couchdb.erlang': {
          title: 'erlang statistics',
 -        info: 'Detailed information about the status of the Erlang VM that hosts CouchDB. These are intended for advanced users only. High values of the peak message queue (>10e6) generally indicate an overload condition.'
-+        info: '有关托管CouchDB的Erlang VM的状态的详细信息。 这些仅适用于高级用户。 峰值消息队列的值较高（> 10e6）通常表示过载情况。'
++        info: '有关托管CouchDB的Erlang VM的状态的详细信息。这些仅适用于高级用户。峰值消息队列的值较高（> 10e6）通常表示过载情况。'
      },
  
      'ntpd.system': {
 -        title: 'system',
 -        info: 'Statistics of the system variables as shown by the readlist billboard <code>ntpq -c rl</code>. System variables are assigned an association ID of zero and can also be shown in the readvar billboard <code>ntpq -c "rv 0"</code>. These variables are used in the <a href="http://doc.ntp.org/current-stable/discipline.html">Clock Discipline Algorithm</a>, to calculate the lowest and most stable offset.'
 +        title: '系统',
-+        info: '系统变量的统计信息，如阅读列表广告牌<code>ntpq -c rl</code>所示。 系统变量的关联ID分配为零，也可以显示在readvar广告牌<code>ntpq -c "rv 0"</code>中。 这些变量在<a href="http://doc.ntp.org/current-stable/discipline.html">时钟纪律算法</a>中用于计算最低和最稳定的偏差。'
++        info: '系统变量的统计信息，如阅读列表广告牌<code>ntpq -c rl</code>所示。系统变量的关联ID分配为零，也可以显示在readvar广告牌<code>ntpq -c "rv 0"</code>中。 这些变量在<a href="http://doc.ntp.org/current-stable/discipline.html">时钟纪律算法</a>中用于计算最低和最稳定的偏差。'
      },
  
      'ntpd.peers': {
@@ -1220,7 +1220,7 @@
          colors: '#FF5588',
          heads: [
 -            netdataDashboard.gaugeChart('Utilization', '12%', '', '#FF5588')
-+            netdataDashboard.gaugeChart('使用率', '15%', '', '#FF5588')
++            netdataDashboard.gaugeChart('使用率', '22%', '', '#FF5588')
          ],
 -        info: 'Disk Utilization measures the amount of time the disk was busy with something. This is not related to its performance. 100% means that the system always had an outstanding operation on the disk. Keep in mind that depending on the underlying technology of the disk, 100% here may or may not be an indication of congestion.'
 +        info: '磁盘利用率衡量磁盘忙于处理某事的时间，这与其性能无关。100％表示系统始终在磁盘上进行读写的操作。根据磁盘的基础技术，此处100％可能不一定表示拥塞。'
@@ -1236,8 +1236,8 @@
          heads: [
 -            netdataDashboard.gaugeChart('Read', '12%', 'reads'),
 -            netdataDashboard.gaugeChart('Write', '12%', 'writes')
-+            netdataDashboard.gaugeChart('读取', '15%', 'reads'),
-+            netdataDashboard.gaugeChart('写入', '15%', 'writes')
++            netdataDashboard.gaugeChart('读取', '22%', 'reads'),
++            netdataDashboard.gaugeChart('写入', '22%', 'writes')
          ],
 -        info: 'Amount of data transferred to and from disk.'
 +        info: '磁盘传输的数据速度。'
@@ -1245,7 +1245,7 @@
  
      'disk.ops': {
 -        info: 'Completed disk I/O operations. Keep in mind the number of operations requested might be higher, since the system is able to merge adjacent to each other (see merged operations chart).'
-+        info: '已完成的硬盘I/O operations。提醒：实际上的operations数量可能更高，因为系统能够将它们互相合并 (详见operations图表)。'
++        info: '已完成的硬盘I/O operations。实际上的operations数量可能更高，因为系统能够将它们互相合并 (详见operations图表)。'
      },
  
      'disk.qops': {
@@ -1256,7 +1256,7 @@
      'disk.iotime': {
          height: 0.5,
 -        info: 'The sum of the duration of all completed I/O operations. This number can exceed the interval if the disk is able to execute I/O operations in parallel.'
-+        info: '所有已完成的I/O操作持续时间的总和。 如果磁盘能够并行执行I/O操作，则此数目可以超过间隔'
++        info: '所有已完成的I/O操作持续时间的总和。如果磁盘能够并行执行I/O操作，则此数目可以超过间隔'
      },
      'disk.mops': {
          height: 0.5,
@@ -1775,8 +1775,8 @@
 +                    <li title="到netdata在github上的wiki<br/>记得<b>给netdata一个<i class=&quot;fas fa-star&quot;></i></b> !" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://github.com/netdata/netdata" class="btn" target="_blank"><i class="fab fa-github"></i></a></li>
 +                    <li title="在twitter上跟随netdata" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://twitter.com/linuxnetdata" class="btn" target="_blank"><i class="fab fa-twitter"></i></a></li>
 +                    <li title="到facebook上给netdata按赞" data-toggle="tooltip" data-placement="bottom" class="hidden-xs hidden-sm hidden-md"><a href="https://www.facebook.com/linuxnetdata/" class="btn" target="_blank"><i class="fab fa-facebook"></i></a></li>
-+                    <li title="汇入/载入netdata快照" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇入</span></a></li>
-+                    <li title="汇出/储存netdata快照" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇出</span></a></li>
++                    <li title="汇入/导入netdata快照" data-toggle="tooltip" data-placement="bottom" id="loadButton"><a href="#" class="btn" data-toggle="modal" data-target="#loadSnapshotModal"><i class="fas fa-download"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇入</span></a></li>
++                    <li title="汇出/保存netdata快照" data-toggle="tooltip" data-placement="bottom" id="saveButton"><a href="#" class="btn" data-toggle="modal" data-target="#saveSnapshotModal"><i class="fas fa-upload"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">汇出</span></a></li>
 +                    <li title="将仪表板列印为PDF" data-toggle="tooltip" data-placement="bottom" id="printButton"><a href="#" class="btn" data-toggle="modal" data-target="#printPreflightModal"><i class="fas fa-print"></i>&nbsp;<span class="hidden-sm hidden-md hidden-lg">列印</span></a></li>
 +                    <li title="取得图表使用上的说明资讯" data-toggle="tooltip" data-placement="bottom" class="hidden-sm"><a href="#" class="btn" data-toggle="modal" data-target="#helpModal"><i class="fas fa-question-circle"></i>&nbsp;<span class="hidden-sm hidden-md">说明</span></a></li>
                      <li id="account-menu-container" class="dropdown" data-toggle="tooltip"></li>
@@ -1890,7 +1890,7 @@
 -                        To capture the whole page with all the charts rendered, a new browser window will pop-up that will render all the charts at once.
 -                        The new browser window will maintain the current pan and zoom settings of the charts. So, align the charts before proceeding.
 +                        为了获取所有图表的整个页面，将弹出一个新的浏览器窗口，该窗口将一次呈现所有图表。
-+                        新的浏览器窗口将保留图表的当前平移和缩放设置。因此，在继续操作之前，请对齐图表。
++                        新的浏览器窗口将保留图表的当前平移和缩放设置。在继续操作之前，请对齐图表。
                      </p>
                      <p>
                          <small>
@@ -2000,7 +2000,7 @@
                  <div class="modal-body">
                      <div id="saveSnapshotModalProgressSection" hidden>
 -                        Please wait while we collect all the dashboard data...
-+                        请稍候，我们正在收集所有仪表板数据...
++                        请稍候，正在收集所有仪表板数据...
                          <div class="progress progress-striped active" style="height: 2em !important;">
                              <div id="saveSnapshotModalProgressBar" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;">
                                  <span id="saveSnapshotModalProgressBarText" style="padding-left: 10px; padding-top: 4px; font-size: 1.2em; text-align: left; width: 100%; position: absolute; display: block;"></span>
@@ -2009,7 +2009,7 @@
  
                      <div id="saveSnapshotResolutionRadio" style="text-align: center;">
 -                        Select the desired resolution of the snapshot. This is the <b>seconds of data per point</b>.
-+                        选择所需的快照分辨率。这是每点<b>秒的数据</b>。
++                        选择所需的快照分辨率。
                          <br/>
                          &nbsp;
                          <br/>
@@ -2445,7 +2445,7 @@
 -                                            <small>When enabled, pan and zoom operations on a chart will be replicated to all charts (even the ones that are not currently visible - of course only when they will become visible). When disabled, pan and zoom operations will not be propagated to other charts.</small>
 +                                        <td class="option-control"><input id="sync_pan_and_zoom" type="checkbox" checked data-toggle="toggle"  data-on="同步" data-off="不要同步" data-onstyle="success" data-offstyle="danger" data-width="110px"></td>
 +                                        <td class="option-info"><strong>是否同步移动与缩放所有图表？</strong><br/>
-+                                            <small>启用后，图表上的平移和缩放操作将复制到所有图表（甚至是当前不可见的图表。当然，只有在它们变为可见时）。禁用后平移和缩放操作将不会传播到其他图表。</small>
++                                            <small>启用后图表上的平移和缩放操作将复制到所有图表（甚至是当前不可见的图表。当然，只有在它们变为可见时）。禁用后平移和缩放操作将不会传播到其他图表。</small>
                                          </td>
                                          </tr>
                                      </table>
@@ -2650,7 +2650,7 @@
                  </div>
              </div>
          </div>
-@@ -1176,27 +1164,27 @@
+@@ -1176,27 +1164,26 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -2667,8 +2667,7 @@
 +                         录到netdata.cloud将同步列表
 +                         您的netdata监视的节点在注册表处已知
 +                         <strong><span id="sim-registry"></span></strong>。这个
-+                         可能包括服务器主机名，URL和标识
-+                         GUID。
++                         可能包括服务器主机名，URL和标识GUID。
                      </p>
                      <p>
 -                        After you upgrade all your netdata servers, your private 
@@ -2689,7 +2688,7 @@
                  </div>
              </div>
          </div>
-@@ -1207,20 +1195,20 @@
+@@ -1207,20 +1194,20 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -2716,7 +2715,7 @@
                  </div>
              </div>
          </div>
-@@ -1231,25 +1219,25 @@
+@@ -1231,25 +1218,25 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -2748,7 +2747,7 @@
                  </div>
              </div>
          </div>
-@@ -1260,32 +1248,32 @@
+@@ -1260,32 +1247,32 @@
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -2791,7 +2790,7 @@
                  </div>
              </div>
          </div>
-@@ -1299,18 +1287,18 @@
+@@ -1299,18 +1286,18 @@
                      <h4 class="modal-title" id="gotoServerModalLabel"><span id="gotoServerName"></span></h4>
                  </div>
                  <div class="modal-body">
@@ -2815,6 +2814,15 @@
          </div>
 --- a/web/gui/main.js
 +++ b/web/gui/main.js
+@@ -148,7 +148,7 @@
+                     urlOptions[numeric[len]] = parseInt(urlOptions[numeric[len]]);
+                 }
+                 catch (e) {
+-                    console.log('failed to parse URL hash parameter ' + numeric[len]);
++                    console.log('无法解析URL哈希参数 ' + numeric[len]);
+                     urlOptions[numeric[len]] = 0;
+                 }
+             }
 @@ -333,7 +333,7 @@
          if (localStorageTest() === true) {
              ret = localStorage.getItem(name);
@@ -2833,6 +2841,51 @@
          }
      }
  
+@@ -664,17 +664,17 @@
+         }
+ 
+         html += `<hr />`;
+-        html += `<div class="info-item">Demo netdata nodes</div>`;
++        html += `<div class="info-item">演示网络数据节点</div>`;
+ 
+         const demoServers = [
+-            { url: "//london.netdata.rocks/default.html", title: "UK - London (DigitalOcean.com)" },
+-            { url: "//newyork.netdata.rocks/default.html", title: "US - New York (DigitalOcean.com)" },
+-            { url: "//sanfrancisco.netdata.rocks/default.html", title: "US - San Francisco (DigitalOcean.com)" },
+-            { url: "//atlanta.netdata.rocks/default.html", title: "US - Atlanta (CDN77.com)" },
+-            { url: "//frankfurt.netdata.rocks/default.html", title: "Germany - Frankfurt (DigitalOcean.com)" },
+-            { url: "//toronto.netdata.rocks/default.html", title: "Canada - Toronto (DigitalOcean.com)" },
+-            { url: "//singapore.netdata.rocks/default.html", title: "Japan - Singapore (DigitalOcean.com)" },
+-            { url: "//bangalore.netdata.rocks/default.html", title: "India - Bangalore (DigitalOcean.com)" },
++            { url: "//london.netdata.rocks/default.html", title: "英国 - 伦敦 (DigitalOcean.com)" },
++            { url: "//newyork.netdata.rocks/default.html", title: "美国 - 纽约 (DigitalOcean.com)" },
++            { url: "//sanfrancisco.netdata.rocks/default.html", title: "美国 - 旧金山 (DigitalOcean.com)" },
++            { url: "//atlanta.netdata.rocks/default.html", title: "美国 - 亚特兰大 (CDN77.com)" },
++            { url: "//frankfurt.netdata.rocks/default.html", title: "德国 - 法兰克福 (DigitalOcean.com)" },
++            { url: "//toronto.netdata.rocks/default.html", title: "加拿大 - 多伦多 (DigitalOcean.com)" },
++            { url: "//singapore.netdata.rocks/default.html", title: "新加坡 - 新加坡 (DigitalOcean.com)" },
++            { url: "//bangalore.netdata.rocks/default.html", title: "印度 - 班加罗尔 (DigitalOcean.com)" },
+ 
+         ]
+ 
+@@ -701,7 +701,7 @@
+ function clearMyNetdataMenu() {
+     setMyNetdataMenu(`<div class="agent-item" style="white-space: nowrap">
+         <i class="fas fa-hourglass-half"></i>
+-        Loading, please wait...
++        加载中请稍候...
+         <div></div>
+     </div>`);
+ }
+@@ -709,7 +709,7 @@
+ function errorMyNetdataMenu() {
+     setMyNetdataMenu(`<div class="agent-item" style="padding: 0 8px">
+         <i class="fas fa-exclamation-triangle" style="color: red"></i>
+-        Cannot load known Netdata agents from Netdata Cloud! Please make sure you have the latest version of Netdata.
++        无法从Netdata Cloud加载已知的Netdata代理！请确保您具有最新版本的Netdata。
+     </div>`);
+ }
+ 
 @@ -733,9 +733,9 @@
      el.classList.add(`theme-${netdataTheme}`);
  
@@ -2841,118 +2894,209 @@
 +        console.log("从注册表呈现我的netdata菜单");
      } else {
 -        console.log("Rendering my-netdata menu from netdata.cloud", machinesArray);
-+        console.log("从netdata.cloud呈现我的netdata菜单", machinesArray);
++        console.log("从netdata.cloud“machinesArray”呈现我的netdata菜单);
      }
  
      let html = '';
-@@ -1497,7 +1497,7 @@
+@@ -935,7 +935,7 @@
+                 gotoServerValidateRemaining--;
+                 if (gotoServerValidateRemaining <= 0) {
+                     gotoServerMiddleClick = false;
+-                    document.getElementById('gotoServerResponse').innerHTML = '<b>Sorry! I cannot find any operational URL for this server</b>';
++                    document.getElementById('gotoServerResponse').innerHTML = '<b>抱歉! 我找不到该服务器的任何可操作网址</b>';
+                 }
+             }
+         });
+@@ -967,7 +967,7 @@
+         // we consult the registry to get additional URLs.
+         setTimeout(function () {
+             if (gotoServerStop === false) {
+-                document.getElementById('gotoServerResponse').innerHTML = '<b>Added all the known URLs for this machine.</b>';
++                document.getElementById('gotoServerResponse').innerHTML = '<b>添加了此计算机的所有已知URL。</b>';
+                 NETDATA.registry.search(guid, function (data) {
+                     // console.log(data);
+                     len = data.urls.length;
+@@ -1017,11 +1017,11 @@
+                 $('#switchRegistryModal').modal('hide');
+                 NETDATA.registry.init();
+             } else {
+-                document.getElementById('switchRegistryResponse').innerHTML = "<b>Sorry! The registry rejected your request.</b>";
++                document.getElementById('switchRegistryResponse').innerHTML = "<b>抱歉! 注册表拒绝了您的请求。</b>";
+             }
+         });
+     } else {
+-        document.getElementById('switchRegistryResponse').innerHTML = "<b>The ID you have entered is not a GUID.</b>";
++        document.getElementById('switchRegistryResponse').innerHTML = "<b>您输入的ID不是GUID。</b>";
+     }
+ }
+ 
+@@ -1050,12 +1050,12 @@
+             deleteCloudAgentURL(deleteRegistryGuid, deleteRegistryUrl)
+                 .then((count) => {
+                     if (!count) {
+-                        responseEl.innerHTML = "<b>Sorry, this command was rejected by netdata.cloud!</b>";
++                        responseEl.innerHTML = "<b>抱歉，此命令已被netdata.cloud拒绝！</b>";
+                         return;
+                     }
+                     NETDATA.registry.delete(deleteRegistryUrl, function (result) {
+                         if (result === null) {
+-                            console.log("Received error from registry", result);
++                            console.log("从注册表收到错误", result);
+                         }
+ 
+                         deleteRegistryUrl = null;
+@@ -1070,7 +1070,7 @@
+                     $('#deleteRegistryModal').modal('hide');
+                     NETDATA.registry.init();
+                 } else {
+-                    responseEl.innerHTML = "<b>Sorry, this command was rejected by the registry server!</b>";
++                    responseEl.innerHTML = "<b>抱歉，此命令已被注册表服务器拒绝！</b>";
+                 }
+             });
+         }
+@@ -1497,8 +1497,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.io"'
              + ' data-dimensions="in"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Read"'
+-            + ' data-width="11%"'
 +            + ' data-title="存储读取"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1508,7 +1508,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1508,8 +1508,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.io"'
              + ' data-dimensions="out"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Write"'
+-            + ' data-width="11%"'
 +            + ' data-title="存储写入"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1520,7 +1520,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1520,8 +1520,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.pgpgio"'
              + ' data-dimensions="in"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Read"'
+-            + ' data-width="11%"'
 +            + ' data-title="磁盘读取"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1531,7 +1531,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1531,8 +1531,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.pgpgio"'
              + ' data-dimensions="out"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Write"'
+-            + ' data-width="11%"'
 +            + ' data-title="磁盘写入"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1557,7 +1557,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1546,7 +1546,7 @@
+             + ' data-title="CPU"'
+             + ' data-units="%"'
+             + ' data-gauge-max-value="100"'
+-            + ' data-width="20%"'
++            + ' data-width="25%"'
+             + ' data-after="-' + duration.toString() + '"'
+             + ' data-points="' + duration.toString() + '"'
+             + ' data-colors="' + NETDATA.colors[12] + '"'
+@@ -1557,8 +1557,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.net"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Inbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="下载速度"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1568,7 +1568,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1568,8 +1568,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.net"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Outbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="上传速度"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1580,7 +1580,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1580,8 +1580,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ip"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Inbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="IP下载"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1591,7 +1591,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1591,8 +1591,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ip"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Outbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="IP上传"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1603,7 +1603,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1603,8 +1603,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv4"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Inbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="IPv4下载"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1614,7 +1614,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1614,8 +1614,8 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv4"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Outbound"'
+-            + ' data-width="11%"'
 +            + ' data-title="IPv4上传"'
-             + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-@@ -1626,7 +1626,7 @@
+             + ' data-points="' + duration.toString() + '"'
+@@ -1626,9 +1626,9 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv6"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Inbound"'
 +            + ' data-title="IPv6下载"'
              + ' data-units="kbps"'
-             + ' data-width="11%"'
+-            + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
-@@ -1638,7 +1638,7 @@
+             + ' data-after="-' + duration.toString() + '"'
+             + ' data-points="' + duration.toString() + '"'
+@@ -1638,9 +1638,9 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv6"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Outbound"'
 +            + ' data-title="IPv6上传"'
              + ' data-units="kbps"'
-             + ' data-width="11%"'
+-            + ' data-width="11%"'
++            + ' data-width="14%"'
              + ' data-before="0"'
+             + ' data-after="-' + duration.toString() + '"'
+             + ' data-points="' + duration.toString() + '"'
 @@ -1653,7 +1653,7 @@
              + ' data-dimensions="used|buffers|active|wired"' // active and wired are FreeBSD stats
              + ' data-append-options="percentage"'
@@ -3593,3 +3737,12 @@
          }
          return response.json();
      }).then((payload) => {
+@@ -5067,7 +5067,7 @@
+     }
+ 
+     if (agentsToSync) {
+-        console.log("Synchronizing with netdata.cloud.");
++        console.log("与netdata.cloud同步。");
+ 
+         postCloudAccountAgents(agentsToSync).then((agents) => {
+             // TODO: clear syncTime on error!
