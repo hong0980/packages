@@ -83,6 +83,91 @@
  };
  
  NETDATA.errorLast = {
+@@ -599,7 +599,7 @@
+     NETDATA.errorLast.message = msg;
+     NETDATA.errorLast.datetime = Date.now();
+ 
+-    console.log("ERROR " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
++    console.log("错误 " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
+ 
+     let ret = true;
+     if (typeof netdataErrorCallback === 'function') {
+@@ -607,7 +607,7 @@
+     }
+ 
+     if (ret && NETDATA.errorCodes[code].alert) {
+-        alert("ERROR " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
++        alert("错误 " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
+     }
+ };
+ 
+@@ -672,7 +672,7 @@
+             case 'string':
+                 const ret = this.string(obj);
+                 if (ret !== obj) {
+-                    console.log('XSS protection changed string ' + name + ' from "' + obj + '" to "' + ret + '"');
++                    console.log('XSS保护已更改字符串 ' + name + ' from "' + obj + '" to "' + ret + '"');
+                 }
+                 return ret;
+ 
+@@ -1263,7 +1263,7 @@
+                 switch_units_callback(desired_units);
+                 return this.convertibleUnits[units][desired_units].convert;
+             } else {
+-                console.log('Units conversion from ' + units.toString() + ' to ' + desired_units.toString() + ' is not supported.');
++                console.log('单位转换自 ' + units.toString() + ' to ' + desired_units.toString() + ' 不支持。');
+                 switch_units_callback(units);
+                 return function (value) {
+                     return value;
+@@ -7686,10 +7686,10 @@
+         let viewed = (this.data) ? this.data.view_update_every : collected;
+ 
+         if (collected === viewed) {
+-            return "resolution " + NETDATA.seconds4human(collected);
++            return "刷新时间 " + NETDATA.seconds4human(collected);
+         }
+ 
+-        return "resolution " + NETDATA.seconds4human(viewed) + ", collected every " + NETDATA.seconds4human(collected);
++        return "刷新时间 " + NETDATA.seconds4human(viewed) + ", collected every " + NETDATA.seconds4human(collected);
+     };
+ 
+     this.legendUpdateDOM = function () {
+@@ -7710,7 +7710,7 @@
+                 needed = true;
+ 
+                 if (this.debug) {
+-                    this.log('NEW LABELS: "' + labels + '" NOT EQUAL OLD LABELS: "' + this.element_legend_childs.series.labels_key + '"');
++                    this.log('新标签："' + labels + '" 不相等的旧标签："' + this.element_legend_childs.series.labels_key + '"');
+                 }
+             }
+         }
+@@ -7723,7 +7723,7 @@
+             // we do this, only when the visible chart is current
+             if (Math.abs(this.netdata_last - this.view_before) <= this.data_update_every) {
+                 if (this.debug) {
+-                    this.log('chart is in latest position... updating values on legend...');
++                    this.log('图表处于最新位置...更新图例上的值...');
+                 }
+ 
+                 //let labels = this.data.dimension_names;
+@@ -7752,7 +7752,7 @@
+         this.colors = [];
+ 
+         if (this.debug) {
+-            this.log('updating Legend DOM');
++            this.log('更新图例DOM');
+         }
+ 
+         // mark all dimensions as invalid
+@@ -7769,7 +7769,7 @@
+             if (user_id !== null) {
+                 user_element = document.getElementById(user_id) || null;
+                 if (user_element === null) {
+-                    state.log('Cannot find element with id: ' + user_id);
++                    state.log('找不到ID为的元素： ' + user_id);
+                 }
+             }
+ 
 @@ -7892,8 +7892,8 @@
                              show: NETDATA.options.current.show_help_delay_show_ms,
                              hide: NETDATA.options.current.show_help_delay_hide_ms
@@ -164,6 +249,24 @@
                  });
              }
          } else {
+@@ -8114,7 +8114,7 @@
+         if (this.data) {
+             this.element_legend_childs.series.labels_key = this.data.dimension_names.toString();
+             if (this.debug) {
+-                this.log('labels from data: "' + this.element_legend_childs.series.labels_key + '"');
++                this.log('数据标签： "' + this.element_legend_childs.series.labels_key + '"');
+             }
+ 
+             for (let i = 0, len = this.data.dimension_names.length; i < len; i++) {
+@@ -8130,7 +8130,7 @@
+             }
+             this.element_legend_childs.series.labels_key = tmp.toString();
+             if (this.debug) {
+-                this.log('labels from chart: "' + this.element_legend_childs.series.labels_key + '"');
++                this.log('图表中的标签： "' + this.element_legend_childs.series.labels_key + '"');
+             }
+         }
+ 
 @@ -8418,7 +8418,7 @@
  
          if (this.chart_created && typeof this.library.update === 'function') {
@@ -191,6 +294,20 @@
              }
          }
  
+@@ -8491,11 +8491,11 @@
+ 
+     this.getSnapshotData = function (key) {
+         if (this.debug) {
+-            this.log('updating from snapshot: ' + key);
++            this.log('从快照更新： ' + key);
+         }
+ 
+         if (typeof netdataSnapshotData.data[key] === 'undefined') {
+-            this.log('snapshot does not include data for key "' + key + '"');
++            this.log('快照不包含密钥数据 "' + key + '"');
+             return null;
+         }
+ 
 --- a/web/gui/dashboard_info.js
 +++ b/web/gui/dashboard_info.js
 @@ -12,22 +12,21 @@
@@ -201,7 +318,7 @@
 +        title: '系统概况',
          icon: '<i class="fas fa-bookmark"></i>',
 -        info: 'Overview of the key system metrics.'
-+        info: '一眼掌握系统性能关键指标。'
++        info: '一眼掌握系统性能关键指标'
      },
  
      'services': {
@@ -298,7 +415,7 @@
 +        title: 'CPU',
          icon: '<i class="fas fa-bolt"></i>',
 -        info: 'Detailed information for each CPU of the system. A summary of the system for all CPUs can be found at the <a href="#menu_system">System Overview</a> section.'
-+        info: '系统中每一个CPU的详细信息。全部CPU的信息可以到<a href="#menu_system">系统概况</a> 查看。'
++        info: '系统中CPU的详细信息。全部CPU的信息可以到<a href="#menu_system">系统概况</a> 查看。'
      },
  
      'mem': {
@@ -314,7 +431,7 @@
 +        title: '存储',
          icon: '<i class="fas fa-hdd"></i>',
 -        info: 'Charts with performance information for all the system disks. Special care has been given to present disk performance metrics in a way compatible with <code>iostat -x</code>. netdata by default prevents rendering performance charts for individual partitions and unmounted virtual disks. Disabled charts can still be enabled by configuring the relative settings in the netdata configuration file.'
-+        info: '系统中所有存储性能信息图表。特别留意：这是以 <code>iostat -x</code> 所取得的性能数据做为显示。在预设情况下，netdata 不会显示单一分区与未挂载的虚拟硬盘性能图表。若仍想要显示，可以修改 netdata 设定中的相关设定。'
++        info: '系统中所有存储性能信息图表。特别留意：这是以<code>iostat -x</code> 所取得的数据做为显示。在预设情况下netdata 不会显示单一分区与未挂载的虚拟硬盘性能图表。若仍想要显示，可以修改netdata 设定中的相关设定。'
      },
  
      'sensors': {
@@ -424,7 +541,7 @@
          title: '',
          icon: '<i class="fas fa-th"></i>',
 -        info: 'Container resource utilization metrics. Netdata reads this information from <b>cgroups</b> (abbreviated from <b>control groups</b>), a Linux kernel feature that limits and accounts resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. <b>cgroups</b> together with <b>namespaces</b> (that offer isolation between processes) provide what we usually call: <b>containers</b>.'
-+        info: '容器资源使用率指标。netdata从<b>cgroups</b> (<b>control groups</b> 的缩写) 中读取这些资讯，cgroups是Linux 核心的一个功能，做限制与计算程序集中的资源使用率 (CPU、记忆体、磁碟 I/O、网路...等等)。<b>cgroups</b> 与 <b>namespaces</b> (程序之间的隔离) 结合提供了我们所说的：<b>容器</b>。'
++        info: '容器资源使用率指标。netdata从<b>cgroups</b> (<b>control groups</b> 的缩写) 中读取这些资讯，cgroups是Linux 核心的一个功能，做限制与计算程序集中的资源使用率 (CPU、内存、存储 I/O、网络...等等)。<b>cgroups</b>与<b>namespaces</b> (程序之间的隔离) 结合提供了我们所说的：<b>容器</b>。'
      },
  
      'cgqemu': {
@@ -1061,10 +1178,10 @@
          colors: '#FF5588',
          heads: [
 -            netdataDashboard.gaugeChart('Utilization', '12%', '', '#FF5588')
-+            netdataDashboard.gaugeChart('使用率', '12%', '', '#FF5588')
++            netdataDashboard.gaugeChart('使用率', '15%', '', '#FF5588')
          ],
 -        info: 'Disk Utilization measures the amount of time the disk was busy with something. This is not related to its performance. 100% means that the system always had an outstanding operation on the disk. Keep in mind that depending on the underlying technology of the disk, 100% here may or may not be an indication of congestion.'
-+        info: '磁盘利用率衡量磁盘忙于处理某事的时间。这与其性能无关。100％表示系统始终在磁盘上进行出色的操作。请记住，根据磁盘的基础技术，此处100％可能表示拥塞，也可能不表示拥塞。'
++        info: '磁盘利用率衡量磁盘忙于处理某事的时间，这与其性能无关。100％表示系统始终在磁盘上进行读写的操作。根据磁盘的基础技术，此处100％可能不一定表示拥塞。'
      },
  
      'disk.backlog': {
@@ -1077,21 +1194,21 @@
          heads: [
 -            netdataDashboard.gaugeChart('Read', '12%', 'reads'),
 -            netdataDashboard.gaugeChart('Write', '12%', 'writes')
-+            netdataDashboard.gaugeChart('读取', '12%', 'reads'),
-+            netdataDashboard.gaugeChart('写入', '12%', 'writes')
++            netdataDashboard.gaugeChart('读取', '15%', 'reads'),
++            netdataDashboard.gaugeChart('写入', '15%', 'writes')
          ],
 -        info: 'Amount of data transferred to and from disk.'
-+        info: '磁盘传输的数据量。'
++        info: '磁盘传输的数据速度。'
      },
  
      'disk.ops': {
 -        info: 'Completed disk I/O operations. Keep in mind the number of operations requested might be higher, since the system is able to merge adjacent to each other (see merged operations chart).'
-+        info: '已完成的硬盘I/O operations。提醒：实际上的operations数量可能更高，因为系统能够将它们互相合并 (详见 operations 图表)。'
++        info: '已完成的硬盘I/O operations。提醒：实际上的operations数量可能更高，因为系统能够将它们互相合并 (详见operations图表)。'
      },
  
      'disk.qops': {
 -        info: 'I/O operations currently in progress. This metric is a snapshot - it is not an average over the last interval.'
-+        info: '目前正在进行I/O操作。 此指标是快照-不是上一个时间间隔的平均值。'
++        info: '目前正在进行I/O操作。此指标是快照不是上一个时间间隔的平均值。'
      },
  
      'disk.iotime': {
@@ -1525,8 +1642,8 @@
                  <div class="p">
 -                    Released under <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 or later</a>.
 -                    Netdata uses <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">third party tools</a>.
-+                    以 <a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 或之后</a> 条款释出。
-+                    Netdata 使用之 <a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">第三方工具</a>.
++                    以<a href="http://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL v3 或之后</a> 条款释出。
++                    Netdata 使用了<a href="https://github.com/netdata/netdata/blob/master/REDISTRIBUTED.md" target="_blank">第三方工具</a>.
                      <br /><br />
                  </div>
              </div>
@@ -1706,7 +1823,7 @@
  
                      <div id="saveSnapshotResolutionRadio" style="text-align: center;">
 -                        Select the desired resolution of the snapshot. This is the <b>seconds of data per point</b>.
-+                        选择所需的快照分辨率。 这是每点<b>秒的数据</b>。
++                        选择所需的快照分辨率。这是每点<b>秒的数据</b>。
                          <br/>
                          &nbsp;
                          <br/>
@@ -1734,7 +1851,7 @@
                      &nbsp;
                      <div id="saveSnapshotStatus" class="alert alert-info" role="alert">
 -                        Select snaphost resolution. This controls the size the snapshot file.
-+                        选择快照主机分辨率。 这控制快照文件的大小。
++                        选择快照主机分辨率。这控制快照文件的大小。
                      </div>
                      <p>
 -                        The generated snapshot will include all charts of this dashboard, <b>for the visible timeframe</b>, so align, pan and zoom the charts as needed.
@@ -1752,7 +1869,7 @@
 +                            因此，如果您与第三方共享快照文件，并且第三方可以访问原始服务器（如果该服务器位于Internet上）。
                              <br/>
 -                            Snapshots are handled entirely by the web browser. The netdata servers are not aware of them.
-+                            快照完全由Web浏览器处理。 netdata服务器不知道它们。
++                            快照完全由Web浏览器处理。netdata服务器不知道它们。
                          </small>
                      </p>
                  </div>
@@ -1812,7 +1929,7 @@
 -                        open-source software. If you decide to use it,
 -                        <strong><a href="https://github.com/netdata/netdata/tree/master/docs/a-github-star-is-important.md" target="_blank">it is important to give netdata a star at GitHub</a></strong>.
 +                        <b><a href="https://github.com/netdata/netdata/wiki" target="_blank">netdata</a></b> 是免费，
-+                        开源软件。 如果您决定使用它，
++                        开源软件。如果您决定使用它，
 +                        <strong><a href="https://github.com/netdata/netdata/tree/master/docs/a-github-star-is-important.md" target="_blank">在GitHub上给netdata一颗星很重要</a></strong>.
                      </div>
                      <div class="p">
@@ -1872,7 +1989,7 @@
 +                                您放开图表后，所有图表都会很快出现（这种小延迟是设计使然：它可以加快浏览器的速度，并让您专注于正在探索的内容）。
                                  <br/>
 -                                Once a chart is panned, auto refreshing stops for all charts. To enable it again, <b>double click</b> a panned chart.
-+                                平移图表后，将停止所有图表的自动刷新。 要再次启用它，请<b>双击</b>窗格中的图表。
++                                平移图表后，将停止所有图表的自动刷新。要再次启用它，请<b>双击</b>窗格中的图表。
                              </div>
                              <hr/>
                              <div class="p">
@@ -1894,24 +2011,24 @@
 +                                    <li>从netdata服务器传输新数据，以刷新图表的更多细节。</li>
                                  </ul>
 -                                Once a chart is zoomed, auto refreshing stops for all charts. To enable it again, <b>double click</b> a zoomed chart.
-+                                图表缩放后，所有图表将停止自动刷新。 要再次启用它，请<b>双击</b>缩放的图表。
++                                图表缩放后，所有图表将停止自动刷新。要再次启用它，请<b>双击</b>缩放的图表。
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>Highlight Timeframe</h4>
 -                                While pressing the <code>ALT</code> key, press the left mouse button on the contents of a chart and move the mouse to select an area. The selected are will be highlighted on all charts.
 +                                <h4>突出显示时间</h4>
-+                                在按<code> ALT </code>键的同时，在图表内容上按鼠标左键，然后移动鼠标选择一个区域。 所选的将在所有图表上突出显示。
++                                在按<code> ALT </code>键的同时，在图表内容上按鼠标左键，然后移动鼠标选择一个区域。所选的将在所有图表上突出显示。
                              </div>
                              <hr/>
                              <div class="p">
 -                                <h4>SHIFT + Mouse Wheel</h4>
 -                                While pressing the <code>SHIFT</code> key and the mouse pointer is over the contents of a chart, scroll the mouse wheel to zoom in or out. This kind of zooming is aligned to center below the mouse pointer. The other charts will follow too.
 +                                <h4>SHIFT +鼠标滚轮</h4>
-+                                在按<code> SHIFT </code>键并且鼠标指针悬停在图表内容上方时，滚动鼠标滚轮可以放大或缩小。 这种缩放将对齐到鼠标指针下方的中心。 其他图表也将遵循。
++                                在按<code> SHIFT </code>键并且鼠标指针悬停在图表内容上方时，滚动鼠标滚轮可以放大或缩小。这种缩放将对齐到鼠标指针下方的中心。其他图表也将遵循。
                                  <br/>
 -                                Once a chart is zoomed, auto refreshing stops for all charts. To enable it again, <b>double click</b> a zoomed chart.
-+                                图表缩放后，所有图表将停止自动刷新。 要再次启用它，请<b>双击</b>缩放的图表。
++                                图表缩放后，所有图表将停止自动刷新。要再次启用它，请<b>双击</b>缩放的图表。
                              </div>
                              <hr/>
                              <div class="p">
@@ -1945,7 +2062,7 @@
 +                                 您放开图表后，所有图表都会很快出现（这种小延迟是设计使然：它可以加快浏览器的速度，并让您专注于正在探索的内容）。
                                  <br/>
 -                                Once a chart is panned, auto refreshing stops for all charts. To enable it again, <b>double tap</b> a panned chart.
-+                                平移图表后，将停止所有图表的自动刷新。 要再次启用它，请<b>双击</b>一个平移的图表。
++                                平移图表后，将停止所有图表的自动刷新。要再次启用它，请<b>双击</b>一个平移的图表。
                              </div>
                              <hr/>
                              <div class="p">
@@ -1962,7 +2079,7 @@
 +                                用两根手指放大或缩小。
                                  <br/>
 -                                Once a chart is zoomed, auto refreshing stops for all charts. To enable it again, <b>double click</b> a zoomed chart.
-+                                图表缩放后，所有图表将停止自动刷新。 要再次启用它，请<b>双击</b>缩放的图表。
++                                图表缩放后，所有图表将停止自动刷新。要再次启用它，请<b>双击</b>缩放的图表。
                              </div>
                              <hr/>
                              <div class="p">
@@ -1985,7 +2102,7 @@
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 -                    <h4 class="modal-title" id="alarmsModalLabel">netdata alarms</h4>
-+                    <h4 class="modal-title" id="alarmsModalLabel">netdata 警报</h4>
++                    <h4 class="modal-title" id="alarmsModalLabel">netdata错误信息</h4>
                  </div>
                  <div class="modal-body">
                      <!-- Nav tabs -->
@@ -1993,9 +2110,9 @@
 -                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">Active</a></li>
 -                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">All</a></li>
 -                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">Log</a></li>
-+                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">作用中</a></li>
++                        <li role="presentation" class="active"><a href="#alarms_active" aria-controls="alarms_active" role="tab" data-toggle="tab">有效</a></li>
 +                        <li role="presentation"><a href="#alarms_all" aria-controls="alarms_all" role="tab" data-toggle="tab">所有</a></li>
-+                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">记录</a></li>
++                        <li role="presentation"><a href="#alarms_log" aria-controls="alarms_log" role="tab" data-toggle="tab">日志</a></li>
                      </ul>
  
                      <!-- Tab panes -->
@@ -2204,7 +2321,7 @@
 +                                            <td class="option-control"><input id="units_conversion" type="checkbox" checked data-toggle="toggle"  data-on="缩放单位" data-off="固定单位" data-onstyle="success" data-width="110px"></td>
 +                                            <td class="option-info"><strong>是否启用自动缩放单位选择？</strong><br/>
 +                                                <small>设置为<b>自动缩放单位</b>时，显示的值将动态缩放（例如1000千位将显示为1兆位）。
-+                                                    Netdata可以自动缩放以下原始单位： <code>kilobits/s</code>, <code>kilobytes/s</code>, <code>KB/s</code>,
++                                                    Netdata可以自动缩放以下原始单位：<code>kilobits/s</code>, <code>kilobytes/s</code>, <code>KB/s</code>,
                                                      <code>KB</code>, <code>MB</code>, and <code>GB</code>.
 -                                                    When set to <b>Fixed Units</b> all the values will be rendered using the original units maintained by the netdata server.
 +                                                    设置为<b>固定单位</b>时，所有值将使用netdata服务器维护的原始单位进行呈现。
@@ -2228,7 +2345,7 @@
 -                                                    When set to <b>Seconds</b>, the raw number of seconds will be presented.
 +                                            <td class="option-control"><input id="seconds_as_time" type="checkbox" checked data-toggle="toggle"  data-on="时间" data-off="秒" data-onstyle="success" data-width="110px"></td>
 +                                            <td class="option-info"><strong>是否将秒转换为时间？</strong><br/>
-+                                                <small>When set to <b>时间</b>, 呈现的图表 <code>秒</code> will show <code>DDd:HH:MM:SS</code>.
++                                                <small>When set to <b>时间</b>, 呈现的图表<code>秒</code> will show <code>DDd:HH:MM:SS</code>.
 +                                                    设置为<b>秒</b>时，将显示原始秒数。
                                                  </small>
                                              </td>
@@ -2250,7 +2367,7 @@
 -                                                    The server reported timezone is: <b><span id="server_timezone">-</span></b> (you can set this in netdata.conf <code>[global].timezone</code>).<br/>
 -                                                    The current time zone on the dashboard is: <b><span id="current_timezone">-</span></b>.
 +                                                    您的浏览器时区为：<b><span id="browser_timezone">-</span></b>。<br/>
-+                                                    服务器报告的时区为：<b><span id="server_timezone">-</span></b> （您可以在netdata.conf <code>[global].timezone</code>)中进行设置。<br/>
++                                                    服务器报告的时区为：<b><span id="server_timezone">-</span></b>（您可以在netdata.conf <code>[global].timezone</code>)中进行设置。<br/>
 +                                                    仪表板上的当前时区为：<b><span id="current_timezone">-</span></b>。
                                                      <br/>
                                                      <div class="dropup">
@@ -2536,7 +2653,7 @@
              + ' data-dimensions="in"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Read"'
-+            + ' data-title="磁盘读取"'
++            + ' data-title="存储读取"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2545,7 +2662,7 @@
              + ' data-dimensions="out"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Write"'
-+            + ' data-title="磁盘写入"'
++            + ' data-title="存储写入"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2554,7 +2671,7 @@
              + ' data-dimensions="in"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Disk Read"'
-+            + ' data-title="硬盘读取"'
++            + ' data-title="磁盘读取"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2572,7 +2689,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Inbound"'
-+            + ' data-title="网络下载"'
++            + ' data-title="下载速度"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2581,7 +2698,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Outbound"'
-+            + ' data-title="网络上传"'
++            + ' data-title="上传速度"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2590,7 +2707,7 @@
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Inbound"'
-+            + ' data-title="IP 下载"'
++            + ' data-title="IP下载"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2599,7 +2716,7 @@
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Outbound"'
-+            + ' data-title="IP 上传"'
++            + ' data-title="IP上传"'
              + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
@@ -2655,12 +2772,37 @@
 -    var active = '<h3>Raised Alarms</h3><table class="table">';
 -    var all = '<h3>All Running Alarms</h3><div class="panel-group" id="alarms_all_accordion" role="tablist" aria-multiselectable="true">';
 -    var footer = '<hr/><a href="https://github.com/netdata/netdata/tree/master/web/api/badges#netdata-badges" target="_blank">netdata badges</a> refresh automatically. Their color indicates the state of the alarm: <span style="color: #e05d44"><b>&nbsp;red&nbsp;</b></span> is critical, <span style="color:#fe7d37"><b>&nbsp;orange&nbsp;</b></span> is warning, <span style="color: #4c1"><b>&nbsp;bright green&nbsp;</b></span> is ok, <span style="color: #9f9f9f"><b>&nbsp;light grey&nbsp;</b></span> is undefined (i.e. no data or no status), <span style="color: #000"><b>&nbsp;black&nbsp;</b></span> is not initialized. You can copy and paste their URLs to embed them in any web page.<br/>netdata can send notifications for these alarms. Check <a href="https://github.com/netdata/netdata/blob/master/health/notifications/health_alarm_notify.conf" target="_blank">this configuration file</a> for more information.';
-+    var active = '<h3>触发警报</h3><table class="table">';
-+    var all = '<h3>所有作用中的警报</h3><div class="panel-group" id="alarms_all_accordion" role="tablist" aria-multiselectable="true">';
-+    var footer = '<hr/><a href="https://github.com/netdata/netdata/tree/master/web/api/badges#netdata-badges" target="_blank">netdata badges</a> 会自动重新整理。不同颜色分表代表的警报状态：<span style="color: #e05d44"><b>&nbsp;红色&nbsp;</b></span> 表示重大，<span style="color:#fe7d37"><b>&nbsp;橘色&nbsp;</b></span> 表示警告，<span style="color: #4c1"><b>&nbsp;绿色&nbsp;</b></span> 表示良好，<span style="color: #9f9f9f"><b>&nbsp;灰色&nbsp;</b></span> 表示未定义 (例如无资料或无状态)，<span style="color: #000"><b>&nbsp;黑色&nbsp;</b></span> 表示尚未初始化。您可以复制这里的网址并将它们嵌入到任一个网页。<br/>netdata 能够发送这些警报通知。请参阅 <a href="https://github.com/netdata/netdata/blob/master/health/notifications/health_alarm_notify.conf">这个设定档</a> 了解更多资讯。';
++    var active = '<h3>错误信息</h3><table class="table">';
++    var all = '<h3>所有运行的错误信息</h3><div class="panel-group" id="alarms_all_accordion" role="tablist" aria-multiselectable="true">';
++    var footer = '<hr/><a href="https://github.com/netdata/netdata/tree/master/web/api/badges#netdata-badges" target="_blank">netdata badges</a>会自动重新整理。不同颜色分表代表的错误状态：<span style="color: #e05d44"><b>&nbsp;红色&nbsp;</b></span>表示严重，<span style="color:#fe7d37"><b>&nbsp;橘色&nbsp;</b></span>表示警告，<span style="color: #4c1"><b>&nbsp;绿色&nbsp;</b></span>表示良好，<span style="color: #9f9f9f"><b>&nbsp;灰色&nbsp;</b></span>表示未定义(例如无资料或无状态)，<span style="color: #000"><b>&nbsp;黑色&nbsp;</b></span> 表示尚未初始化。您可以复制这里的网址并将它们嵌入到任一个网页。<br/>netdata 能够发送这些警报通知。请参阅 <a href="https://github.com/netdata/netdata/blob/master/health/notifications/health_alarm_notify.conf">这个文档</a>了解更多信息。';
  
      loadClipboard(function () {
      });
+@@ -2038,7 +2038,7 @@
+             document.getElementById('alarms_active').innerHTML =
+                 document.getElementById('alarms_all').innerHTML =
+                 document.getElementById('alarms_log').innerHTML =
+-                'failed to load alarm data!';
++                '无法加载错误信息数据！';
+             return;
+         }
+ 
+@@ -2301,13 +2301,13 @@
+         all += "</div>";
+ 
+         if (!count_active) {
+-            active += '<div style="width:100%; height: 100px; text-align: center;"><span style="font-size: 50px;"><i class="fas fa-thumbs-up"></i></span><br/>Everything is normal. No raised alarms.</div>';
++            active += '<div style="width:100%; height: 100px; text-align: center;"><span style="font-size: 50px;"><i class="fas fa-thumbs-up"></i></span><br/>一切正常，没有错误信息。</div>';
+         } else {
+             active += footer;
+         }
+ 
+         if (!count_all) {
+-            all += "<h4>No alarms are running in this system.</h4>";
++            all += "<h4>系统中没有错误信息。</h4>";
+         } else {
+             all += footer;
+         }
 @@ -2333,7 +2333,7 @@
              $('#alarm_all_' + id.toString()).html('');
          });
@@ -2670,69 +2812,95 @@
  
          loadBootstrapTable(function () {
              $('#alarms_log_table').bootstrapTable({
-@@ -2391,7 +2391,7 @@
+@@ -2391,9 +2391,9 @@
                  columns: [
                      {
                          field: 'when',
 -                        title: 'Event Date',
 +                        title: '事件日期',
                          valign: 'middle',
-                         titleTooltip: 'The date and time the even took place',
+-                        titleTooltip: 'The date and time the even took place',
++                        titleTooltip: '发生日期和时间',
                          formatter: function (value, row, index) {
-@@ -2405,7 +2405,7 @@
+                             void (row);
+                             void (index);
+@@ -2405,17 +2405,17 @@
                      },
                      {
                          field: 'hostname',
 -                        title: 'Host',
 +                        title: '主机',
                          valign: 'middle',
-                         titleTooltip: 'The host that generated this event',
+-                        titleTooltip: 'The host that generated this event',
++                        titleTooltip: '产生此事件的主机',
                          align: 'center',
-@@ -2414,7 +2414,7 @@
+                         visible: false,
+                         sortable: true
                      },
                      {
                          field: 'unique_id',
 -                        title: 'Unique ID',
+-                        titleTooltip: 'The host unique ID for this event',
 +                        title: '唯一ID',
-                         titleTooltip: 'The host unique ID for this event',
++                        titleTooltip: '此事件的主机唯一ID',
                          formatter: function (value, row, index) {
                              void (row);
-@@ -2428,7 +2428,7 @@
+                             void (index);
+@@ -2428,8 +2428,8 @@
                      },
                      {
                          field: 'alarm_id',
 -                        title: 'Alarm ID',
+-                        titleTooltip: 'The ID of the alarm that generated this event',
 +                        title: '警报ID',
-                         titleTooltip: 'The ID of the alarm that generated this event',
++                        titleTooltip: '生成此事件的警报的ID',
                          formatter: function (value, row, index) {
                              void (row);
-@@ -2442,7 +2442,7 @@
+                             void (index);
+@@ -2442,8 +2442,8 @@
                      },
                      {
                          field: 'alarm_event_id',
 -                        title: 'Alarm Event ID',
+-                        titleTooltip: 'The incremental ID of this event for the given alarm',
 +                        title: '警报事件ID',
-                         titleTooltip: 'The incremental ID of this event for the given alarm',
++                        titleTooltip: '给定警报的此事件的增量ID',
                          formatter: function (value, row, index) {
                              void (row);
-@@ -2456,7 +2456,7 @@
+                             void (index);
+@@ -2456,8 +2456,8 @@
                      },
                      {
                          field: 'chart',
 -                        title: 'Chart',
+-                        titleTooltip: 'The chart the alarm is attached to',
 +                        title: '图表',
-                         titleTooltip: 'The chart the alarm is attached to',
++                        titleTooltip: '警报所附图表',
                          align: 'center',
                          valign: 'middle',
-@@ -2474,7 +2474,7 @@
+                         switchable: false,
+@@ -2465,8 +2465,8 @@
+                     },
+                     {
+                         field: 'family',
+-                        title: 'Family',
+-                        titleTooltip: 'The family of the chart the alarm is attached to',
++                        title: '家庭',
++                        titleTooltip: '警报所附图表的系列',
+                         align: 'center',
+                         valign: 'middle',
+                         visible: false,
+@@ -2474,8 +2474,8 @@
                      },
                      {
                          field: 'name',
 -                        title: 'Alarm',
-+                        title: '警报',
-                         titleTooltip: 'The alarm name that generated this event',
+-                        titleTooltip: 'The alarm name that generated this event',
++                        title: '错误信息',
++                        titleTooltip: '生成此事件的警报名称',
                          formatter: function (value, row, index) {
                              void (row);
+                             void (index);
 @@ -2489,7 +2489,7 @@
                      {
                          field: 'value_string',
@@ -2802,6 +2970,138 @@
                          align: 'center',
                          valign: 'middle',
                          switchable: false,
+@@ -2560,8 +2560,8 @@
+                     },
+                     {
+                         field: 'duration',
+-                        title: 'Last Duration',
+-                        titleTooltip: 'The duration the alarm was at its previous state, just before this event',
++                        title: '最后持续时间',
++                        titleTooltip: '警报在其之前状态（在此事件之前）的持续时间',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2574,8 +2574,8 @@
+                     },
+                     {
+                         field: 'non_clear_duration',
+-                        title: 'Raised Duration',
+-                        titleTooltip: 'The duration the alarm was raised, just before this event',
++                        title: '持续时间',
++                        titleTooltip: '警报发出的持续时间，就在此事件之前',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2588,8 +2588,8 @@
+                     },
+                     {
+                         field: 'recipient',
+-                        title: 'Recipient',
+-                        titleTooltip: 'The recipient of this event',
++                        title: '接受者',
++                        titleTooltip: '此活动的接收者',
+                         align: 'center',
+                         valign: 'middle',
+                         visible: false,
+@@ -2597,8 +2597,8 @@
+                     },
+                     {
+                         field: 'processed',
+-                        title: 'Processed Status',
+-                        titleTooltip: 'True when this event is processed',
++                        title: '处理状态',
++                        titleTooltip: '处理此事件时为True',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2616,8 +2616,8 @@
+                     },
+                     {
+                         field: 'updated',
+-                        title: 'Updated Status',
+-                        titleTooltip: 'True when this event has been updated by another event',
++                        title: '更新状态',
++                        titleTooltip: '如果此事件已由其他事件更新，则为True',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2635,8 +2635,8 @@
+                     },
+                     {
+                         field: 'updated_by_id',
+-                        title: 'Updated By ID',
+-                        titleTooltip: 'The unique ID of the event that obsoleted this one',
++                        title: '按ID更新',
++                        titleTooltip: '使该事件失效的事件的唯一ID',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2649,8 +2649,8 @@
+                     },
+                     {
+                         field: 'updates_id',
+-                        title: 'Updates ID',
+-                        titleTooltip: 'The unique ID of the event obsoleted because of this event',
++                        title: '更新ID',
++                        titleTooltip: '由于此事件，该事件的唯一ID已过时',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2663,8 +2663,8 @@
+                     },
+                     {
+                         field: 'exec',
+-                        title: 'Script',
+-                        titleTooltip: 'The script to handle the event notification',
++                        title: '脚本',
++                        titleTooltip: '处理事件通知的脚本',
+                         align: 'center',
+                         valign: 'middle',
+                         visible: false,
+@@ -2672,8 +2672,8 @@
+                     },
+                     {
+                         field: 'exec_run',
+-                        title: 'Script Run At',
+-                        titleTooltip: 'The date and time the script has been ran',
++                        title: '脚本运行于',
++                        titleTooltip: '脚本运行的日期和时间',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2686,8 +2686,8 @@
+                     },
+                     {
+                         field: 'exec_code',
+-                        title: 'Script Return Value',
+-                        titleTooltip: 'The return code of the script',
++                        title: '脚本返回值',
++                        titleTooltip: '脚本的返回代码',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2705,8 +2705,8 @@
+                     },
+                     {
+                         field: 'delay',
+-                        title: 'Script Delay',
+-                        titleTooltip: 'The hysteresis of the notification',
++                        title: '脚本延迟',
++                        titleTooltip: '通知的滞后性',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
+@@ -2720,8 +2720,8 @@
+                     },
+                     {
+                         field: 'delay_up_to_timestamp',
+-                        title: 'Script Delay Run At',
+-                        titleTooltip: 'The date and time the script should be run, after hysteresis',
++                        title: '脚本延迟运行时间',
++                        titleTooltip: '在滞后之后，脚本应该运行的日期和时间',
+                         formatter: function (value, row, index) {
+                             void (row);
+                             void (index);
 @@ -2734,8 +2734,8 @@
                      },
                      {
@@ -2829,7 +3129,7 @@
  
          // update the dashboard title
 -        document.title = options.hostname + ' netdata dashboard';
-+        document.title = options.hostname + ' netdata 仪表板';
++        document.title = options.hostname + ' netdata仪表板';
  
          // close the splash screen
          $("#loadOverlay").css("display", "none");
@@ -2887,3 +3187,12 @@
  
              document.getElementById('update_badge').innerHTML = '!';
          }
+@@ -4033,7 +4033,7 @@
+         scrollDashboardTo();
+ 
+         // restore the scrollspy at the proper position
+-        $(document.body).scrollspy('refresh');
++        $(document.body).scrollspy('刷新');
+         $(document.body).scrollspy('process');
+ 
+         return;
