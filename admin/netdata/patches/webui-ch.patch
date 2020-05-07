@@ -1,313 +1,3 @@
---- a/web/gui/dashboard.js
-+++ b/web/gui/dashboard.js
-@@ -142,18 +142,18 @@
- 
- NETDATA.seconds4human = function (seconds, options) {
-     let defaultOptions = {
--        now: 'now',
-+        now: '现在',
-         space: ' ',
--        negative_suffix: 'ago',
--        day: 'day',
--        days: 'days',
--        hour: 'hour',
--        hours: 'hours',
--        minute: 'min',
--        minutes: 'mins',
--        second: 'sec',
--        seconds: 'secs',
--        and: 'and'
-+        negative_suffix: '前',
-+        day: '日',
-+        days: '日',
-+        hour: '小时',
-+        hours: '小时',
-+        minute: '分钟',
-+        minutes: '分钟',
-+        second: '秒',
-+        seconds: '秒',
-+        and: '及'
-     };
- 
-     if (typeof options !== 'object') {
-@@ -524,7 +524,7 @@
-     if (s) {
-         NETDATA.serverDefault = s.replace(/\/dashboard.js(\?.*)?$/g, "");
-     } else {
--        console.log('WARNING: Cannot detect the URL of the netdata server.');
-+        console.log('警告：无法检测到netdata服务器的URL。');
-         NETDATA.serverDefault = null;
-     }
- }
-@@ -567,25 +567,25 @@
- // Error Handling
- 
- NETDATA.errorCodes = {
--    100: {message: "Cannot load chart library", alert: true},
--    101: {message: "Cannot load jQuery", alert: true},
--    402: {message: "Chart library not found", alert: false},
--    403: {message: "Chart library not enabled/is failed", alert: false},
--    404: {message: "Chart not found", alert: false},
--    405: {message: "Cannot download charts index from server", alert: true},
--    406: {message: "Invalid charts index downloaded from server", alert: true},
-+    100: {message: "无法加载图表库", alert: true},
-+    101: {message: "无法加载jQuery", alert: true},
-+    402: {message: "未找到图表库", alert: false},
-+    403: {message: "图表库未启用/失败", alert: false},
-+    404: {message: "未找到图表", alert: false},
-+    405: {message: "无法从服务器下载图表索引", alert: true},
-+    406: {message: "从服务器下载了无效的图表索引", alert: true},
-     407: {message: "Cannot HELLO netdata server", alert: false},
--    408: {message: "Netdata servers sent invalid response to HELLO", alert: false},
--    409: {message: "Cannot ACCESS netdata registry", alert: false},
--    410: {message: "Netdata registry ACCESS failed", alert: false},
--    411: {message: "Netdata registry server send invalid response to DELETE ", alert: false},
--    412: {message: "Netdata registry DELETE failed", alert: false},
--    413: {message: "Netdata registry server send invalid response to SWITCH ", alert: false},
--    414: {message: "Netdata registry SWITCH failed", alert: false},
--    415: {message: "Netdata alarms download failed", alert: false},
--    416: {message: "Netdata alarms log download failed", alert: false},
--    417: {message: "Netdata registry server send invalid response to SEARCH ", alert: false},
--    418: {message: "Netdata registry SEARCH failed", alert: false}
-+    408: {message: "Netdata服务器向HELLO发送了无效响应", alert: false},
-+    409: {message: "无法访问netdata注册表", alert: false},
-+    410: {message: "Netdata注册表访问失败", alert: false},
-+    411: {message: "Netdata注册表服务器向DELETE发送无效响应", alert: false},
-+    412: {message: "Netdata注册表删除失败", alert: false},
-+    413: {message: "Netdata注册表服务器向SWITCH发送无效响应 ", alert: false},
-+    414: {message: "Netdata注册表切换失败", alert: false},
-+    415: {message: " Netdata警报下载失败", alert: false},
-+    416: {message: "Netdata警报日志下载失败", alert: false},
-+    417: {message: "Netdata注册表服务器向SEARCH发送无效响应 ", alert: false},
-+    418: {message: "Netdata注册表搜索失败", alert: false}
- };
- 
- NETDATA.errorLast = {
-@@ -599,7 +599,7 @@
-     NETDATA.errorLast.message = msg;
-     NETDATA.errorLast.datetime = Date.now();
- 
--    console.log("ERROR " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
-+    console.log("错误 " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
- 
-     let ret = true;
-     if (typeof netdataErrorCallback === 'function') {
-@@ -607,7 +607,7 @@
-     }
- 
-     if (ret && NETDATA.errorCodes[code].alert) {
--        alert("ERROR " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
-+        alert("错误 " + code + ": " + NETDATA.errorCodes[code].message + ": " + msg);
-     }
- };
- 
-@@ -672,7 +672,7 @@
-             case 'string':
-                 const ret = this.string(obj);
-                 if (ret !== obj) {
--                    console.log('XSS protection changed string ' + name + ' from "' + obj + '" to "' + ret + '"');
-+                    console.log('XSS保护已更改字符串 ' + name + ' from "' + obj + '" to "' + ret + '"');
-                 }
-                 return ret;
- 
-@@ -1263,7 +1263,7 @@
-                 switch_units_callback(desired_units);
-                 return this.convertibleUnits[units][desired_units].convert;
-             } else {
--                console.log('Units conversion from ' + units.toString() + ' to ' + desired_units.toString() + ' is not supported.');
-+                console.log('单位转换自 ' + units.toString() + ' to ' + desired_units.toString() + ' 不支持。');
-                 switch_units_callback(units);
-                 return function (value) {
-                     return value;
-@@ -7686,10 +7686,10 @@
-         let viewed = (this.data) ? this.data.view_update_every : collected;
- 
-         if (collected === viewed) {
--            return "resolution " + NETDATA.seconds4human(collected);
-+            return "刷新时间 " + NETDATA.seconds4human(collected);
-         }
- 
--        return "resolution " + NETDATA.seconds4human(viewed) + ", collected every " + NETDATA.seconds4human(collected);
-+        return "刷新时间 " + NETDATA.seconds4human(viewed) + ", collected every " + NETDATA.seconds4human(collected);
-     };
- 
-     this.legendUpdateDOM = function () {
-@@ -7710,7 +7710,7 @@
-                 needed = true;
- 
-                 if (this.debug) {
--                    this.log('NEW LABELS: "' + labels + '" NOT EQUAL OLD LABELS: "' + this.element_legend_childs.series.labels_key + '"');
-+                    this.log('新标签："' + labels + '" 不相等的旧标签："' + this.element_legend_childs.series.labels_key + '"');
-                 }
-             }
-         }
-@@ -7723,7 +7723,7 @@
-             // we do this, only when the visible chart is current
-             if (Math.abs(this.netdata_last - this.view_before) <= this.data_update_every) {
-                 if (this.debug) {
--                    this.log('chart is in latest position... updating values on legend...');
-+                    this.log('图表处于最新位置...更新图例上的值...');
-                 }
- 
-                 //let labels = this.data.dimension_names;
-@@ -7752,7 +7752,7 @@
-         this.colors = [];
- 
-         if (this.debug) {
--            this.log('updating Legend DOM');
-+            this.log('更新图例DOM');
-         }
- 
-         // mark all dimensions as invalid
-@@ -7769,7 +7769,7 @@
-             if (user_id !== null) {
-                 user_element = document.getElementById(user_id) || null;
-                 if (user_element === null) {
--                    state.log('Cannot find element with id: ' + user_id);
-+                    state.log('找不到ID为的元素： ' + user_id);
-                 }
-             }
- 
-@@ -7892,8 +7892,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Pan Left',
--                        content: 'Pan the chart to the left. You can also <b>drag it</b> with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '向左平移',
-+                        content: '将图表平移到左侧。您也可以用鼠标或手指（在触摸设备上）<b>拖动</b>。<br/><small>可以从设置中禁用帮助。</small>'
-                     });
-                 }
- 
-@@ -7915,8 +7915,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Chart Reset',
--                        content: 'Reset all the charts to their default auto-refreshing state. You can also <b>double click</b> the chart contents with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '图表重置',
-+                        content: '将所有图表重置为其默认的自动刷新状态。您也可以用鼠标或手指（在触摸设备上）<b>双击</b>图表内容。<br/><small>可以从设置中禁用帮助。</small>'
-                     });
-                 }
- 
-@@ -7943,8 +7943,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Pan Right',
--                        content: 'Pan the chart to the right. You can also <b>drag it</b> with your mouse or your finger (on touch devices).<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '向右平移',
-+                        content: '将图表平移到右侧。您也可以用鼠标或手指（在触摸设备上）<b>拖动</b>。<br/><small>可以从设置中禁用帮助。</small>'
-                     });
-                 }
- 
-@@ -7969,8 +7969,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Chart Zoom In',
--                        content: 'Zoom in the chart. You can also press SHIFT and select an area of the chart, or press SHIFT or ALT and use the mouse wheel or 2-finger touchpad scroll to zoom in or out.<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '图表放大',
-+                        content: '放大图表。 您也可以按SHIFT键并选择图表的区域，或者按SHIFT或ALT键并使用鼠标滚轮或两指触摸板滚动来放大或缩小。<br/><small>可以从设置中禁用帮助。</small>'
-                     });
-                 }
- 
-@@ -7996,8 +7996,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Chart Zoom Out',
--                        content: 'Zoom out the chart. You can also press SHIFT or ALT and use the mouse wheel, or 2-finger touchpad scroll to zoom in or out.<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '图表缩小',
-+                        content: '缩小图表。 您还可以按SHIFT或ALT并使用鼠标滚轮或2指触摸板滚动来放大或缩小。<br/><small>可以从设置中禁用帮助。</small>'
-                     });
-                 }
- 
-@@ -8028,8 +8028,8 @@
-                             show: NETDATA.options.current.show_help_delay_show_ms,
-                             hide: NETDATA.options.current.show_help_delay_hide_ms
-                         },
--                        title: 'Chart Resize',
--                        content: 'Drag this point with your mouse or your finger (on touch devices), to resize the chart vertically. You can also <b>double click it</b> or <b>double tap it</b> to reset between 2 states: the default and the one that fits all the values.<br/><small>Help can be disabled from the settings.</small>'
-+                        title: '图表调整',
-+                        content: '用鼠标或手指（在触摸设备上）拖动此点，以垂直调整图表大小。您也可以<b>双击它</b>或<b>双击它</b>以在两种状态之间复位：默认状态和适合所有值的状态。<br/><small>帮助可以 从设置中禁用。</small>'
-                     });
-                 }
- 
-@@ -8084,12 +8084,12 @@
-                     html: true,
-                     trigger: 'hover',
-                     placement: 'bottom',
--                    title: 'Chart Legend',
-+                    title: '图表图例',
-                     delay: {
-                         show: NETDATA.options.current.show_help_delay_show_ms,
-                         hide: NETDATA.options.current.show_help_delay_hide_ms
-                     },
--                    content: 'You can click or tap on the values or the labels to select dimensions. By pressing SHIFT or CONTROL, you can enable or disable multiple dimensions.<br/><small>Help can be disabled from the settings.</small>'
-+                    content: '您可以单击或点击值或标签以选择尺寸。通过按SHIFT或CONTROL，可以启用或禁用多个尺寸。<br/><small>可以从设置中禁用帮助。</small>'
-                 });
-             }
-         } else {
-@@ -8114,7 +8114,7 @@
-         if (this.data) {
-             this.element_legend_childs.series.labels_key = this.data.dimension_names.toString();
-             if (this.debug) {
--                this.log('labels from data: "' + this.element_legend_childs.series.labels_key + '"');
-+                this.log('数据标签： "' + this.element_legend_childs.series.labels_key + '"');
-             }
- 
-             for (let i = 0, len = this.data.dimension_names.length; i < len; i++) {
-@@ -8130,7 +8130,7 @@
-             }
-             this.element_legend_childs.series.labels_key = tmp.toString();
-             if (this.debug) {
--                this.log('labels from chart: "' + this.element_legend_childs.series.labels_key + '"');
-+                this.log('图表中的标签： "' + this.element_legend_childs.series.labels_key + '"');
-             }
-         }
- 
-@@ -8418,7 +8418,7 @@
- 
-         if (this.chart_created && typeof this.library.update === 'function') {
-             if (this.debug) {
--                this.log('updating chart...');
-+                this.log('正在更新图表。。。');
-             }
- 
-             if (!callChartLibraryUpdateSafely(data)) {
-@@ -8426,7 +8426,7 @@
-             }
-         } else {
-             if (this.debug) {
--                this.log('creating chart...');
-+                this.log('正在创建图表。。。');
-             }
- 
-             if (!callChartLibraryCreateSafely(data)) {
-@@ -8441,7 +8441,7 @@
-             this.__redraw_on_unhide = true;
- 
-             if (this.debug) {
--                this.log("drawn while not visible");
-+                this.log("在不可见的情况下绘制");
-             }
-         }
- 
-@@ -8491,11 +8491,11 @@
- 
-     this.getSnapshotData = function (key) {
-         if (this.debug) {
--            this.log('updating from snapshot: ' + key);
-+            this.log('从快照更新： ' + key);
-         }
- 
-         if (typeof netdataSnapshotData.data[key] === 'undefined') {
--            this.log('snapshot does not include data for key "' + key + '"');
-+            this.log('快照不包含密钥数据 "' + key + '"');
-             return null;
-         }
- 
 --- a/web/gui/dashboard_info.js
 +++ b/web/gui/dashboard_info.js
 @@ -12,22 +12,21 @@
@@ -787,11 +477,13 @@
      },
  
      'ip.ecn': {
-@@ -647,22 +646,22 @@
+@@ -646,32 +645,32 @@
+     },
  
      'netfilter.conntrack': {
-         title: 'connection tracker',
+-        title: 'connection tracker',
 -        info: 'Netfilter Connection Tracker performance metrics. The connection tracker keeps track of all connections of the machine, inbound and outbound. It works by keeping a database with all open connections, tracking network and address translation and connection expectations.'
++        title: '连接跟踪器',
 +        info: 'Netfilter连接跟踪器性能指标。连接跟踪器跟踪计算机的所有连接（入站和出站）。它通过使数据库保持所有打开的连接，跟踪网络和地址转换以及连接期望来工作。'
      },
  
@@ -817,16 +509,26 @@
      },
  
      'system.softnet_stat': {
-@@ -671,7 +670,7 @@
+         title: 'softnet',
+         info: function (os) {
              if (os === 'linux')
-                 return 'Statistics for CPUs SoftIRQs related to network receive work. Break down per CPU core can be found at <a href="#menu_cpu_submenu_softnet_stat">CPU / softnet statistics</a>. <b>processed</b> states the number of packets processed, <b>dropped</b> is the number packets dropped because the network device backlog was full (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_max_backlog</code>), <b>squeezed</b> is the number of packets dropped because the network device budget ran out (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_budget</code> and/or <code>net.core.netdev_budget_usecs</code>). More information about identifying and troubleshooting network driver related issues can be found at <a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux Network Performance Tuning Guide</a>.';
+-                return 'Statistics for CPUs SoftIRQs related to network receive work. Break down per CPU core can be found at <a href="#menu_cpu_submenu_softnet_stat">CPU / softnet statistics</a>. <b>processed</b> states the number of packets processed, <b>dropped</b> is the number packets dropped because the network device backlog was full (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_max_backlog</code>), <b>squeezed</b> is the number of packets dropped because the network device budget ran out (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_budget</code> and/or <code>net.core.netdev_budget_usecs</code>). More information about identifying and troubleshooting network driver related issues can be found at <a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux Network Performance Tuning Guide</a>.';
++                return '与网络接收工作相关的CPU软件IRQ统计。每个CPU核心的故障可以在<a href="#menu_cpu_submenu_softnet_stat">CPU / softnet statistics</a>。<b>已处理的</b>说明已处理的数据包数，<b>已丢弃的</b>是由于网络设备积压已满而丢弃的数据包数（要在Linux上修复它们，请使用<code>sysctl</code>增加<code>net.core.netdev_max_backlog</code>），<b>压缩的</b>是由于网络设备预算耗尽而丢弃的数据包数（要在Linux上修复这些数据包，请使用<code>sysctl</code>增加<code>net.core.netdev_预算</code>和/或<code>net.core.netdev_budget_usecs</code>）。有关识别和排除网络驱动程序相关问题的更多信息，请参阅<a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux网络性能调整指南。';
              else
 -                return 'Statistics for CPUs SoftIRQs related to network receive work.';
 +                return '与网络接收工作相关的CPU软件IRQ统计。';
          }
      },
  
-@@ -686,13 +685,13 @@
+@@ -679,20 +678,20 @@
+         title: 'softnet',
+         info: function (os) {
+             if (os === 'linux')
+-                return 'Statistics for per CPUs core SoftIRQs related to network receive work. Total for all CPU cores can be found at <a href="#menu_system_submenu_softnet_stat">System / softnet statistics</a>. <b>processed</b> states the number of packets processed, <b>dropped</b> is the number packets dropped because the network device backlog was full (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_max_backlog</code>), <b>squeezed</b> is the number of packets dropped because the network device budget ran out (to fix them on Linux use <code>sysctl</code> to increase <code>net.core.netdev_budget</code> and/or <code>net.core.netdev_budget_usecs</code>). More information about identifying and troubleshooting network driver related issues can be found at <a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux Network Performance Tuning Guide</a>.';
++                return '与网络接收工作相关的每个CPU核心软件的统计。所有CPU核心的总数可以在 <a href="#menu_system_submenu_softnet_stat">信息中找到。<b>已处理的</b>说明已处理的数据包数，<b>已丢弃的</b>是由于网络设备积压已满而丢弃的数据包数（要在Linux上修复它们，请使用<code>sysctl</code>增加<code>net.core.netdev_max_backlog</code>），<b>压缩的</b>是由于网络设备预算耗尽而丢弃的数据包数（要在Linux上修复这些数据包，请使用<code>sysctl</code>增加<code>net.core.netdev_预算</code>和/或<code>net.core.netdev_预算usecs</code>）。有关识别和排除网络驱动程序相关问题的更多信息，请参阅<a href="https://access.redhat.com/sites/default/files/attachments/20150325_network_performance_tuning.pdf" target="_blank">Red Hat Enterprise Linux网络性能调整指南。';
+             else
+                 return 'Statistics for per CPUs core SoftIRQs related to network receive work. Total for all CPU cores can be found at <a href="#menu_system_submenu_softnet_stat">System / softnet statistics</a>.';
+         }
      },
  
      'go_expvar.memstats': {
@@ -1049,7 +751,7 @@
  
      'mem.writeback': {
 -        info: '<b>Dirty</b> is the amount of memory waiting to be written to disk. <b>Writeback</b> is how much memory is actively being written to disk.'
-+        info: '<b>Dirty</b>是等待写入硬盘的内存量。<b>Writeback</b>是指有多少内存内容被主动写入硬盘。'
++        info: '<b>Dirty</b>是等待写入磁盘的内存量。<b>Writeback</b>是主动写入磁盘的内存量。'
      },
  
      'mem.kernel': {
@@ -1082,7 +784,7 @@
      },
  
      'ip.tcp_syn_queue': {
-@@ -1037,12 +1036,12 @@
+@@ -1037,25 +1036,25 @@
      // IPv4
  
      'ipv4.tcpsock': {
@@ -1098,6 +800,26 @@
      },
  
      'ipv4.tcperrors': {
+-        info: '<code>InErrs</code> is the number of TCP segments received in error (including header too small, checksum errors, sequence errors, bad packets - for both IPv4 and IPv6).'
+-            + ' <code>InCsumErrors</code> is the number of TCP segments received with checksum errors (for both IPv4 and IPv6).'
+-            + ' <code>RetransSegs</code> is the number of TCP segments retransmitted.'
++        info: '<code>InErrs</code>是错误接收的TCP段数（包括头太小、校验和错误、序列错误、坏数据包-对于IPv4和IPv6）。'
++            + '  <code>InCsumErrors</code>是接收到的带有校验和错误的TCP段数（对于IPv4和IPv6）。'
++            + '  <code>RetransSegs</code>是重新传输的TCP段数。'
+     },
+ 
+     'ipv4.tcphandshake': {
+-        info: '<code>EstabResets</code> is the number of established connections resets (i.e. connections that made a direct transition from <code>ESTABLISHED</code> or <code>CLOSE_WAIT</code> to <code>CLOSED</code>).'
+-            + ' <code>OutRsts</code> is the number of TCP segments sent, with the <code>RST</code> flag set (for both IPv4 and IPv6).'
+-            + ' <code>AttemptFails</code> is the number of times TCP connections made a direct transition from either <code>SYN_SENT</code> or <code>SYN_RECV</code> to <code>CLOSED</code>, plus the number of times TCP connections made a direct transition from the <code>SYN_RECV</code> to <code>LISTEN</code>.'
+-            + ' <code>TCPSynRetrans</code> shows retries for new outbound TCP connections, which can indicate general connectivity issues or backlog on the remote host.'
++        info: '<code>EstabResets</code>是已建立的连接重置数（即从<code>已建立的连接或<code>关闭等待</code>直接转换为<code>关闭</code>）'
++            + ' <code>OutRsts</code>是发送的TCP段数，并设置了<code>RST</code>标志（对于IPv4和IPv6）。'
++            + '<code>AttemptFails</code>是TCP连接从<code>SYN_SENT</code>或<code>SYN_RECV</code>直接转换到<code>CLOSED</code>的次数，加上TCP连接从<code>SYN_RECV</code>直接转换到<code>LISTEN</code>的次数。'
++            + '  <code>TCPSynRetrans</code>显示新出站TCP连接的重试，这可能指示远程主机上的一般连接问题或积压工作。'
+     },
+ 
+     // ------------------------------------------------------------------------
 @@ -1066,7 +1065,7 @@
      },
  
@@ -1169,7 +891,7 @@
                          iface = '';
                      }
 -                    return netdataDashboard.gaugeChart('Received' + iface, '12%', 'received');
-+                    return netdataDashboard.gaugeChart('已收到' + iface, '12%', 'received');
++                    return netdataDashboard.gaugeChart('已收到' + iface, '20%', 'received');
                  } else
                      return '';
              },
@@ -1178,7 +900,7 @@
                          iface = '';
                      }
 -                    return netdataDashboard.gaugeChart('Sent' + iface, '12%', 'sent');
-+                    return netdataDashboard.gaugeChart('已发送' + iface, '12%', 'sent');
++                    return netdataDashboard.gaugeChart('已发送' + iface, '20%', 'sent');
                  } else
                      return '';
              }
@@ -1187,7 +909,7 @@
                  void (os);
                  if (!id.match(/^cgroup_.*/))
 -                    return netdataDashboard.gaugeChart('Received', '12%', 'received');
-+                    return netdataDashboard.gaugeChart('已收到', '12%', 'received');
++                    return netdataDashboard.gaugeChart('已收到', '20%', 'received');
                  else
                      return '';
              },
@@ -1195,7 +917,7 @@
                  void (os);
                  if (!id.match(/^cgroup_.*/))
 -                    return netdataDashboard.gaugeChart('Sent', '12%', 'sent');
-+                    return netdataDashboard.gaugeChart('已发送', '12%', 'sent');
++                    return netdataDashboard.gaugeChart('已发送', '20%', 'sent');
                  else
                      return '';
              }
@@ -1240,7 +962,7 @@
 +            netdataDashboard.gaugeChart('写入', '22%', 'writes')
          ],
 -        info: 'Amount of data transferred to and from disk.'
-+        info: '磁盘传输的数据速度。'
++        info: '磁盘传输数据的速度。'
      },
  
      'disk.ops': {
@@ -1670,6 +1392,30 @@
      },
  
      'web_log.squid_clients': {
+@@ -2467,19 +2466,19 @@
+     },
+ 
+     'spigotmc.tps': {
+-        info: 'The running 1, 5, and 15 minute average number of server ticks per second.  An idealized server will show 20.0 for all values, but in practice this almost never happens.  Typical servers should show approximately 19.98-20.0 here.  Lower values indicate progressively more server-side lag (and thus that you need better hardware for your server or a lower user limit).  For every 0.05 ticks below 20, redstone clocks will lag behind by approximately 0.25%.  Values below approximately 19.50 may interfere with complex free-running redstone circuits and will noticeably slow down growth.'
++        info: '每秒运行的1、5和15分钟平均服务器滴答数。 理想化的服务器将对所有值显示20.0，但是实际上这几乎不会发生。 典型的服务器应该显示大约19.98-20.0。 较低的值表示逐渐增加的服务器端滞后时间（因此，您需要更好的服务器硬件或更低的用户限制）。 对于低于20的0.05个滴答声，红石钟将落后约0.25％。 低于约19.50的值可能会干扰复杂的自由运行的红石电路，并会显着减慢增长。'
+     },
+ 
+     'spigotmc.users': {
+-        info: 'The number of currently connect users on the monitored Spigot server.'
++        info: '受监视的插口服务器上当前连接的用户数。'
+     },
+ 
+     'boinc.tasks': {
+-        info: 'The total number of tasks and the number of active tasks.  Active tasks are those which are either currently being processed, or are partialy processed but suspended.'
++        info: '任务总数和活动任务数。活动任务是当前正在处理的任务，或者是部分处理但挂起的任务。'
+     },
+ 
+     'boinc.states': {
+-        info: 'Counts of tasks in each task state.  The normal sequence of states is <code>New</code>, <code>Downloading</code>, <code>Ready to Run</code>, <code>Uploading</code>, <code>Uploaded</code>.  Tasks which are marked <code>Ready to Run</code> may be actively running, or may be waiting to be scheduled.  <code>Compute Errors</code> are tasks which failed for some reason during execution.  <code>Aborted</code> tasks were manually cancelled, and will not be processed.  <code>Failed Uploads</code> are otherwise finished tasks which failed to upload to the server, and usually indicate networking issues.'
++        info: '每个任务状态下的任务计数。正常的状态顺序是<code>New</code>，<code>Downloading</code>，<code>Ready to Run</code>，<code>Uploading</code>，<code>Uploaded</code>。标记为“准备运行”的任务可能正在运行，也可能正在等待计划。<code>计算错误</code>是在执行过程中由于某种原因失败的任务。<code>已中止</code>任务已手动取消，将不处理。<code>上载失败</code>是在其他情况下完成的任务，这些任务无法上载到服务器，通常表示存在网络问题。'
+     },
+ 
+     'boinc.sched': {
 @@ -2655,27 +2654,27 @@
  
      // Common
@@ -2886,18 +2632,15 @@
      </div>`);
  }
  
-@@ -733,9 +733,9 @@
+@@ -733,7 +733,7 @@
      el.classList.add(`theme-${netdataTheme}`);
  
      if (machinesArray == registryAgents) {
 -        console.log("Rendering my-netdata menu from registry");
 +        console.log("从注册表呈现我的netdata菜单");
      } else {
--        console.log("Rendering my-netdata menu from netdata.cloud", machinesArray);
-+        console.log("从netdata.cloud“machinesArray”呈现我的netdata菜单);
+         console.log("Rendering my-netdata menu from netdata.cloud", machinesArray);
      }
- 
-     let html = '';
 @@ -935,7 +935,7 @@
                  gotoServerValidateRemaining--;
                  if (gotoServerValidateRemaining <= 0) {
@@ -2916,7 +2659,7 @@
                  NETDATA.registry.search(guid, function (data) {
                      // console.log(data);
                      len = data.urls.length;
-@@ -1017,11 +1017,11 @@
+@@ -1017,7 +1017,7 @@
                  $('#switchRegistryModal').modal('hide');
                  NETDATA.registry.init();
              } else {
@@ -2925,11 +2668,6 @@
              }
          });
      } else {
--        document.getElementById('switchRegistryResponse').innerHTML = "<b>The ID you have entered is not a GUID.</b>";
-+        document.getElementById('switchRegistryResponse').innerHTML = "<b>您输入的ID不是GUID。</b>";
-     }
- }
- 
 @@ -1050,12 +1050,12 @@
              deleteCloudAgentURL(deleteRegistryGuid, deleteRegistryUrl)
                  .then((count) => {
@@ -3007,96 +2745,78 @@
              + ' data-after="-' + duration.toString() + '"'
              + ' data-points="' + duration.toString() + '"'
              + ' data-colors="' + NETDATA.colors[12] + '"'
-@@ -1557,8 +1557,8 @@
+@@ -1557,7 +1557,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.net"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Inbound"'
--            + ' data-width="11%"'
 +            + ' data-title="下载速度"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1568,8 +1568,8 @@
+@@ -1568,7 +1568,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.net"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="Net Outbound"'
--            + ' data-width="11%"'
 +            + ' data-title="上传速度"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1580,8 +1580,8 @@
+@@ -1580,7 +1580,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ip"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Inbound"'
--            + ' data-width="11%"'
 +            + ' data-title="IP下载"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1591,8 +1591,8 @@
+@@ -1591,7 +1591,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ip"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IP Outbound"'
--            + ' data-width="11%"'
 +            + ' data-title="IP上传"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1603,8 +1603,8 @@
+@@ -1603,7 +1603,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv4"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Inbound"'
--            + ' data-width="11%"'
 +            + ' data-title="IPv4下载"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1614,8 +1614,8 @@
+@@ -1614,7 +1614,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv4"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv4 Outbound"'
--            + ' data-width="11%"'
 +            + ' data-title="IPv4上传"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
              + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1626,9 +1626,9 @@
+@@ -1626,7 +1626,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv6"'
              + ' data-dimensions="received"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Inbound"'
 +            + ' data-title="IPv6下载"'
              + ' data-units="kbps"'
--            + ' data-width="11%"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
-             + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
-@@ -1638,9 +1638,9 @@
+@@ -1638,7 +1638,7 @@
          head += '<div class="netdata-container" style="margin-right: 10px;" data-netdata="system.ipv6"'
              + ' data-dimensions="sent"'
              + ' data-chart-library="easypiechart"'
 -            + ' data-title="IPv6 Outbound"'
 +            + ' data-title="IPv6上传"'
              + ' data-units="kbps"'
--            + ' data-width="11%"'
-+            + ' data-width="14%"'
+             + ' data-width="11%"'
              + ' data-before="0"'
-             + ' data-after="-' + duration.toString() + '"'
-             + ' data-points="' + duration.toString() + '"'
 @@ -1653,7 +1653,7 @@
              + ' data-dimensions="used|buffers|active|wired"' // active and wired are FreeBSD stats
              + ' data-append-options="percentage"'
