@@ -138,7 +138,6 @@ aria2_validate() {
 		'pause:or("true","false")' \
 		'pause_metadata:or("true","false")' \
 		'peer_id_prefix:string' \
-		'peer_agent:string' \
 		'private_key:file' \
 		'retry_wait:uinteger' \
 		'rpc_auth_method:or("none","user_pass","token")' \
@@ -163,13 +162,14 @@ aria2_start() {
 
 	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
 	[ -n "$dir" ] || { _err "Please set download dir."; return 1; }
+	[ -d "$dir" ] || { _err "Please create download dir first."; return 1; }
 
 	config_file="$config_dir/$NAME.conf.$section"
 	config_file_tmp="$config_dir/$NAME.conf.tmp"
 	session_file="$config_dir/$NAME.session.$section"
 
-	_make_dir "$dir" "$config_dir" || {
-		_err "Can't create dirs: $dir, $config_dir"
+	_make_dir "$config_dir" || {
+		_err "Can't create config dir: $config_dir"
 		return 1
 	}
 
@@ -303,7 +303,7 @@ aria2_start() {
 		"follow_torrent" "force_save" "http_accept_gzip" "http_no_cache" "listen_port" \
 		"lowest_speed_limit" "max_concurrent_downloads" "max_connection_per_server" \
 		"max_download_limit" "max_overall_download_limit" "max_overall_upload_limit" "max_tries" \
-		"max_upload_limit" "min_split_size" "pause" "pause_metadata" "peer_id_prefix" "peer_agent" "private_key" \
+		"max_upload_limit" "min_split_size" "pause" "pause_metadata" "peer_id_prefix" "private_key" \
 		"retry_wait" "rpc_listen_port" "save_session_interval" "seed_ratio" "seed_time" "split" "timeout" \
 		"user_agent"
 
@@ -313,15 +313,18 @@ aria2_start() {
 	sed '/^$/d' "$config_file_tmp" >"$config_file"
 	rm -f "$config_file_tmp"
 
-	_reset_dir_mode "$dir" "$config_dir" "$log_dir"
+	_reset_dir_mode "$config_dir"
 	_change_file_mode 600 "$config_file"
 
 	if [ -n "$user" ]; then
-		if ( user_exists "$user" && _change_owner "$user" "$dir" "$config_dir" "$log" ); then
-			_info "Aria2 will run with user '$user'."
+		if ( user_exists "$user" && _change_owner "$user" "$config_dir" "$log" ); then
+				_info "Aria2 will run with user '$user'."
+				if [ "$user" != "root" ]; then
+					_info "Please make sure user '$user' has write access to download dir: $dir"
+				fi
 		else
 			_info "Setting run user to '$user' failed, default user will be used."
-			user=root
+			user=
 		fi
 	fi
 
