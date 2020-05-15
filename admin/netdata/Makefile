@@ -94,7 +94,7 @@ define Package/netdata/install
 	rm $(1)/usr/share/netdata/web/images/*.gif
 	rm $(1)/usr/share/netdata/web/images/*.ico
 #	rm $(1)/usr/share/netdata/web/dashboard.js
-  $(CP) ./files/dashboard.js $(1)/usr/share/netdata/web/dashboard.js
+    $(CP) ./files/dashboard.js $(1)/usr/share/netdata/web/dashboard.js
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/netdata.init $(1)/etc/init.d/netdata
 endef
