@@ -7,6 +7,7 @@ USE_PROCD=1
 
 NAME=aria2
 PROG=/usr/bin/aria2c
+AR_COM="/usr/share/aria2"
 
 _info() {
 	logger -p daemon.info -t "$NAME" "$*"
@@ -20,10 +21,9 @@ _make_dir() {
 	local d
 	for d in "$@"; do
 		if [ ! -d "$d" ]; then
-			mkdir -p "$d" 2>/dev/null || return 1
+			mkdir -p "$d" 2>/dev/null && _info "目录<code>"$d"</code>设置成功。" || return 1
 		fi
 	done
-
 	return 0
 }
 
@@ -33,7 +33,6 @@ _create_file() {
 
 _change_owner() {
 	local u="$1"; shift
-
 	local d
 	for d in "$@"; do
 		if [ -f "$d" ]; then
@@ -42,7 +41,6 @@ _change_owner() {
 			chown -R "$u" "$d" 2>/dev/null || return 1
 		fi
 	done
-
 	return 0
 }
 
@@ -65,122 +63,161 @@ append_options() {
 	local o; local v
 	for o in "$@"; do
 		v="$(eval echo "\$$o")"
-		[ -n "$v" ] && \
-			echo "${o//_/-}=$v" >>"$config_file_tmp"
+		[ -n "$v" ] && echo "${o//_/-}=$v" >>"$config_file_tmp"
 	done
 }
 
 append_setting() {
 	local s="$1"
-	[ -n "$s" ] && \
-		echo "$s" >>"$config_file_tmp"
+	[ -n "$s" ] && echo "$s" >>"$config_file_tmp"
 }
 
 append_header() {
 	local h="$1"
-	[ -n "$h" ] && \
-		echo "header=\"$h\"" >>"$config_file_tmp"
+	[ -n "$h" ] && echo "header=\"$h\"" >>"$config_file_tmp"
+}
+
+Download_aria2_conf() {
+    [ -d "$AR_COM" ] || _make_dir "$AR_COM" && cd "$AR_COM"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/aria2.conf
+    [ ! -s "aria2.conf" ] && echo "Aria2 配置文件下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/autoupload.sh ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/autoupload.sh ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/autoupload.sh
+    [ ! -s "autoupload.sh" ] && echo "附加功能脚本[autoupload.sh]下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.aria2.sh ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/delete.aria2.sh ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.aria2.sh
+    [ ! -s "delete.aria2.sh" ] && echo "附加功能脚本[delete.aria2.sh]下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.sh ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/delete.sh ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.sh
+    [ ! -s "delete.sh" ] && echo "附加功能脚本[delete.sh]下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht.dat ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/dht.dat ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht.dat
+    [ ! -s "dht.dat" ] && echo "Aria2 DHT（IPv4）文件下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht6.dat ||
+    curl -fsSLO https://p3terx.github.io/aria2.conf/dht6.dat ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
+    [ ! -s "dht6.dat" ] && echo "Aria2 DHT（IPv6）文件下载失败 !"
+	curl -fsSLO https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/tracker.sh ||
+	curl -fsSLO https://p3terx.github.io/aria2.conf/tracker.sh ||
+	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/tracker.sh
+    [ ! -s "tracker.sh" ] && echo "附加功能脚本[tracker.sh]文件下载失败 !"
+	sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
+	-e 's|/root/.aria2|'"$AR_COM"'|g' -e 's|#!.*|#!/bin/bash|g' -e 's|${L.*EFIX}||g' \
+	-e 's|rpc.*cret=|#rpc-secret=|g' -e 's|#rpc-secu|rpc-secu|g' -e 's|##rpc|#rpc|g' \
+	-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
+	$AR_COM/* 2>/dev/null
+    echo "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
+	cat aria2.conf > "$config_file" && echo '' >> "$config_file"
 }
 
 aria2_validate() {
 	uci_load_validate "$NAME" aria2 "$1" "$2" \
-		'enabled:bool:0' \
-		'enable_logging:bool' \
-		'enable_proxy:bool' \
-		'config_dir:string:/var/etc/aria2' \
+		'dir:string' \
+		'log:string' \
 		'user:string' \
+		'split:uinteger' \
+		'enabled:bool:0' \
+		'rpc_user:string' \
 		'all_proxy:string' \
-		'all_proxy_passwd:string' \
+		'seed_time:ufloat' \
+		'certificate:file' \
+		'timeout:uinteger' \
+		'private_key:file' \
+		'seed_ratio:ufloat' \
+		'rpc_secret:string' \
+		'user_agent:string' \
+		'rpc_passwd:string' \
+		'enable_proxy:bool' \
+		'disk_cache:string' \
+		'listen_port:string' \
+		'max_tries:uinteger' \
+		'enable_logging:bool' \
+		'ca_certificate:file' \
+		'retry_wait:uinteger' \
+		'rpc_certificate:file' \
+		'rpc_private_key:file' \
 		'all_proxy_user:string' \
+		'min_split_size:string' \
+		'peer_id_prefix:string' \
+		'bt_max_peers:uinteger' \
+		'dht_listen_port:string' \
+		'all_proxy_passwd:string' \
+		'max_upload_limit:string' \
+		'bt_tracker:list(string)' \
+		'bt_stop_timeout:uinteger' \
+		'pause:or("true","false")' \
+		'connect_timeout:uinteger' \
+		'max_download_limit:string' \
+		'lowest_speed_limit:string' \
+		'bt_max_open_files:uinteger' \
+		'bt_prioritize_piece:string' \
+		'force_save:or("true","false")' \
+		'rpc_secure:or("true","false")' \
+		'save_session_interval:uinteger' \
+		'enable_dht6:or("true","false")' \
+		'disable_ipv6:or("true","false")' \
+		'max_overall_upload_limit:string' \
 		'auto_save_interval:range(0,600)' \
 		'bt_enable_lpd:or("true","false")' \
-		'bt_detach_seed_only:or("true","false")' \
-		'bt_load_saved_metadata:or("true","false")' \
-		'bt_prioritize_piece:string' \
-		'bt_max_open_files:uinteger' \
-		'bt_max_peers:uinteger' \
-		'bt_remove_unselected_file:or("true","false")' \
-		'bt_request_peer_speed_limit:string' \
-		'bt_save_metadata:or("true","false")' \
-		'bt_seed_unverified:or("true","false")' \
-		'bt_stop_timeout:uinteger' \
-		'bt_tracker:list(string)' \
-		'ca_certificate:file' \
-		'certificate:file' \
-		'check_certificate:or("true","false"):true' \
-		'check_integrity:or("true","false")' \
-		'connect_timeout:uinteger' \
-		'dht_listen_port:string' \
-		'dir:string' \
-		'disable_ipv6:or("true","false")' \
-		'disk_cache:string' \
-		'enable_dht:or("true","false"):true' \
-		'enable_dht6:or("true","false")' \
-		'enable_peer_exchange:or("true","false")' \
-		'event_poll:or("epoll","kqueue","port","poll","select")' \
-		'file_allocation:or("none","prealloc","trunc","falloc")' \
-		'follow_torrent:or("true","false","mem")' \
-		'force_save:or("true","false")' \
-		'http_accept_gzip:or("true","false")' \
+		'config_dir:string:/var/etc/aria2' \
 		'http_no_cache:or("true","false")' \
-		'listen_port:string' \
-		'log:string' \
-		'log_level:or("debug","info","notice","warn","error")' \
-		'lowest_speed_limit:string' \
 		'max_concurrent_downloads:uinteger' \
-		'max_connection_per_server:uinteger' \
-		'max_download_limit:string' \
-		'max_overall_download_limit:string' \
-		'max_overall_upload_limit:string' \
-		'max_tries:uinteger' \
-		'max_upload_limit:string' \
-		'min_split_size:string' \
-		'pause:or("true","false")' \
-		'pause_metadata:or("true","false")' \
-		'peer_id_prefix:string' \
-		'private_key:file' \
-		'retry_wait:uinteger' \
-		'rpc_auth_method:or("none","user_pass","token")' \
-		'rpc_certificate:file' \
 		'rpc_listen_port:range(1024,65535)' \
-		'rpc_passwd:string' \
-		'rpc_private_key:file' \
-		'rpc_secret:string' \
-		'rpc_secure:or("true","false")' \
-		'rpc_user:string' \
-		'save_session_interval:uinteger' \
-		'seed_ratio:ufloat' \
-		'seed_time:ufloat' \
-		'split:uinteger' \
-		'timeout:uinteger' \
-		'user_agent:string'
+		'pause_metadata:or("true","false")' \
+		'max_overall_download_limit:string' \
+		'enable_dht:or("true","false"):true' \
+		'check_integrity:or("true","false")' \
+		'bt_request_peer_speed_limit:string' \
+		'max_connection_per_server:uinteger' \
+		'bt_save_metadata:or("true","false")' \
+		'http_accept_gzip:or("true","false")' \
+		'bt_seed_unverified:or("true","false")' \
+		'bt_detach_seed_only:or("true","false")' \
+		'follow_torrent:or("true","false","mem")' \
+		'enable_peer_exchange:or("true","false")' \
+		'bt_load_saved_metadata:or("true","false")' \
+		'check_certificate:or("true","false"):true' \
+		'bt_remove_unselected_file:or("true","false")' \
+		'rpc_auth_method:or("none","user_pass","token")' \
+		'log_level:or("debug","info","notice","warn","error")' \
+		'event_poll:or("epoll","kqueue","port","poll","select")' \
+		'file_allocation:or("none","prealloc","trunc","falloc")' 
 }
 
 aria2_start() {
 	local section="$1"
-	[ "$2" = "0" ] || { _err "Validation failed."; return 1; }
-
+	[ "$2" = "0" ] || { _err "验证失败。"; return 1; }
 	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
-	[ -n "$dir" ] || { _err "Please set download dir."; return 1; }
-	[ -d "$dir" ] || { _err "Please create download dir first."; return 1; }
+	[ -n "$dir" ] || { _err "请设置下载目录。"; return 1; }
 
 	config_file="$config_dir/$NAME.conf.$section"
 	config_file_tmp="$config_dir/$NAME.conf.tmp"
 	session_file="$config_dir/$NAME.session.$section"
 
 	_make_dir "$config_dir" || {
-		_err "Can't create config dir: $config_dir"
-		return 1
+	_err "无法创建$config_dir的配置目录。"
+	return 1
+	}
+	
+	_make_dir "$dir"  || {
+	_err "无法创建$dir的下载目录。"
+	return 1
 	}
 
 	_create_file "$session_file" "$config_file" "$config_file_tmp" || {
-		_err "Can't create files: $session_file, $config_file, $config_file_tmp"
-		return 1
+	_err "无法创建$session_file, $config_file, $config_file_tmp的目录。"
+	return 1
 	}
 
-	# create tmp file
+	# 创建tmp文件
 	cat >"$config_file_tmp" <<-EOF
-		# Auto generated file, changes to this file will be lost.
+		###下面是系统自动生成的文件，对此文件修改将无法正常运行###
 	EOF
 
 	append_setting "dir=$dir"
@@ -201,13 +238,11 @@ aria2_start() {
 		log_dir="$(dirname "$log")"
 
 		_make_dir "$log_dir" || {
-			_err "Can't create log dir: $log_dir"
-			return 1
+		_err "无法创建$log_dir的日志目录。"
+		return 1
 		}
-
 		# create or clear log file
 		echo >"$log"
-
 		append_setting "log=$log"
 		append_options "log_level"
 	fi
@@ -230,7 +265,7 @@ aria2_start() {
 			append_setting "rpc-user=$rpc_user"
 			append_setting "rpc-passwd=$rpc_passwd"
 		else
-			_info "It is recommended to set RPC secret."
+			_info "建议设置RPC密码。"
 		fi
 	elif [ "$rpc_auth_method" = "token" ]; then
 		if [ -n "$rpc_secret" ]; then
@@ -243,7 +278,7 @@ aria2_start() {
 			append_setting "rpc-user=$rpc_user"
 			append_setting "rpc-passwd=$rpc_passwd"
 		else
-			_info "Please set RPC user."
+			_info "请设置RPC用户。"
 			unset_auth_method
 		fi
 	fi
@@ -263,10 +298,9 @@ aria2_start() {
 	if [ ."$enable_dht" = ."true" ]; then
 		dht_file="$config_dir/dht.dat.$section"
 		_create_file "$dht_file" || {
-			_err "Can't create DHT file: $dht_file"
-			return 1
+		_err "无法创建DHT文件：$dht_file"
+		return 1
 		}
-
 		append_setting "enable-dht=true"
 		append_setting "dht-file-path=$dht_file"
 	fi
@@ -274,10 +308,9 @@ aria2_start() {
 	if [ ."$enable_dht6" = ."true" ] && [ ."$disable_ipv6" != ."true" ]; then
 		dht6_file="$config_dir/dht6.dat.$section"
 		_create_file "$dht6_file" || {
-			_err "Can't create DHT6 file: $dht6_file"
-			return 1
+		_err "无法创建DHT6文件：$dht6_file"
+		return 1
 		}
-
 		append_setting "enable-dht6=true"
 		append_setting "dht-file-path6=$dht6_file"
 	fi
@@ -291,39 +324,37 @@ aria2_start() {
 				bt_tracker_list="$bt_tracker_list,$t"
 			fi
 		done
-
 		append_setting "bt-tracker=$bt_tracker_list"
 	fi
 
 	append_options "auto_save_interval" "bt_enable_lpd" "bt_max_open_files" "bt_max_peers" \
-		"bt_remove_unselected_file" "bt_request_peer_speed_limit" "bt_prioritize_piece" \
+		"bt_remove_unselected_file" "bt_request_peer_speed_limit" "pause" "bt_prioritize_piece" \
 		"bt_stop_timeout" "bt_detach_seed_only" "bt_save_metadata" "bt_load_saved_metadata" \
 		"bt_seed_unverified" "certificate" "check_integrity" "connect_timeout" "dht_listen_port" \
 		"disable_ipv6" "disk_cache" "enable_peer_exchange" "event_poll" "file_allocation" \
-		"follow_torrent" "force_save" "http_accept_gzip" "http_no_cache" "listen_port" \
-		"lowest_speed_limit" "max_concurrent_downloads" "max_connection_per_server" \
+		"follow_torrent" "force_save" "http_accept_gzip" "http_no_cache" "listen_port" "split" \
+		"lowest_speed_limit" "max_concurrent_downloads" "max_connection_per_server" "user_agent" \
 		"max_download_limit" "max_overall_download_limit" "max_overall_upload_limit" "max_tries" \
-		"max_upload_limit" "min_split_size" "pause" "pause_metadata" "peer_id_prefix" "private_key" \
-		"retry_wait" "rpc_listen_port" "save_session_interval" "seed_ratio" "seed_time" "split" "timeout" \
-		"user_agent"
-
+		"max_upload_limit" "min_split_size" "pause_metadata" "peer_id_prefix" "private_key" \
+		"retry_wait" "rpc_listen_port" "save_session_interval" "seed_ratio" "seed_time" "timeout"
+		
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
-
-	sed '/^$/d' "$config_file_tmp" >"$config_file"
-	rm -f "$config_file_tmp"
+	
+	Download_aria2_conf
+	sed '/^$/d' "$config_file_tmp" >> "$config_file" && rm -f "$config_file_tmp"
 
 	_reset_dir_mode "$config_dir"
 	_change_file_mode 600 "$config_file"
 
 	if [ -n "$user" ]; then
 		if ( user_exists "$user" && _change_owner "$user" "$config_dir" "$log" ); then
-				_info "Aria2 will run with user '$user'."
+				_info "Aria2将以<code>"$user"</code>的用户身份运行。"
 				if [ "$user" != "root" ]; then
-					_info "Please make sure user '$user' has write access to download dir: $dir"
+					_info "请确保用户$user具有下载目录$dir的写入权限。"
 				fi
 		else
-			_info "Setting run user to '$user' failed, default user will be used."
+			_info "设置$user用户运行失败，使用默认用户。"
 			user=
 		fi
 	fi
@@ -344,6 +375,7 @@ aria2_start() {
 	procd_add_jail_mount "$config_file"
 	procd_add_jail_mount_rw "$dir" "$config_dir" "$log"
 	procd_close_instance
+
 }
 
 service_triggers() {
