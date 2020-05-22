@@ -7,7 +7,6 @@ USE_PROCD=1
 
 NAME=aria2
 PROG=/usr/bin/aria2c
-AR_COM=/usr/share/aria2
 
 _info() {
 	logger -p daemon.info -t "$NAME" "$*"
@@ -77,61 +76,6 @@ append_header() {
 	[ -n "$h" ] && echo "header=\"$h\"" >>"$config_file_tmp"
 }
 
-Download_aria2_conf() {
-    [ -d "$AR_COM" ] || _make_dir "$AR_COM" && cd "$AR_COM"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/aria2.conf ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/aria2.conf
-	[ ! -s "aria2.conf" ] && _info "Aria2 配置文件下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/autoupload.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/autoupload.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/autoupload.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/autoupload.sh
-	[ ! -s "autoupload.sh" ] && _info "附加功能脚本[autoupload.sh]下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.aria2.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.aria2.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/delete.aria2.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.aria2.sh
-	[ ! -s "delete.aria2.sh" ] && _info "附加功能脚本[delete.aria2.sh]下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/delete.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.sh
-	[ ! -s "delete.sh" ] && _info "附加功能脚本[delete.sh]下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht.dat ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht.dat
-	[ ! -s "dht.dat" ] && _info "Aria2 DHT（IPv4）文件下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht6.dat ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht6.dat ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/dht6.dat ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
-	[ ! -s "dht6.dat" ] && _info "Aria2 DHT（IPv6）文件下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/tracker.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/tracker.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/tracker.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/tracker.sh
-	[ ! -s "tracker.sh" ] && _info "附加功能脚本[tracker.sh]文件下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/info.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/info.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/info.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/info.sh
-	[ ! -s "info.sh" ] && _info "附加功能脚本[info.sh]文件下载失败 !"
-	wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/move.sh ||
-	wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/move.sh ||
-	curl -fsSLO https://p3terx.github.io/aria2.conf/move.sh ||
-	curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/move.sh
-	[ ! -s "move.sh" ] && _info "附加功能脚本[move.sh]文件下载失败 !"
-	sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
-	-e 's|/root/.aria2|'"$AR_COM"'|g' -e 's|#!.*|#!/bin/bash|g' -e 's|${L.*EFIX}||g' \
-	-e 's|rpc.*cret=|#rpc-secret=|g' -e 's|#rpc-secu|rpc-secu|g' -e 's|##rpc|#rpc|g' \
-	-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
-	$AR_COM/* 2>/dev/null
-	echo "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
-	cat aria2.conf > "$config_file" && echo '' >> "$config_file"
-}
-
 aria2_validate() {
 	uci_load_validate "$NAME" aria2 "$1" "$2" \
 		'dir:string' \
@@ -162,6 +106,7 @@ aria2_validate() {
 		'min_split_size:string' \
 		'peer_id_prefix:string' \
 		'bt_max_peers:uinteger' \
+		'enable_Aria2_Pro:bool' \
 		'dht_listen_port:string' \
 		'all_proxy_passwd:string' \
 		'max_upload_limit:string' \
@@ -187,6 +132,7 @@ aria2_validate() {
 		'rpc_listen_port:range(1024,65535)' \
 		'pause_metadata:or("true","false")' \
 		'max_overall_download_limit:string' \
+		'Aria2_Pro:string:/usr/share/aria2' \
 		'enable_dht:or("true","false"):true' \
 		'check_integrity:or("true","false")' \
 		'bt_request_peer_speed_limit:string' \
@@ -215,7 +161,6 @@ aria2_start() {
 	config_file="$config_dir/$NAME.conf.$section"
 	config_file_tmp="$config_dir/$NAME.conf.tmp"
 	session_file="$config_dir/$NAME.session.$section"
-
 	_make_dir "$config_dir" || {
 	_err "无法创建$config_dir的配置目录。"
 	return 1
@@ -357,8 +302,66 @@ aria2_start() {
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
 	
-	Download_aria2_conf
-	sed '/^$/d' "$config_file_tmp" >> "$config_file" && rm -f "$config_file_tmp"
+	# Download_Aria2_Pro_conf
+	if [ -z "$enable_Aria2_Pro" ]; then
+			append_options "Aria2_Pro"
+	elif [ "$enable_Aria2_Pro" = "1" ]; then
+		_make_dir "$Aria2_Pro" && cd "$Aria2_Pro"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/aria2.conf ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/aria2.conf
+		[ ! -s "aria2.conf" ] && _info "Aria2 配置文件下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/autoupload.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/autoupload.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/autoupload.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/autoupload.sh
+		[ ! -s "autoupload.sh" ] && _info "附加功能脚本[autoupload.sh]下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.aria2.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.aria2.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/delete.aria2.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.aria2.sh
+		[ ! -s "delete.aria2.sh" ] && _info "附加功能脚本[delete.aria2.sh]下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/delete.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.sh
+		[ ! -s "delete.sh" ] && _info "附加功能脚本[delete.sh]下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht.dat ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht.dat
+		[ ! -s "dht.dat" ] && _info "Aria2 DHT（IPv4）文件下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht6.dat ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht6.dat ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/dht6.dat ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
+		[ ! -s "dht6.dat" ] && _info "Aria2 DHT（IPv6）文件下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/tracker.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/tracker.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/tracker.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/tracker.sh
+		[ ! -s "tracker.sh" ] && _info "附加功能脚本[tracker.sh]文件下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/info.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/info.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/info.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/info.sh
+		[ ! -s "info.sh" ] && _info "附加功能脚本[info.sh]文件下载失败 !"
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/move.sh ||
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/move.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/move.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/move.sh
+		[ ! -s "move.sh" ] && _info "附加功能脚本[move.sh]文件下载失败 !"
+		sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
+		-e 's|/root/.aria2|'"$Aria2_Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e 's|##rp|#rp|g' \
+		-e 's|rp.*cret=|#rpc-secret=|g' -e 's|#rpc-secu|rpc-secu|g' -e 's|${L.*EFIX}||g' \
+		-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
+		$Aria2_Pro/* 2>/dev/null
+		_info "Aria2加强配置下载完成！" && chmod +x *.sh && touch aria2.session && sh ./tracker.sh
+		cat aria2.conf > "$config_file" && echo '' >> "$config_file"
+	fi
+	
+	sed '/^$/d' "$config_file_tmp" >> "$config_file"
+	rm -f "$config_file_tmp"
 
 	_reset_dir_mode "$config_dir"
 	_change_file_mode 600 "$config_file"
