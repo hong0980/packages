@@ -304,9 +304,10 @@ aria2_start() {
 	
 	# Download_Aria2_Pro_conf
 	if [ -z "$enable_Aria2_Pro" ]; then
-			append_options "Aria2_Pro"
+                append_options "Aria2_Pro"
 	elif [ "$enable_Aria2_Pro" = "1" ]; then
-		_make_dir "$Aria2_Pro" && cd "$Aria2_Pro"
+		[ -d "$Aria2_Pro" ] || _make_dir "$Aria2_Pro"
+                cd "$Aria2_Pro"
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/aria2.conf ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
