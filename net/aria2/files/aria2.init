@@ -156,11 +156,19 @@ aria2_start() {
 	local section="$1"
 	[ "$2" = "0" ] || { _err "验证失败。"; return 1; }
 	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
+	
+	if [ "$enable_Aria2_Pro" = "1" ]; then
+		a="$Aria2_Pro"
+		[ -d "$Aria2_Pro" ] || _make_dir "$Aria2_Pro"
+	else
+		a="$config_dir"
+		[ -d "$Aria2_Pro" ] && rm -rf "$Aria2_Pro"
+	fi
 	[ -n "$dir" ] || { _err "请设置下载目录。"; return 1; }
 
 	config_file="$config_dir/$NAME.conf.$section"
 	config_file_tmp="$config_dir/$NAME.conf.tmp"
-	session_file="$config_dir/$NAME.session.$section"
+	session_file="$a/$NAME.session"
 	_make_dir "$config_dir" || {
 	_err "无法创建$config_dir的配置目录。"
 	return 1
@@ -178,7 +186,7 @@ aria2_start() {
 
 	# 创建tmp文件
 	cat >"$config_file_tmp" <<-EOF
-		###下面是系统自动生成的文件，对此文件修改将无法正常运行###
+		###下面是系统自动生成，对此文件修改将无法正常运行###
 	EOF
 
 	append_setting "dir=$dir"
@@ -188,7 +196,7 @@ aria2_start() {
 	append_setting "quiet=true"
 	append_setting "continue=true"
 	append_setting "input-file=$session_file"
-	append_setting "save-session=$session_file"
+	append_setting "save-session=$a/$NAME.session"
 
 	if [ -z "$enable_logging" ]; then
 		append_options "log" "log_level"
@@ -209,11 +217,8 @@ aria2_start() {
 	fi
 	
 	# Download_Aria2_Pro_conf
-	if [ -z "$enable_Aria2_Pro" ]; then
-            append_options "Aria2_Pro"
-	elif [ "$enable_Aria2_Pro" = "1" ]; then
-		[ -d "$Aria2_Pro" ] || _make_dir "$Aria2_Pro"
-            cd "$Aria2_Pro"
+    if [ "$enable_Aria2_Pro" = "1" ]; then
+		cd "$Aria2_Pro"
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/aria2.conf ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
@@ -262,8 +267,8 @@ aria2_start() {
 		-e 's|/root/.aria2|'"$Aria2_Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e 's|##rp|#rp|g' \
 		-e 's|rp.*cret=|#rpc-secret=|g' -e 's|#rpc-secu|rpc-secu|g' -e 's|${L.*EFIX}||g' \
 		-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
-		"$Aria2_Pro"/* 2>/dev/null
-		_info "Aria2加强配置下载完成！" && chmod +x *.sh && _create_file aria2.session && sh ./tracker.sh
+		-e 's|t=false|t=true|g' "$Aria2_Pro"/* 2>/dev/null
+		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
 		cat aria2.conf > "$config_file" && echo '' >> "$config_file"
 	fi
 
@@ -316,17 +321,18 @@ aria2_start() {
 	fi
 
 	if [ ."$enable_dht" = ."true" ]; then
-		dht_file="$Aria2_Pro/dht.dat"
+		dht_file="$a/dht.dat"
 		_create_file "$dht_file" || {
-		_err "无法创建DHT文件：$dht_file"
-		return 1
+			_err "无法创建DHT文件: $dht_file"
+			return 1
 		}
+
 		append_setting "enable-dht=true"
 		append_setting "dht-file-path=$dht_file"
 	fi
 
 	if [ ."$enable_dht6" = ."true" ] && [ ."$disable_ipv6" != ."true" ]; then
-		dht6_file="$Aria2_Pro/dht6.dat"
+		dht6_file="$a/dht6.dat"
 		_create_file "$dht6_file" || {
 		_err "无法创建DHT6文件：$dht6_file"
 		return 1
@@ -360,8 +366,8 @@ aria2_start() {
 		
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
-	
-	sed '/^$/d' "$config_file_tmp" >> "$config_file"
+	[ "$enable_Aria2_Pro" = "0" ] && echo '' >  "$config_file" && sed '/^$/d' "$config_file_tmp" >> "$config_file"
+
 	rm -f "$config_file_tmp"
 
 	_reset_dir_mode "$config_dir"
