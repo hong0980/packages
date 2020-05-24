@@ -166,7 +166,7 @@ aria2_start() {
 	fi
 	[ -n "$dir" ] || { _err "请设置下载目录。"; return 1; }
 
-	config_file="$config_dir/$NAME.conf.$section"
+	config_file="$config_dir/$NAME.conf"
 	config_file_tmp="$config_dir/$NAME.conf.tmp"
 	session_file="$a/$NAME.session"
 	_make_dir "$config_dir" || {
@@ -254,6 +254,7 @@ aria2_start() {
 		curl -fsSLO https://p3terx.github.io/aria2.conf/move.sh ||
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/move.sh
 		[ ! -s "move.sh" ] && _info "附加功能脚本[move.sh]文件下载失败 !"
+		[ -d dht.dat ] && rm -rf dht.dat
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht.dat ||
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat ||
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht.dat
