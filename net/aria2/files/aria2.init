@@ -370,7 +370,7 @@ aria2_start() {
 
 	rm -f "$config_file_tmp"
 
-	_reset_dir_mode "$a"
+	_reset_dir_mode "$config_dir"
 	_change_file_mode 600 "$config_file"
 
 	if [ -n "$user" ]; then
