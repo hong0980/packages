@@ -186,7 +186,9 @@ aria2_start() {
 
 	# 创建tmp文件
 	cat >"$config_file_tmp" <<-EOF
-		###下面是系统自动生成，对此文件修改将无法正常运行###
+		    
+	#===以下是系统生成，对此文件修改将无法正常运行===#
+		    
 	EOF
 
 	append_setting "dir=$dir"
@@ -328,17 +330,17 @@ aria2_start() {
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.sh ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/delete.sh ||
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/delete.sh
-		[ ! -s "delete.sh" ] && _info "附加功能脚本[delete.sh]下载失败 !"
+		[ -s "delete.sh" ] || _info "附加功能脚本[delete.sh]下载失败 !"
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/tracker.sh ||
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/tracker.sh ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/tracker.sh ||
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/tracker.sh
-		[ ! -s "tracker.sh" ] && _info "附加功能脚本[tracker.sh]文件下载失败 !"
+		[ -s "tracker.sh" ] || _info "附加功能脚本[tracker.sh]文件下载失败 !"
 		[ -s dht.dat ] || rm -rf dht.dat
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/dht.dat ||
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/dht.dat ||
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht.dat
-		[ ! -s "dht.dat" ] && _info "Aria2 DHT（IPv4）文件下载失败 !"
+		[ -s "dht.dat" ] || _info "Aria2 DHT（IPv4）文件下载失败 !"
 		# wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/info.sh ||
 		# wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/info.sh ||
 		# curl -fsSLO https://p3terx.github.io/aria2.conf/info.sh ||
@@ -366,6 +368,11 @@ aria2_start() {
 		-e 's|t=false|t=true|g' "$Aria2_Pro"/* 2>/dev/null
 		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
 		sed '/^$/d' "$config_file_tmp" > "$config_file"
+		cat >> "$config_file" <<-EOF
+		    
+		#===以下是P3TERX的配置文件===#
+			
+		EOF
 		cat aria2.conf >> "$config_file"
 	else
 		sed '/^$/d' "$config_file_tmp" > "$config_file"
