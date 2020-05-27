@@ -362,22 +362,15 @@ aria2_start() {
 		# curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
 		# [ ! -s "dht6.dat" ] && _info "Aria2 DHT（IPv6）文件下载失败 !"
 		sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
-		-e 's|/root/.aria2|'"$Aria2_Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e 's|##rp|#rp|g' \
-		-e 's|rp.*cret=|#rpc-secret=|g' -e 's|#rpc-secu|rpc-secu|g' -e 's|${L.*EFIX}||g' \
-		-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
-		-e 's|t=false|t=true|g' "$Aria2_Pro"/* 2>/dev/null
+		-e 's|/root/.aria2|'"$Aria2_Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e '/et=P3TERX/d' \
+		-e 's|${F.*X}||g' -e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' \
+		-e 's|${L.*EFIX}||g' "$Aria2_Pro"/* 2>/dev/null
 		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
-		sed '/^$/d' "$config_file_tmp" > "$config_file"
-		cat >> "$config_file" <<-EOF
-		    
-		#===以下是P3TERX的配置文件===#
-			
-		EOF
-		cat aria2.conf >> "$config_file"
+		cat aria2.conf > "$config_file"
+		sed '/^$/d' "$config_file_tmp" >> "$config_file"
 	else
 		sed '/^$/d' "$config_file_tmp" > "$config_file"
 	fi
-
 	rm -f "$config_file_tmp"
 
 	_reset_dir_mode "$config_dir"
