@@ -269,7 +269,6 @@ aria2_start() {
 		-e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' -e 's|${F.*X}||g' \
 		-e 's|t=false|t=true|g' "$Aria2_Pro"/* 2>/dev/null
 		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
-		cat aria2.conf > "$config_file" && echo '' >> "$config_file"
 	fi
 
 	if [ -z "$enable_proxy" ] || [ "$enable_proxy" = "1" ]; then
@@ -366,7 +365,13 @@ aria2_start() {
 		
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
-	[ "$enable_Aria2_Pro" = "0" ] && echo '' >  "$config_file" && sed '/^$/d' "$config_file_tmp" >> "$config_file"
+	
+	if [ "$enable_Aria2_Pro" = "0" ]; then
+		sed '/^$/d' "$config_file_tmp" > "$config_file"
+	else
+		sed '/^$/d' "$config_file_tmp" > "$config_file"
+		cat aria2.conf >> "$config_file"
+	fi
 
 	rm -f "$config_file_tmp"
 
