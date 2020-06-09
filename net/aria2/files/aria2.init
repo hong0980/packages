@@ -149,14 +149,14 @@ aria2_validate() {
 		'rpc_auth_method:or("none","user_pass","token")' \
 		'log_level:or("debug","info","notice","warn","error")' \
 		'event_poll:or("epoll","kqueue","port","poll","select")' \
-		'file_allocation:or("none","prealloc","trunc","falloc")' 
+		'file_allocation:or("none","prealloc","trunc","falloc")'
 }
 
 aria2_start() {
 	local section="$1"
 	[ "$2" = "0" ] || { _err "验证失败。"; return 1; }
 	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
-	
+
 	if [ "$enable_Aria2_Pro" = "1" ]; then
 		a="$Aria2_Pro"
 		[ -d "$Aria2_Pro" ] || _make_dir "$Aria2_Pro"
@@ -173,7 +173,7 @@ aria2_start() {
 	_err "无法创建$a的配置目录。"
 	return 1
 	}
-	
+
 	_make_dir "$dir"  || {
 	_err "无法创建$dir的下载目录。"
 	return 1
@@ -186,9 +186,9 @@ aria2_start() {
 
 	# 创建tmp文件
 	cat >"$config_file_tmp" <<-EOF
-		    
+
 	#===以下是系统生成，对此文件修改将无法正常运行===#
-		    
+
 	EOF
 
 	append_setting "dir=$dir"
@@ -309,10 +309,10 @@ aria2_start() {
 		"max_download_limit" "max_overall_download_limit" "max_overall_upload_limit" "max_tries" \
 		"max_upload_limit" "min_split_size" "pause_metadata" "peer_id_prefix" "private_key" \
 		"retry_wait" "rpc_listen_port" "save_session_interval" "seed_ratio" "seed_time" "timeout"
-		
+
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
-	
+
 	# Download_Aria2_Pro_conf
     if [ "$enable_Aria2_Pro" = "1" ]; then
 		cd "$Aria2_Pro"
