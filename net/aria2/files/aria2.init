@@ -106,7 +106,7 @@ aria2_validate() {
 		'min_split_size:string' \
 		'peer_id_prefix:string' \
 		'bt_max_peers:uinteger' \
-		'enable_Aria2_Pro:bool' \
+		'enable_Pro:bool' \
 		'dht_listen_port:string' \
 		'all_proxy_passwd:string' \
 		'max_upload_limit:string' \
@@ -132,7 +132,7 @@ aria2_validate() {
 		'rpc_listen_port:range(1024,65535)' \
 		'pause_metadata:or("true","false")' \
 		'max_overall_download_limit:string' \
-		'Aria2_Pro:string:/usr/share/aria2' \
+		'Pro:string:/usr/share/aria2' \
 		'enable_dht:or("true","false"):true' \
 		'check_integrity:or("true","false")' \
 		'bt_request_peer_speed_limit:string' \
@@ -157,12 +157,12 @@ aria2_start() {
 	[ "$2" = "0" ] || { _err "验证失败。"; return 1; }
 	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
 
-	if [ "$enable_Aria2_Pro" = "1" ]; then
-		a="$Aria2_Pro"
-		[ -d "$Aria2_Pro" ] || _make_dir "$Aria2_Pro"
+	if [ "$enable_Pro" = "1" ]; then
+		a="$Pro"
+		[ -d "$Pro" ] || _make_dir "$Pro"
 	else
 		a="$config_dir"
-		[ -d "$Aria2_Pro" ] && rm -rf "$Aria2_Pro"
+		[ -d "$Pro" ] && rm -rf "$Pro"
 	fi
 	[ -n "$dir" ] || { _err "请设置下载目录。"; return 1; }
 
@@ -313,9 +313,9 @@ aria2_start() {
 	config_list_foreach "$section" "header" append_header
 	config_list_foreach "$section" "extra_settings" append_setting
 
-	# Download_Aria2_Pro_conf
-    if [ "$enable_Aria2_Pro" = "1" ]; then
-		cd "$Aria2_Pro"
+	# Download_Pro_conf
+    if [ "$enable_Pro" = "1" ]; then
+		cd "$Pro"
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/aria2.conf ||
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/aria2.conf ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/aria2.conf ||
@@ -362,9 +362,9 @@ aria2_start() {
 		# curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
 		# [ ! -s "dht6.dat" ] && _info "Aria2 DHT（IPv6）文件下载失败 !"
 		sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
-		-e 's|/root/.aria2|'"$Aria2_Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e '/et=P3TERX/d' \
+		-e 's|/root/.aria2|'"$Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e '/et=P3TERX/d' \
 		-e 's|${F.*X}||g' -e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' \
-		-e 's|${L.*EFIX}||g' "$Aria2_Pro"/* 2>/dev/null
+		-e 's|${L.*EFIX}||g' "$Pro"/* 2>/dev/null
 		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
 		cat aria2.conf > "$config_file"
 		sed '/^$/d' "$config_file_tmp" >> "$config_file"
