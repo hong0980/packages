@@ -83,6 +83,7 @@ aria2_validate() {
 		'user:string' \
 		'split:uinteger' \
 		'enabled:bool:0' \
+		'enable_Pro:bool' \
 		'rpc_user:string' \
 		'all_proxy:string' \
 		'seed_time:ufloat' \
@@ -106,7 +107,6 @@ aria2_validate() {
 		'min_split_size:string' \
 		'peer_id_prefix:string' \
 		'bt_max_peers:uinteger' \
-		'enable_Pro:bool' \
 		'dht_listen_port:string' \
 		'all_proxy_passwd:string' \
 		'max_upload_limit:string' \
@@ -118,6 +118,7 @@ aria2_validate() {
 		'lowest_speed_limit:string' \
 		'bt_max_open_files:uinteger' \
 		'bt_prioritize_piece:string' \
+		'Pro:string:/usr/share/aria2' \
 		'force_save:or("true","false")' \
 		'rpc_secure:or("true","false")' \
 		'save_session_interval:uinteger' \
@@ -132,7 +133,6 @@ aria2_validate() {
 		'rpc_listen_port:range(1024,65535)' \
 		'pause_metadata:or("true","false")' \
 		'max_overall_download_limit:string' \
-		'Pro:string:/usr/share/aria2' \
 		'enable_dht:or("true","false"):true' \
 		'check_integrity:or("true","false")' \
 		'bt_request_peer_speed_limit:string' \
