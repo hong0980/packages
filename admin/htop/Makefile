@@ -17,9 +17,8 @@ PKG_HASH:=d9d6826f10ce3887950d709b53ee1d8c1849a70fa38e91d5896ad8cbc6ba3c57
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
-PKG_CPE_ID:=cpe:/a:htop:htop
 
-PKG_BUILD_PARALLEL:=1
+PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -29,7 +28,7 @@ define Package/htop
   CATEGORY:=Administration
   TITLE:=Interactive processes viewer
   DEPENDS:=+libncurses
-  URL:=https://hisham.hm/htop/
+  URL:=http://htop.sourceforge.net/
   MAINTAINER:=Etienne CHAMPETIER <champetier.etienne@gmail.com>
 endef
 
