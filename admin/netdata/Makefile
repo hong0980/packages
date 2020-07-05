@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=netdata
-PKG_VERSION:=1.21.0
+PKG_VERSION:=1.22.0
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Josef Schlehofer <pepe.schlehofer@gmail.com>, Daniel Engberg <daniel.engberg.lists@pyret.net>
@@ -18,7 +18,7 @@ PKG_CPE_ID:=cpe:/a:my-netdata:netdata
 
 PKG_SOURCE:=$(PKG_NAME)-v$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/netdata/netdata/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=b6a80ac1e86d8a8d6fa16bba2ad15e8a8e5a89e3437cb7f30c538d11b95b5325
+PKG_HASH:=skip
 
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=1
@@ -30,7 +30,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/netdata
   SECTION:=admin
   CATEGORY:=Administration
-  DEPENDS:=+zlib +libuuid +libuv +libmnl +libjson-c +libopenssl
+  DEPENDS:=+zlib +libuuid +libmnl +libjson-c +libuv
   TITLE:=Real-time performance monitoring tool
   URL:=https://www.netdata.cloud/
 endef
@@ -67,6 +67,11 @@ endif
 
 define Package/netdata/conffiles
 /etc/netdata/
+endef
+
+define Package/netdata/extra_provides
+    echo 'libcrypto.so.1.1';\
+    echo 'libssl.so.1.1';
 endef
 
 define Package/netdata/install
