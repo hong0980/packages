@@ -322,12 +322,12 @@ aria2_start() {
 		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/aria2.conf
 		[ -s "aria2.conf" ] && _info "附加功能脚本[aria2.conf]文件下载成功 !"
 		[ ! -s "aria2.conf" ] && _info "Aria2 配置文件下载失败 !"
-		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/clean.sh.sh ||
-		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/clean.sh.sh ||
-		curl -fsSLO https://p3terx.github.io/aria2.conf/clean.sh.sh ||
-		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/clean.sh.sh
-		[ -s "clean.sh.sh" ] && _info "附加功能脚本[clean.sh.sh]文件下载成功 !"
-		[ ! -s "clean.sh.sh" ] && _info "附加功能脚本[clean.sh.sh]下载失败 !"
+		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/clean.sh ||
+		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/clean.sh ||
+		curl -fsSLO https://p3terx.github.io/aria2.conf/clean.sh ||
+		curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/clean.sh
+		[ -s "clean.sh" ] && _info "附加功能脚本[clean.sh]文件下载成功 !"
+		[ ! -s "clean.sh" ] && _info "附加功能脚本[clean.sh]下载失败 !"
 		wget -N -t2 -T3 https://raw.githubusercontent.com/P3TERX/aria2.conf/master/delete.sh ||
 		wget -N -t2 -T3 https://cdn.jsdelivr.net/gh/P3TERX/aria2.conf/delete.sh ||
 		curl -fsSLO https://p3terx.github.io/aria2.conf/delete.sh ||
