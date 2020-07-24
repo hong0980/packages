@@ -377,7 +377,7 @@ aria2_start() {
 		# curl -fsSLO https://gh.p3terx.workers.dev/aria2.conf/master/dht6.dat
 		# [ ! -s "dht6.dat" ] && _info "Aria2 DHT（IPv6）文件下载失败 !"
 		sed -i -e 's|NLOAD_PATH=.*|NLOAD_PATH='"'$dir'"'|g' -e 's|dir=.*|dir='"$dir"'|g' \
-		-e 's|/root/.aria2|'"$Pro"'|g' -e 's|#!.*|#!/bin/bash|g' -e '/et=P3TERX/d' \
+		-e 's|/root/.aria2|'"$Pro"'|g' -e 's|#!.*|#!/bin/sh|g' -e '/et=P3TERX/d' \
 		-e 's|${F.*X}||g' -e 's|${G.*EFIX}||g' -e 's|${R.*EFIX}||g' -e 's|${Y.*EFIX}||g' \
 		-e 's|${L.*EFIX}||g' "$Pro"/* 2>/dev/null
 		_info "Aria2加强配置下载完成！" && chmod +x *.sh && sh ./tracker.sh
