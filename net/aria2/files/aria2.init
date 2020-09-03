@@ -163,7 +163,7 @@ aria2_start() {
 	else
 		a="$config_dir"
 		[ -d "$Pro" ] && rm -rf "$Pro"
-		_info "关闭扩展功能已关闭，删除原来的$Pro目录"
+		_info "扩展功能已关闭，删除原来的$Pro目录"
 		if [ ! -f "$a"/dht.dat ] && [ ."$enable_dht" = ."true" ]; then
 			dht_file="$a/dht.dat"
 			_create_file "$dht_file" || {
