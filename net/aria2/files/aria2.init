@@ -9,21 +9,23 @@ NAME=aria2
 PROG=/usr/bin/aria2c
 
 _info() {
-	logger -p daemon.info -t "$NAME" "$*"
-}
-
-_err() {
-	logger -p daemon.err -t "$NAME" "$*"
+	local d="$(date "+%Y-%m-%d %H:%M:%S")"
+	echo -e "$d: $*" >>/var/log/aria2_1.log
 }
 
 _make_dir() {
 	local d
 	for d in "$@"; do
 		if [ ! -d "$d" ]; then
-			mkdir -p "$d" 2>/dev/null && _info "目录<code>"$d"</code>设置成功。" || return 1
+			if mkdir -p "$d" 2>/dev/null; then
+				_info "成功创建<code>"$d"</code>目录。"
+				return 0
+			else
+				_info "无法创建<code>"$d"</code>目录。"
+				return 1
+			fi
 		fi
 	done
-	return 0
 }
 
 _create_file() {
@@ -152,48 +154,35 @@ aria2_validate() {
 		'file_allocation:or("none","prealloc","trunc","falloc")'
 }
 
-aria2_start() {
-	local section="$1"
-	[ "$2" = "0" ] || { _err "验证失败。"; return 1; }
-	[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
-
+	aria2_start() {
+		local section="$1"
+		[ "$2" = "0" ] || { _info "验证失败。"; return 1; }
+		[ "$enabled" = "1" ] || { _info "Instance \"$section\" disabled."; return 1; }
 	if [ "$enable_Pro" == 1 ]; then
 		a="$Pro"
-		[ -d "$Pro" ] || _make_dir "$Pro"
+		_make_dir "$Pro"
 	else
+		_make_dir "$config_dir"
 		a="$config_dir"
-		[ -d "$Pro" ] && rm -rf "$Pro"
-		_info "扩展功能已关闭，删除原来的$Pro目录"
+		[ -d "$Pro" ] && rm -rf "$Pro" && _info "扩展功能已关闭，删除原来的$Pro目录"
 		if [ ! -f "$a"/dht.dat ] && [ ."$enable_dht" = ."true" ]; then
 			dht_file="$a/dht.dat"
 			_create_file "$dht_file" || {
-				_err "无法创建DHT文件: $dht_file"
-				return 1
-			}
-
+			_info "无法创建DHT文件: $dht_file"
+			return 1; }
 			append_setting "enable-dht=true"
 			append_setting "dht-file-path=$dht_file"
 		fi
 	fi
-	[ -n "$dir" ] || { _err "请设置下载目录。"; return 1; }
+	[ -n "$dir" ] && _make_dir "$dir" || { _info "请设置下载目录。"; return 1; }
 
 	config_file="$a/$NAME.conf.$section"
 	config_file_tmp="$a/$NAME.conf.tmp"
 	session_file="$a/$NAME.session"
-	_make_dir "$a" || {
-	_err "无法创建$a的配置目录。"
-	return 1
-	}
-
-	_make_dir "$dir"  || {
-	_err "无法创建$dir的下载目录。"
-	return 1
-	}
 
 	_create_file "$session_file" "$config_file" "$config_file_tmp" || {
-	_err "无法创建$session_file, $config_file, $config_file_tmp的目录。"
-	return 1
-	}
+	_info "无法创建$session_file, $config_file, $config_file_tmp的目录。"
+	return 1; }
 
 	# 创建tmp文件
 	cat >"$config_file_tmp" <<-EOF
@@ -219,10 +208,7 @@ aria2_start() {
 		local log_dir
 		log_dir="$(dirname "$log")"
 
-		_make_dir "$log_dir" || {
-		_err "无法创建$log_dir的日志目录。"
-		return 1
-		}
+		_make_dir "$log_dir"
 		# create or clear log file
 		echo >"$log"
 		append_setting "log=$log"
@@ -280,9 +266,8 @@ aria2_start() {
 	if [ ."$enable_dht6" = ."true" ] && [ ."$disable_ipv6" != ."true" ]; then
 		dht6_file="$a/dht6.dat"
 		_create_file "$dht6_file" || {
-		_err "无法创建DHT6文件：$dht6_file"
-		return 1
-		}
+		_info "无法创建DHT6文件：$dht6_file"
+		return 1; }
 		append_setting "enable-dht6=true"
 		append_setting "dht-file-path6=$dht6_file"
 	fi
@@ -314,7 +299,7 @@ aria2_start() {
 	config_list_foreach "$section" "extra_settings" append_setting
 
 	# Download_Pro_conf
-    if [ "$enable_Pro" = "1" ]; then
+	if [ "$enable_Pro" = "1" ]; then
 		cd $Pro
 		if for i in aria2.conf clean.sh delete.sh tracker.sh dht.dat; do
 			if [ ! -s $i ]; then
@@ -336,14 +321,14 @@ aria2_start() {
 	else
 		sed '/^$/d' "$config_file_tmp" > "$config_file"
 	fi
-	rm -f "$config_file_tmp"
 
+	rm -f "$config_file_tmp"
 	_reset_dir_mode "$config_dir"
 	_change_file_mode 600 "$config_file"
 
 	if [ -n "$user" ]; then
 		if ( user_exists "$user" && _change_owner "$user" "$a" "$log" ); then
-				_info "Aria2将以<code>"$user"</code>的用户身份运行。"
+			_info "Aria2将以<code>"$user"</code>的用户身份运行。"
 				if [ "$user" != "root" ]; then
 					_info "请确保用户$user具有下载目录$dir的写入权限。"
 				fi
