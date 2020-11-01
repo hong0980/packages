@@ -157,7 +157,7 @@ aria2_validate() {
 	aria2_start() {
 		local section="$1"
 		[ "$2" = "0" ] || { _info "验证失败。"; return 1; }
-		[ "$enabled" ] || { _info "实例 \"$section\" 已禁用。"; return 1; }
+		[ "$enabled" = "1" ] || { _info "实例 \"$section\" 已禁用。"; return 1; }
 	if [ "$enable_Pro" == 1 ]; then
 		a="$Pro"
 		_make_dir "$Pro"
